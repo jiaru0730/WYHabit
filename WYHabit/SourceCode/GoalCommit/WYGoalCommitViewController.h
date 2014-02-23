@@ -10,6 +10,7 @@
 
 @interface WYGoalCommitViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIButton *goalButton;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
+
 
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C102510518B9EE1B0036D44F /* WYGoalCommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C102510318B9EE1B0036D44F /* WYGoalCommitViewController.m */; };
 		C102510618B9EE1B0036D44F /* WYGoalCommitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C102510418B9EE1B0036D44F /* WYGoalCommitViewController.xib */; };
+		C1AB4ECC18B9FCBF002F3A3E /* WYMyGoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AB4ECB18B9FCBF002F3A3E /* WYMyGoalViewController.m */; };
 		C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2718B9C02300F7484C /* WYDatabase.m */; };
 		C1D0915C1894B48300FDBB72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915B1894B48300FDBB72 /* Foundation.framework */; };
 		C1D0915E1894B48300FDBB72 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915D1894B48300FDBB72 /* CoreGraphics.framework */; };
@@ -44,6 +45,9 @@
 		C102510218B9EE1B0036D44F /* WYGoalCommitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoalCommitViewController.h; sourceTree = "<group>"; };
 		C102510318B9EE1B0036D44F /* WYGoalCommitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalCommitViewController.m; sourceTree = "<group>"; };
 		C102510418B9EE1B0036D44F /* WYGoalCommitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYGoalCommitViewController.xib; sourceTree = "<group>"; };
+		C1AB4ECA18B9FCBF002F3A3E /* WYMyGoalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMyGoalViewController.h; sourceTree = "<group>"; };
+		C1AB4ECB18B9FCBF002F3A3E /* WYMyGoalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMyGoalViewController.m; sourceTree = "<group>"; };
+		C1AB4ECD18B9FF37002F3A3E /* WYUIContants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUIContants.h; sourceTree = "<group>"; };
 		C1BF7A2618B9C02300F7484C /* WYDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDatabase.h; sourceTree = "<group>"; };
 		C1BF7A2718B9C02300F7484C /* WYDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDatabase.m; sourceTree = "<group>"; };
 		C1D091581894B48300FDBB72 /* WYHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +106,8 @@
 				C102510218B9EE1B0036D44F /* WYGoalCommitViewController.h */,
 				C102510318B9EE1B0036D44F /* WYGoalCommitViewController.m */,
 				C102510418B9EE1B0036D44F /* WYGoalCommitViewController.xib */,
+				C1AB4ECA18B9FCBF002F3A3E /* WYMyGoalViewController.h */,
+				C1AB4ECB18B9FCBF002F3A3E /* WYMyGoalViewController.m */,
 			);
 			path = GoalCommit;
 			sourceTree = "<group>";
@@ -134,6 +140,7 @@
 				C1D3AAA018B9D121007712E8 /* WYGoalTableHandler.m */,
 				C1D3AAA318B9DE02007712E8 /* WYTableHandler.h */,
 				C1D3AAA418B9DE02007712E8 /* WYTableHandler.m */,
+				C1AB4ECD18B9FF37002F3A3E /* WYUIContants.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -347,6 +354,7 @@
 				C102510518B9EE1B0036D44F /* WYGoalCommitViewController.m in Sources */,
 				C1D0916C1894B48300FDBB72 /* WYAppDelegate.m in Sources */,
 				C1D3AA9D18B9CB27007712E8 /* WYDataManager.m in Sources */,
+				C1AB4ECC18B9FCBF002F3A3E /* WYMyGoalViewController.m in Sources */,
 				C1D3AAA118B9D121007712E8 /* WYGoalTableHandler.m in Sources */,
 				C1D091681894B48300FDBB72 /* main.m in Sources */,
 				C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */,
