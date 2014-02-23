@@ -21,6 +21,7 @@
 		C1D091771894B48300FDBB72 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915F1894B48300FDBB72 /* UIKit.framework */; };
 		C1D0917F1894B48300FDBB72 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1D0917D1894B48300FDBB72 /* InfoPlist.strings */; };
 		C1D091811894B48300FDBB72 /* WYHabitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D091801894B48300FDBB72 /* WYHabitTests.m */; };
+		C1D3AA9D18B9CB27007712E8 /* WYDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D3AA9C18B9CB27007712E8 /* WYDataManager.m */; };
 		F894A2CE631F4203BECC0EAD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F643B27B7D8416EAB085933 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,9 @@
 		C1D0917C1894B48300FDBB72 /* WYHabitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WYHabitTests-Info.plist"; sourceTree = "<group>"; };
 		C1D0917E1894B48300FDBB72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C1D091801894B48300FDBB72 /* WYHabitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYHabitTests.m; sourceTree = "<group>"; };
+		C1D3AA9B18B9CB27007712E8 /* WYDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDataManager.h; sourceTree = "<group>"; };
+		C1D3AA9C18B9CB27007712E8 /* WYDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDataManager.m; sourceTree = "<group>"; };
+		C1D3AA9E18B9CB41007712E8 /* WYConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,9 @@
 				C1BF7A2718B9C02300F7484C /* WYDatabase.m */,
 				C1BF7A2918B9C69D00F7484C /* WYTableHandler.h */,
 				C1BF7A2A18B9C69D00F7484C /* WYTableHandler.m */,
+				C1D3AA9B18B9CB27007712E8 /* WYDataManager.h */,
+				C1D3AA9C18B9CB27007712E8 /* WYDataManager.m */,
+				C1D3AA9E18B9CB41007712E8 /* WYConstants.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -316,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1D0916C1894B48300FDBB72 /* WYAppDelegate.m in Sources */,
+				C1D3AA9D18B9CB27007712E8 /* WYDataManager.m in Sources */,
 				C1BF7A2B18B9C69D00F7484C /* WYTableHandler.m in Sources */,
 				C1D091681894B48300FDBB72 /* main.m in Sources */,
 				C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */,
