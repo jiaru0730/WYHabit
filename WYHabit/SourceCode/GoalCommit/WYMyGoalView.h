@@ -1,5 +1,5 @@
 //
-//  WYMyGoalViewController.h
+//  WYMyGoalView.h
 //  WYHabit
 //
 //  Created by Jia Ru on 2/23/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYMyGoalViewController : UIViewController
+@interface WYMyGoalView : UIView
 
 @property (assign, nonatomic) NSInteger goalIndexInContainer;
 @property (assign, nonatomic) CGFloat radius;

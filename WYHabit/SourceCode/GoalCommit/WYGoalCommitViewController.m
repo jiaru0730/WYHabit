@@ -8,7 +8,7 @@
 
 #import "WYGoalCommitViewController.h"
 
-#import "WYMyGoalViewController.h"
+#import "WYMyGoalView.h"
 #import "WYUIContants.h"
 
 #define kAmountOfMyGoals    5
@@ -20,6 +20,8 @@
 
 @property (strong, nonatomic) NSArray *myGoalButtons;
 @property (assign, nonatomic) NSInteger selectedIndex;
+
+@property (strong, nonatomic) UIGestureRecognizer *longPressAndDragGoalGestureRecognizer;
 
 @end
 
@@ -54,14 +56,15 @@
     CGFloat horizontalSpacing = (UI_SCREEN_WIDTH - (kAmountOfMyGoals * 2 * kRadiusOfMyGoalView) - (2 * horizontalMargin)) / (kAmountOfMyGoals - 1);
     CGFloat yOfMyGoalViews = UI_SCREEN_HEIGHT - 75;
     for (int i = 0; i < kAmountOfMyGoals; ++i) {
-        WYMyGoalViewController *eachMyGoalViewController = [[WYMyGoalViewController alloc] init];
-        eachMyGoalViewController.goalIndexInContainer = i;
-        eachMyGoalViewController.radius = kRadiusOfMyGoalView;
-        [self addChildViewController:eachMyGoalViewController];
-        eachMyGoalViewController.view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-        eachMyGoalViewController.view.frame = CGRectMake((horizontalMargin + i * (horizontalSpacing + 2 *kRadiusOfMyGoalView)), yOfMyGoalViews, 2 * kRadiusOfMyGoalView, 2 * kRadiusOfMyGoalView);
-        [self.view addSubview:eachMyGoalViewController.view];
-        [mutableMyGoalButtons addObject:eachMyGoalViewController];
+        WYMyGoalView *eachMyGoalView = [[WYMyGoalView alloc] initWithFrame:CGRectMake((horizontalMargin + i * (horizontalSpacing + 2 *kRadiusOfMyGoalView)), yOfMyGoalViews, 2 * kRadiusOfMyGoalView, 2 * kRadiusOfMyGoalView)];
+        eachMyGoalView.goalIndexInContainer = i;
+        eachMyGoalView.backgroundColor = [UIColor orangeColor];
+        eachMyGoalView.radius = kRadiusOfMyGoalView;
+        eachMyGoalView.clipsToBounds = YES;
+        eachMyGoalView.layer.cornerRadius = kRadiusOfMyGoalView;
+        self.longPressAndDragGoalGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+        [eachMyGoalView addGestureRecognizer:self.longPressAndDragGoalGestureRecognizer];
+        [self.view addSubview:eachMyGoalView];
     }
     self.myGoalButtons = mutableMyGoalButtons;
 }
@@ -70,6 +73,31 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)longPress:(UILongPressGestureRecognizer *)sender {
+    WYMyGoalView *senderView = (WYMyGoalView *)sender.view;
+    CGPoint locationInGoalCommitView = [sender locationInView:self.view];
+    self.selectedIndex = senderView.goalIndexInContainer;
+    NSLog(@"x=%f, y=%f", locationInGoalCommitView.x, locationInGoalCommitView.y);
+    
+    switch (sender.state) {
+        case UIGestureRecognizerStateBegan: {
+            
+            break;
+        }
+
+        case UIGestureRecognizerStateChanged: {
+            
+            break;
+        }
+            
+        case UIGestureRecognizerStateEnded: {
+            
+        }
+        default:
+            break;
+    }
 }
 
 @end
