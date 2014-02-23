@@ -11,9 +11,9 @@
 
 @interface WYDatabase : NSObject
 
-@property (nonatomic, assign, getter = isOpen, setter = setOpen:) BOOL open;
+@property (assign, nonatomic, getter = isOpen, setter = setOpen:) BOOL open;
 
-@property (nonatomic, strong) WYGoalTableHandler *goalTableHandler;
+@property (strong, nonatomic) WYGoalTableHandler *goalTableHandler;
 
 - (BOOL)openAndInitDatabase;
 

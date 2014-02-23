@@ -15,9 +15,9 @@
 
 @interface WYDatabase()
 
-@property (nonatomic, strong) FMDatabaseQueue *databaseQueue;
+@property (strong, nonatomic) FMDatabaseQueue *databaseQueue;
 
-@property (nonatomic, strong) NSArray *tableHandlers;
+@property (strong, nonatomic) NSArray *tableHandlers;
 
 @end
 

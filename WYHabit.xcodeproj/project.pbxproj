@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C102510518B9EE1B0036D44F /* WYGoalCommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C102510318B9EE1B0036D44F /* WYGoalCommitViewController.m */; };
+		C102510618B9EE1B0036D44F /* WYGoalCommitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C102510418B9EE1B0036D44F /* WYGoalCommitViewController.xib */; };
 		C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2718B9C02300F7484C /* WYDatabase.m */; };
 		C1D0915C1894B48300FDBB72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915B1894B48300FDBB72 /* Foundation.framework */; };
 		C1D0915E1894B48300FDBB72 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915D1894B48300FDBB72 /* CoreGraphics.framework */; };
@@ -39,6 +41,9 @@
 /* Begin PBXFileReference section */
 		3F643B27B7D8416EAB085933 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		95F914AD4C6B4CA6BB9E6389 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		C102510218B9EE1B0036D44F /* WYGoalCommitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoalCommitViewController.h; sourceTree = "<group>"; };
+		C102510318B9EE1B0036D44F /* WYGoalCommitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalCommitViewController.m; sourceTree = "<group>"; };
+		C102510418B9EE1B0036D44F /* WYGoalCommitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYGoalCommitViewController.xib; sourceTree = "<group>"; };
 		C1BF7A2618B9C02300F7484C /* WYDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDatabase.h; sourceTree = "<group>"; };
 		C1BF7A2718B9C02300F7484C /* WYDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDatabase.m; sourceTree = "<group>"; };
 		C1D091581894B48300FDBB72 /* WYHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +96,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C102510118B9EC9C0036D44F /* GoalCommit */ = {
+			isa = PBXGroup;
+			children = (
+				C102510218B9EE1B0036D44F /* WYGoalCommitViewController.h */,
+				C102510318B9EE1B0036D44F /* WYGoalCommitViewController.m */,
+				C102510418B9EE1B0036D44F /* WYGoalCommitViewController.xib */,
+			);
+			path = GoalCommit;
+			sourceTree = "<group>";
+		};
 		C1BF7A2218B9BCF700F7484C /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +116,7 @@
 		C1BF7A2418B9BD3E00F7484C /* SourceCode */ = {
 			isa = PBXGroup;
 			children = (
+				C102510118B9EC9C0036D44F /* GoalCommit */,
 				C1BF7A2518B9BD6B00F7484C /* Common */,
 			);
 			path = SourceCode;
@@ -276,6 +292,7 @@
 			files = (
 				C1D091661894B48300FDBB72 /* InfoPlist.strings in Resources */,
 				C1D0916E1894B48300FDBB72 /* Images.xcassets in Resources */,
+				C102510618B9EE1B0036D44F /* WYGoalCommitViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C102510518B9EE1B0036D44F /* WYGoalCommitViewController.m in Sources */,
 				C1D0916C1894B48300FDBB72 /* WYAppDelegate.m in Sources */,
 				C1D3AA9D18B9CB27007712E8 /* WYDataManager.m in Sources */,
 				C1D3AAA118B9D121007712E8 /* WYGoalTableHandler.m in Sources */,

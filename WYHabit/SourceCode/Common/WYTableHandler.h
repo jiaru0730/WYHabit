@@ -12,7 +12,7 @@
 
 @interface WYTableHandler : NSObject
 
-@property (nonatomic, strong) FMDatabaseQueue *databaseQueue;
+@property (strong, nonatomic) FMDatabaseQueue *databaseQueue;
 
 - (BOOL)createTables;
 

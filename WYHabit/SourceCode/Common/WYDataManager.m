@@ -12,7 +12,7 @@
 
 @interface WYDataManager()
 
-@property (nonatomic, strong) WYDatabase *database;
+@property (strong, nonatomic) WYDatabase *database;
 
 @end
 @implementation WYDataManager

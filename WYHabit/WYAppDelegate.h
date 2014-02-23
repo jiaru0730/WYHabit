@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "WYGoalCommitViewController.h"
+
 @interface WYAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) UIViewController *rootViewController;
 
 @end

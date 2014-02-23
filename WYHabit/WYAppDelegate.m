@@ -15,12 +15,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    [self customizationAfterApplicationLaunch];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    [[WYDataManager sharedInstance] initDatabase];
     return YES;
+}
+
+- (void)customizationAfterApplicationLaunch {
+    self.rootViewController = [[WYGoalCommitViewController alloc] init];
+    self.window.rootViewController = self.rootViewController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
