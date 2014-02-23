@@ -8,6 +8,8 @@
 
 #import "WYAppDelegate.h"
 
+#import "WYDataManager.h"
+
 @implementation WYAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -16,6 +18,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [[WYDataManager sharedInstance] initDatabase];
     return YES;
 }
 

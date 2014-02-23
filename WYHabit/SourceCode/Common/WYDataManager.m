@@ -8,9 +8,21 @@
 
 #import "WYDataManager.h"
 
+#import "WYDatabase.h"
+
+@interface WYDataManager()
+
+@property (nonatomic, strong) WYDatabase *database;
+
+@end
 @implementation WYDataManager
 
 IMPLEMENT_SHARED_INSTANCE(WYDataManager)
+
+- (void)initDatabase {
+    self.database = [[WYDatabase alloc] init];
+    [self.database openAndInitDatabase];
+}
 
 - (NSString *)generateUUID {
     CFUUIDRef theUUID = CFUUIDCreate(NULL);

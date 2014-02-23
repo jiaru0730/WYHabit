@@ -15,6 +15,6 @@
 DECLARE_SHARED_INSTANCE(WYDataManager)
 
 - (NSString *)generateUUID;
-
+- (void)initDatabase;
 
 @end
