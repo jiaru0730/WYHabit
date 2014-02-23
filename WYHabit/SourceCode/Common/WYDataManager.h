@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "WYConstants.h"
+
 @interface WYDataManager : NSObject
+
+DECLARE_SHARED_INSTANCE(WYDataManager)
+
+- (NSString *)generateUUID;
+
 
 @end

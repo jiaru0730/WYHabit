@@ -10,4 +10,14 @@
 
 @implementation WYDataManager
 
+IMPLEMENT_SHARED_INSTANCE(WYDataManager)
+
+- (NSString *)generateUUID {
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+    CFRelease(theUUID);
+    return (__bridge_transfer NSString *)string;
+}
+
+
 @end

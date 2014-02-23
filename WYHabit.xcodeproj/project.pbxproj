@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2718B9C02300F7484C /* WYDatabase.m */; };
-		C1BF7A2B18B9C69D00F7484C /* WYTableHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2A18B9C69D00F7484C /* WYTableHandler.m */; };
 		C1D0915C1894B48300FDBB72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915B1894B48300FDBB72 /* Foundation.framework */; };
 		C1D0915E1894B48300FDBB72 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915D1894B48300FDBB72 /* CoreGraphics.framework */; };
 		C1D091601894B48300FDBB72 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915F1894B48300FDBB72 /* UIKit.framework */; };
@@ -40,8 +39,6 @@
 		95F914AD4C6B4CA6BB9E6389 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		C1BF7A2618B9C02300F7484C /* WYDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDatabase.h; sourceTree = "<group>"; };
 		C1BF7A2718B9C02300F7484C /* WYDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDatabase.m; sourceTree = "<group>"; };
-		C1BF7A2918B9C69D00F7484C /* WYTableHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTableHandler.h; sourceTree = "<group>"; };
-		C1BF7A2A18B9C69D00F7484C /* WYTableHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTableHandler.m; sourceTree = "<group>"; };
 		C1D091581894B48300FDBB72 /* WYHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1D0915B1894B48300FDBB72 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C1D0915D1894B48300FDBB72 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,8 +105,6 @@
 			children = (
 				C1BF7A2618B9C02300F7484C /* WYDatabase.h */,
 				C1BF7A2718B9C02300F7484C /* WYDatabase.m */,
-				C1BF7A2918B9C69D00F7484C /* WYTableHandler.h */,
-				C1BF7A2A18B9C69D00F7484C /* WYTableHandler.m */,
 				C1D3AA9B18B9CB27007712E8 /* WYDataManager.h */,
 				C1D3AA9C18B9CB27007712E8 /* WYDataManager.m */,
 				C1D3AA9E18B9CB41007712E8 /* WYConstants.h */,
@@ -324,7 +319,6 @@
 			files = (
 				C1D0916C1894B48300FDBB72 /* WYAppDelegate.m in Sources */,
 				C1D3AA9D18B9CB27007712E8 /* WYDataManager.m in Sources */,
-				C1BF7A2B18B9C69D00F7484C /* WYTableHandler.m in Sources */,
 				C1D091681894B48300FDBB72 /* main.m in Sources */,
 				C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */,
 			);
