@@ -43,6 +43,14 @@
     [self drawMyGoalButtons];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UI Drawing
+
 - (void)drawDoneButton {
     self.doneButton.backgroundColor = [UIColor orangeColor];
     [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -69,31 +77,31 @@
     self.myGoalButtons = mutableMyGoalButtons;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - Responser
+
+- (void)didDraggingIntoDoneButton:(UIButton *)sender {
+    self.doneButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
 }
 
 - (void)longPress:(UILongPressGestureRecognizer *)sender {
     WYMyGoalView *senderView = (WYMyGoalView *)sender.view;
     CGPoint locationInGoalCommitView = [sender locationInView:self.view];
     self.selectedIndex = senderView.goalIndexInContainer;
-    NSLog(@"x=%f, y=%f", locationInGoalCommitView.x, locationInGoalCommitView.y);
+//    NSLog(@"x=%f, y=%f", locationInGoalCommitView.x, locationInGoalCommitView.y);
     
     switch (sender.state) {
         case UIGestureRecognizerStateBegan: {
-            
+
             break;
         }
 
         case UIGestureRecognizerStateChanged: {
-            
+            senderView.center = locationInGoalCommitView;
             break;
         }
             
         case UIGestureRecognizerStateEnded: {
-            
+//            [self.doneButton removeTarget:self action:@selector(draggingIntoDoneButton:) forControlEvents:UIControlEventTouchDragEnter];
         }
         default:
             break;
