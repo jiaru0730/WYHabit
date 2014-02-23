@@ -16,6 +16,8 @@
 
 #define kRadiusOfMyGoalView 25
 
+#define kDragRatioK         300
+
 @interface WYGoalCommitViewController ()
 
 @property (strong, nonatomic) NSArray *myGoalButtons;
@@ -56,6 +58,7 @@
     [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.doneButton.clipsToBounds = YES;
     self.doneButton.layer.cornerRadius = kRadiusOfDoneButton;
+    self.doneButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
 }
 
 - (void)drawMyGoalButtons {
@@ -79,15 +82,20 @@
 
 #pragma mark - Responser
 
-- (void)didDraggingIntoDoneButton:(UIButton *)sender {
+- (void)didDraggingIntoDoneButton {
+    self.doneButton.layer.anchorPoint = CGPointMake(0.5, 0.5);
     self.doneButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
+}
+
+- (void)resetScaleOfDoneButton {
+    self.doneButton.transform = CGAffineTransformMakeScale(1, 1);
 }
 
 - (void)longPress:(UILongPressGestureRecognizer *)sender {
     WYMyGoalView *senderView = (WYMyGoalView *)sender.view;
     CGPoint locationInGoalCommitView = [sender locationInView:self.view];
     self.selectedIndex = senderView.goalIndexInContainer;
-//    NSLog(@"x=%f, y=%f", locationInGoalCommitView.x, locationInGoalCommitView.y);
+    NSLog(@"x=%f, y=%f", locationInGoalCommitView.x, locationInGoalCommitView.y);
     
     switch (sender.state) {
         case UIGestureRecognizerStateBegan: {
@@ -96,16 +104,27 @@
         }
 
         case UIGestureRecognizerStateChanged: {
+            if ([self isDragUpInsideDoneSection:locationInGoalCommitView]) {
+                [self didDraggingIntoDoneButton];
+            } else {
+                [self resetScaleOfDoneButton];
+            }
             senderView.center = locationInGoalCommitView;
             break;
         }
             
         case UIGestureRecognizerStateEnded: {
-//            [self.doneButton removeTarget:self action:@selector(draggingIntoDoneButton:) forControlEvents:UIControlEventTouchDragEnter];
+            [self resetScaleOfDoneButton];
         }
         default:
             break;
     }
+}
+
+- (BOOL)isDragUpInsideDoneSection:(CGPoint)touchPoint {
+    CGFloat calX = touchPoint.x;
+    CGFloat calY = touchPoint.y;
+    return (calY < calX + kDragRatioK) && calY < (2 * kDragRatioK - calX);
 }
 
 @end
