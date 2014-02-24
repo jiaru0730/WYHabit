@@ -94,7 +94,7 @@
     doneSectionRing.clipsToBounds = YES;
     CALayer *doneSectionRingLayer = doneSectionRing.layer;
     doneSectionRingLayer.cornerRadius = kRadiusOfDoneButton;
-    doneSectionRingLayer.borderWidth = 2;
+    doneSectionRingLayer.borderWidth = 5;
     doneSectionRingLayer.borderColor = UI_COLOR_TINT_GREEN.CGColor;
     doneSectionRingLayer.anchorPoint = CGPointMake(0.5, 0.5);
     doneSectionRing.backgroundColor = [UIColor clearColor];
@@ -102,7 +102,7 @@
     self.doneSectionRing = doneSectionRing;
 }
 
-#pragma mark - Responser
+#pragma mark - Done Section
 
 - (void)dragGoalEnterDoneSection {
     [self extendDoneSectionRingAnimated];
@@ -132,6 +132,8 @@
         
     }];
 }
+
+#pragma mark - Other
 
 - (void)longPressAndDrag:(UILongPressGestureRecognizer *)sender {
     WYMyGoalView *senderView = (WYMyGoalView *)sender.view;
