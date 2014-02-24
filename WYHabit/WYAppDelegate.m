@@ -32,7 +32,6 @@
     self.window.rootViewController = self.rootViewController;
     
     
-    [[WYConfigManager sharedInstance] configValueForKey:@"test"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
