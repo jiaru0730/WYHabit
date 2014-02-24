@@ -17,11 +17,14 @@
 #define kRadiusOfMyGoalView 25
 
 #define kDragRatioK         300
+#define kDoneSectionScale   2.7
 
 @interface WYGoalCommitViewController ()
 
 @property (strong, nonatomic) NSArray *myGoalButtons;
 @property (assign, nonatomic) NSInteger selectedIndex;
+@property (assign, nonatomic, getter = isDraggingGoalInDoneSection) BOOL draggingGoalInDoneSection;
+@property (strong, nonatomic) UIView *doneSectionRing;
 
 @property (strong, nonatomic) UIGestureRecognizer *longPressAndDragGoalGestureRecognizer;
 
@@ -41,6 +44,7 @@
 {
     [super viewDidLoad];
     
+    [self drawDoneSectionRing];
     [self drawDoneButton];
     [self drawMyGoalButtons];
 }
@@ -54,11 +58,12 @@
 #pragma mark - UI Drawing
 
 - (void)drawDoneButton {
-    self.doneButton.backgroundColor = [UIColor orangeColor];
+    self.doneButton.backgroundColor = [UIColor greenColor];
     [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.doneButton.clipsToBounds = YES;
     self.doneButton.layer.cornerRadius = kRadiusOfDoneButton;
-    self.doneButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
+    [self.doneButton addTarget:self action:@selector(dragGoalEnterDoneSection) forControlEvents:UIControlEventTouchDown];
+    [self.view bringSubviewToFront:self.doneButton];
 }
 
 - (void)drawMyGoalButtons {
@@ -73,25 +78,57 @@
         eachMyGoalView.radius = kRadiusOfMyGoalView;
         eachMyGoalView.clipsToBounds = YES;
         eachMyGoalView.layer.cornerRadius = kRadiusOfMyGoalView;
-        self.longPressAndDragGoalGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+        self.longPressAndDragGoalGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAndDrag:)];
         [eachMyGoalView addGestureRecognizer:self.longPressAndDragGoalGestureRecognizer];
         [self.view addSubview:eachMyGoalView];
     }
     self.myGoalButtons = mutableMyGoalButtons;
 }
 
+- (void)drawDoneSectionRing {
+    UIView *doneSectionRing = [[UIView alloc] initWithFrame:self.doneButton.frame];
+    doneSectionRing.clipsToBounds = YES;
+    CALayer *doneSectionRingLayer = doneSectionRing.layer;
+    doneSectionRingLayer.cornerRadius = kRadiusOfDoneButton;
+    doneSectionRingLayer.borderWidth = 2;
+    doneSectionRingLayer.borderColor = [UIColor greenColor].CGColor;
+    doneSectionRingLayer.anchorPoint = CGPointMake(0.5, 0.5);
+    doneSectionRing.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:doneSectionRing];
+    self.doneSectionRing = doneSectionRing;
+}
+
 #pragma mark - Responser
 
-- (void)didDraggingIntoDoneButton {
-    self.doneButton.layer.anchorPoint = CGPointMake(0.5, 0.5);
-    self.doneButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
+- (void)dragGoalEnterDoneSection {
+    [self extendDoneSectionRingAnimated];
 }
 
-- (void)resetScaleOfDoneButton {
-    self.doneButton.transform = CGAffineTransformMakeScale(1, 1);
+- (void)dragGoalExitDoneSection {
+    [self resetScaleOfDoneSectionRingAnimated];
 }
 
-- (void)longPress:(UILongPressGestureRecognizer *)sender {
+- (void)extendDoneSectionRingAnimated {
+    self.doneSectionRing.alpha = 0.0f;
+    [UIView animateWithDuration:kAnimationDurationShort animations:^(void) {
+        self.doneSectionRing.alpha = 1.0f;
+        self.doneSectionRing.transform = CGAffineTransformMakeScale(kDoneSectionScale, kDoneSectionScale);
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+}
+
+- (void)resetScaleOfDoneSectionRingAnimated {
+    [UIView animateWithDuration:kAnimationDurationShort animations:^(void) {
+        self.doneSectionRing.alpha = 0.0f;
+        self.doneSectionRing.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    }completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)longPressAndDrag:(UILongPressGestureRecognizer *)sender {
     WYMyGoalView *senderView = (WYMyGoalView *)sender.view;
     CGPoint locationInGoalCommitView = [sender locationInView:self.view];
     self.selectedIndex = senderView.goalIndexInContainer;
@@ -104,17 +141,25 @@
         }
 
         case UIGestureRecognizerStateChanged: {
-            if ([self isDragUpInsideDoneSection:locationInGoalCommitView]) {
-                [self didDraggingIntoDoneButton];
+            if (NO == self.draggingGoalInDoneSection) {
+                if ([self isDragUpInsideDoneSection:locationInGoalCommitView]) {
+                    NSLog(@"EnterDoneSection.");
+                    self.draggingGoalInDoneSection = YES;
+                    [self dragGoalEnterDoneSection];
+                }
             } else {
-                [self resetScaleOfDoneButton];
+                if (![self isDragUpInsideDoneSection:locationInGoalCommitView]) {
+                    NSLog(@"ExitDoneSection.");
+                    self.draggingGoalInDoneSection = NO;
+                    [self dragGoalExitDoneSection];
+                }
             }
             senderView.center = locationInGoalCommitView;
             break;
         }
             
         case UIGestureRecognizerStateEnded: {
-            [self resetScaleOfDoneButton];
+            [self resetScaleOfDoneSectionRingAnimated];
         }
         default:
             break;
