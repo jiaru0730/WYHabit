@@ -9,5 +9,21 @@
 #define UI_SCREEN_WIDTH             ([[UIScreen mainScreen] bounds].size.width)
 #define UI_SCREEN_HEIGHT            ([[UIScreen mainScreen] bounds].size.height)
 
+#pragma mark - Color
+
+#define UIColorFromRGB(rgbValue) \
+[UIColor colorWithRed:((float)(((rgbValue) & 0xFF0000) >> 16))/255.0 \
+green:((float)(((rgbValue) & 0xFF00) >> 8))/255.0 \
+blue:((float)((rgbValue) & 0xFF))/255.0 \
+alpha:1.0]
+
+#define UIColorFromRGBA(rgbValue, alphaValue) \
+[UIColor colorWithRed:((float)(((rgbValue) & 0xFF0000) >> 16))/255.0 \
+green:((float)(((rgbValue) & 0xFF00) >> 8))/255.0 \
+blue:((float)((rgbValue) & 0xFF))/255.0 \
+alpha:(alphaValue)]
+
+#define UI_COLOR_TINT_GREEN UIColorFromRGB(0x638e22)
+
 
 #define kAnimationDurationShort 0.1f

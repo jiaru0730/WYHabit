@@ -9,6 +9,7 @@
 #import "WYAppDelegate.h"
 
 #import "WYDataManager.h"
+#import "WYUIContants.h"
 
 @implementation WYAppDelegate
 
@@ -25,6 +26,7 @@
 }
 
 - (void)customizationAfterApplicationLaunch {
+    self.window.tintColor = UI_COLOR_TINT_GREEN;
     self.rootViewController = [[WYGoalCommitViewController alloc] init];
     self.window.rootViewController = self.rootViewController;
 }

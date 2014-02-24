@@ -16,8 +16,9 @@
 
 #define kRadiusOfMyGoalView 24
 
-#define kDoneSectionScale   2.7
-#define kDoneSectionEquationSlope 0.25
+#define kDoneSectionScaleReset          2.0f
+#define kDoneSectionScaleExtended       2.7f
+#define kDoneSectionEquationSlope       0.25
 #define kDoneSectionEquationIntercept   392
 
 
@@ -46,6 +47,7 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor darkGrayColor];
     [self drawDoneSectionRing];
     [self drawDoneButton];
     [self drawMyGoalButtons];
@@ -60,7 +62,7 @@
 #pragma mark - UI Drawing
 
 - (void)drawDoneButton {
-    self.doneButton.backgroundColor = [UIColor greenColor];
+    self.doneButton.backgroundColor = UI_COLOR_TINT_GREEN;
     [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.doneButton.clipsToBounds = YES;
     self.doneButton.layer.cornerRadius = kRadiusOfDoneButton;
@@ -93,7 +95,7 @@
     CALayer *doneSectionRingLayer = doneSectionRing.layer;
     doneSectionRingLayer.cornerRadius = kRadiusOfDoneButton;
     doneSectionRingLayer.borderWidth = 2;
-    doneSectionRingLayer.borderColor = [UIColor greenColor].CGColor;
+    doneSectionRingLayer.borderColor = UI_COLOR_TINT_GREEN.CGColor;
     doneSectionRingLayer.anchorPoint = CGPointMake(0.5, 0.5);
     doneSectionRing.backgroundColor = [UIColor clearColor];
     [self.view addSubview:doneSectionRing];
@@ -112,9 +114,10 @@
 
 - (void)extendDoneSectionRingAnimated {
     self.doneSectionRing.alpha = 0.0f;
+    self.doneSectionRing.transform = CGAffineTransformMakeScale(kDoneSectionScaleReset, kDoneSectionScaleReset);
     [UIView animateWithDuration:kAnimationDurationShort animations:^(void) {
         self.doneSectionRing.alpha = 1.0f;
-        self.doneSectionRing.transform = CGAffineTransformMakeScale(kDoneSectionScale, kDoneSectionScale);
+        self.doneSectionRing.transform = CGAffineTransformMakeScale(kDoneSectionScaleExtended, kDoneSectionScaleExtended);
     } completion:^(BOOL finished) {
         
     }];
@@ -124,7 +127,7 @@
 - (void)resetScaleOfDoneSectionRingAnimated {
     [UIView animateWithDuration:kAnimationDurationShort animations:^(void) {
         self.doneSectionRing.alpha = 0.0f;
-        self.doneSectionRing.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+        self.doneSectionRing.transform = CGAffineTransformMakeScale(kDoneSectionScaleReset, kDoneSectionScaleReset);
     }completion:^(BOOL finished) {
         
     }];
@@ -134,7 +137,6 @@
     WYMyGoalView *senderView = (WYMyGoalView *)sender.view;
     CGPoint locationInGoalCommitView = [sender locationInView:self.view];
     self.selectedIndex = senderView.goalIndexInContainer;
-    NSLog(@"x=%f, y=%f", locationInGoalCommitView.x, locationInGoalCommitView.y);
     
     switch (sender.state) {
         case UIGestureRecognizerStateBegan: {
@@ -145,13 +147,11 @@
         case UIGestureRecognizerStateChanged: {
             if (NO == self.draggingGoalInDoneSection) {
                 if ([self isDragUpInsideDoneSection:locationInGoalCommitView]) {
-                    NSLog(@"EnterDoneSection.");
                     self.draggingGoalInDoneSection = YES;
                     [self dragGoalEnterDoneSection];
                 }
             } else {
                 if (![self isDragUpInsideDoneSection:locationInGoalCommitView]) {
-                    NSLog(@"ExitDoneSection.");
                     self.draggingGoalInDoneSection = NO;
                     [self dragGoalExitDoneSection];
                 }
