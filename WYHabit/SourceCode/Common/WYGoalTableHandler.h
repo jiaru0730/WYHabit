@@ -12,6 +12,4 @@
 
 @interface WYGoalTableHandler : WYTableHandler
 
-@property (strong, nonatomic) FMDatabaseQueue *databaseQueue;
-
 @end

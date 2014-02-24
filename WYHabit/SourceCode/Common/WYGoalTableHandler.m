@@ -24,10 +24,16 @@
 - (BOOL)createGoalsTable {
     __block BOOL createTableSucceed = NO;
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        NSString *sql = @"CREATE TABLE IF NOT EXISTS Goals(id TEXT NO NULL, action TEXT, startTime INT8, endTime INT8, achiveTime INT8, interval INT8, Reserve1 TEXT, Reserve2 TEXT, Reserve3 TEXT, PRIMARY KEY(id));";
+        NSString *sql = @"CREATE TABLE IF NOT EXISTS Goals(goalID TEXT NO NULL, action TEXT, startTime INT8, endTime INT8, achiveTime INT8, interval INT8, Reserve1 TEXT, Reserve2 TEXT, Reserve3 TEXT, PRIMARY KEY(id));";
         createTableSucceed = [database executeUpdate:sql];
     }];
     return createTableSucceed;
+}
+
+- (BOOL)updateGoal {
+    return YES;
+#warning TODO: implement this method.
+    
 }
 
 @end

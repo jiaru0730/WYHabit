@@ -47,7 +47,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor darkGrayColor];
+    self.view.backgroundColor = [UIColor blackColor];
     [self drawDoneSectionRing];
     [self drawDoneButton];
     [self drawMyGoalButtons];

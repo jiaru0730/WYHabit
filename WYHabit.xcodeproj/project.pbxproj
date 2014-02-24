@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		C102510518B9EE1B0036D44F /* WYGoalCommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C102510318B9EE1B0036D44F /* WYGoalCommitViewController.m */; };
 		C102510618B9EE1B0036D44F /* WYGoalCommitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C102510418B9EE1B0036D44F /* WYGoalCommitViewController.xib */; };
+		C161DDAE18BB81AD0014A7F3 /* WYGoal.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDAD18BB81AD0014A7F3 /* WYGoal.m */; };
+		C161DDB118BB854C0014A7F3 /* WYKeyValueTableHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDB018BB854C0014A7F3 /* WYKeyValueTableHandler.m */; };
+		C161DDB718BB87B70014A7F3 /* FMDatabase+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDB418BB87B70014A7F3 /* FMDatabase+Addition.m */; };
+		C161DDB818BB87B70014A7F3 /* FMResultSet+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDB618BB87B70014A7F3 /* FMResultSet+Addition.m */; };
 		C1AB4ED018BA1E47002F3A3E /* WYMyGoalView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AB4ECF18BA1E47002F3A3E /* WYMyGoalView.m */; };
 		C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2718B9C02300F7484C /* WYDatabase.m */; };
 		C1D0915C1894B48300FDBB72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915B1894B48300FDBB72 /* Foundation.framework */; };
@@ -45,6 +49,14 @@
 		C102510218B9EE1B0036D44F /* WYGoalCommitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoalCommitViewController.h; sourceTree = "<group>"; };
 		C102510318B9EE1B0036D44F /* WYGoalCommitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalCommitViewController.m; sourceTree = "<group>"; };
 		C102510418B9EE1B0036D44F /* WYGoalCommitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYGoalCommitViewController.xib; sourceTree = "<group>"; };
+		C161DDAC18BB81AD0014A7F3 /* WYGoal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoal.h; sourceTree = "<group>"; };
+		C161DDAD18BB81AD0014A7F3 /* WYGoal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoal.m; sourceTree = "<group>"; };
+		C161DDAF18BB854C0014A7F3 /* WYKeyValueTableHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYKeyValueTableHandler.h; sourceTree = "<group>"; };
+		C161DDB018BB854C0014A7F3 /* WYKeyValueTableHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYKeyValueTableHandler.m; sourceTree = "<group>"; };
+		C161DDB318BB87B70014A7F3 /* FMDatabase+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+Addition.h"; sourceTree = "<group>"; };
+		C161DDB418BB87B70014A7F3 /* FMDatabase+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+Addition.m"; sourceTree = "<group>"; };
+		C161DDB518BB87B70014A7F3 /* FMResultSet+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMResultSet+Addition.h"; sourceTree = "<group>"; };
+		C161DDB618BB87B70014A7F3 /* FMResultSet+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMResultSet+Addition.m"; sourceTree = "<group>"; };
 		C1AB4ECD18B9FF37002F3A3E /* WYUIContants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUIContants.h; sourceTree = "<group>"; };
 		C1AB4ECE18BA1E47002F3A3E /* WYMyGoalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMyGoalView.h; sourceTree = "<group>"; };
 		C1AB4ECF18BA1E47002F3A3E /* WYMyGoalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMyGoalView.m; sourceTree = "<group>"; };
@@ -112,6 +124,26 @@
 			path = GoalCommit;
 			sourceTree = "<group>";
 		};
+		C161DDAB18BB819A0014A7F3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C161DDAC18BB81AD0014A7F3 /* WYGoal.h */,
+				C161DDAD18BB81AD0014A7F3 /* WYGoal.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C161DDB218BB87B70014A7F3 /* FMDB+Addition */ = {
+			isa = PBXGroup;
+			children = (
+				C161DDB318BB87B70014A7F3 /* FMDatabase+Addition.h */,
+				C161DDB418BB87B70014A7F3 /* FMDatabase+Addition.m */,
+				C161DDB518BB87B70014A7F3 /* FMResultSet+Addition.h */,
+				C161DDB618BB87B70014A7F3 /* FMResultSet+Addition.m */,
+			);
+			path = "FMDB+Addition";
+			sourceTree = "<group>";
+		};
 		C1BF7A2218B9BCF700F7484C /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +163,8 @@
 		C1BF7A2518B9BD6B00F7484C /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C161DDB218BB87B70014A7F3 /* FMDB+Addition */,
+				C161DDAB18BB819A0014A7F3 /* Model */,
 				C1BF7A2618B9C02300F7484C /* WYDatabase.h */,
 				C1BF7A2718B9C02300F7484C /* WYDatabase.m */,
 				C1D3AA9B18B9CB27007712E8 /* WYDataManager.h */,
@@ -141,6 +175,8 @@
 				C1D3AAA318B9DE02007712E8 /* WYTableHandler.h */,
 				C1D3AAA418B9DE02007712E8 /* WYTableHandler.m */,
 				C1AB4ECD18B9FF37002F3A3E /* WYUIContants.h */,
+				C161DDAF18BB854C0014A7F3 /* WYKeyValueTableHandler.h */,
+				C161DDB018BB854C0014A7F3 /* WYKeyValueTableHandler.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -352,12 +388,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				C102510518B9EE1B0036D44F /* WYGoalCommitViewController.m in Sources */,
+				C161DDB718BB87B70014A7F3 /* FMDatabase+Addition.m in Sources */,
 				C1D0916C1894B48300FDBB72 /* WYAppDelegate.m in Sources */,
 				C1D3AA9D18B9CB27007712E8 /* WYDataManager.m in Sources */,
 				C1D3AAA118B9D121007712E8 /* WYGoalTableHandler.m in Sources */,
 				C1D091681894B48300FDBB72 /* main.m in Sources */,
+				C161DDB118BB854C0014A7F3 /* WYKeyValueTableHandler.m in Sources */,
 				C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */,
+				C161DDAE18BB81AD0014A7F3 /* WYGoal.m in Sources */,
 				C1D3AAA518B9DE02007712E8 /* WYTableHandler.m in Sources */,
+				C161DDB818BB87B70014A7F3 /* FMResultSet+Addition.m in Sources */,
 				C1AB4ED018BA1E47002F3A3E /* WYMyGoalView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
