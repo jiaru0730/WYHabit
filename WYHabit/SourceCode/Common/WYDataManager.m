@@ -8,11 +8,8 @@
 
 #import "WYDataManager.h"
 
-#import "WYDatabase.h"
 
 @interface WYDataManager()
-
-@property (strong, nonatomic) WYDatabase *database;
 
 @end
 @implementation WYDataManager

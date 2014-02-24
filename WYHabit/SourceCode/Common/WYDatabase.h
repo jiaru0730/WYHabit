@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "WYGoalTableHandler.h"
+#import "WYKeyValueTableHandler.h"
 
 @interface WYDatabase : NSObject
 
 @property (assign, nonatomic, getter = isOpen, setter = setOpen:) BOOL open;
 
+@property (strong, nonatomic) WYKeyValueTableHandler *keyValueTableHandler;
 @property (strong, nonatomic) WYGoalTableHandler *goalTableHandler;
+
 
 - (BOOL)openAndInitDatabase;
 

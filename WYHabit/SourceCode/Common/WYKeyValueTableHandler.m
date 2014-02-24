@@ -11,14 +11,21 @@
 #import <FMDatabase.h>
 #import "FMDatabase+Addition.h"
 
-#define kKVConfigTableName  @"KVConfigTable"
+#define kKeyValueConfigTableName  @"KVConfigTable"
+
+#define kKeyValueConfigTrue         @"1"
+#define kKeyValueConfigFalse        @"0"
 
 @implementation WYKeyValueTableHandler
+
+- (BOOL)createTables {
+    return [self createKeyValueTable];
+}
 
 - (BOOL)createKeyValueTable {
     __block BOOL createTableSucceed = NO;
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        NSString *sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (key TEXT NOT NULL PRIMARY KEY, value TEXT DEFAULT NULL);", kKVConfigTableName];
+        NSString *sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (key TEXT NOT NULL PRIMARY KEY, value TEXT DEFAULT NULL);", kKeyValueConfigTableName];
         createTableSucceed = [database executeUpdate:sql];
     }];
     return createTableSucceed;
@@ -30,7 +37,7 @@
         NSMutableDictionary *dataDict = [NSMutableDictionary dictionaryWithCapacity:2];
         dataDict[@"key"] = key;
         dataDict[@"value"] = value;
-        updateKeyValueSucceed = [database updateTable:kKVConfigTableName withParameterDictionary:dataDict];
+        updateKeyValueSucceed = [database updateTable:kKeyValueConfigTableName withParameterDictionary:dataDict];
     }];
     return updateKeyValueSucceed;
 }
@@ -38,7 +45,7 @@
 - (NSString *)configValueForKey:(NSString *)key {
     __block NSString *value = nil;
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        FMResultSet *resultSet = [database executeQuery:[NSString stringWithFormat:@"SELECT value FROM %@ WHERE key=?", kKVConfigTableName], key];
+        FMResultSet *resultSet = [database executeQuery:[NSString stringWithFormat:@"SELECT value FROM %@ WHERE key=?", kKeyValueConfigTableName], key];
         [resultSet next];
         value = [resultSet stringForColumn:@"value"];
     }];

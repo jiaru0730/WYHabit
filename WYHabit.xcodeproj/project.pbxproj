@@ -13,6 +13,7 @@
 		C161DDB118BB854C0014A7F3 /* WYKeyValueTableHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDB018BB854C0014A7F3 /* WYKeyValueTableHandler.m */; };
 		C161DDB718BB87B70014A7F3 /* FMDatabase+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDB418BB87B70014A7F3 /* FMDatabase+Addition.m */; };
 		C161DDB818BB87B70014A7F3 /* FMResultSet+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDB618BB87B70014A7F3 /* FMResultSet+Addition.m */; };
+		C161DDBB18BB8C890014A7F3 /* WYConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDBA18BB8C890014A7F3 /* WYConfigManager.m */; };
 		C1AB4ED018BA1E47002F3A3E /* WYMyGoalView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AB4ECF18BA1E47002F3A3E /* WYMyGoalView.m */; };
 		C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2718B9C02300F7484C /* WYDatabase.m */; };
 		C1D0915C1894B48300FDBB72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915B1894B48300FDBB72 /* Foundation.framework */; };
@@ -57,6 +58,8 @@
 		C161DDB418BB87B70014A7F3 /* FMDatabase+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+Addition.m"; sourceTree = "<group>"; };
 		C161DDB518BB87B70014A7F3 /* FMResultSet+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMResultSet+Addition.h"; sourceTree = "<group>"; };
 		C161DDB618BB87B70014A7F3 /* FMResultSet+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMResultSet+Addition.m"; sourceTree = "<group>"; };
+		C161DDB918BB8C890014A7F3 /* WYConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYConfigManager.h; sourceTree = "<group>"; };
+		C161DDBA18BB8C890014A7F3 /* WYConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYConfigManager.m; sourceTree = "<group>"; };
 		C1AB4ECD18B9FF37002F3A3E /* WYUIContants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUIContants.h; sourceTree = "<group>"; };
 		C1AB4ECE18BA1E47002F3A3E /* WYMyGoalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMyGoalView.h; sourceTree = "<group>"; };
 		C1AB4ECF18BA1E47002F3A3E /* WYMyGoalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMyGoalView.m; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				C1AB4ECD18B9FF37002F3A3E /* WYUIContants.h */,
 				C161DDAF18BB854C0014A7F3 /* WYKeyValueTableHandler.h */,
 				C161DDB018BB854C0014A7F3 /* WYKeyValueTableHandler.m */,
+				C161DDB918BB8C890014A7F3 /* WYConfigManager.h */,
+				C161DDBA18BB8C890014A7F3 /* WYConfigManager.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 				C1D3AAA518B9DE02007712E8 /* WYTableHandler.m in Sources */,
 				C161DDB818BB87B70014A7F3 /* FMResultSet+Addition.m in Sources */,
 				C1AB4ED018BA1E47002F3A3E /* WYMyGoalView.m in Sources */,
+				C161DDBB18BB8C890014A7F3 /* WYConfigManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 
 #import "WYDataManager.h"
 #import "WYUIContants.h"
+#import "WYConfigManager.h"
 
 @implementation WYAppDelegate
 
@@ -29,6 +30,9 @@
     self.window.tintColor = UI_COLOR_TINT_GREEN;
     self.rootViewController = [[WYGoalCommitViewController alloc] init];
     self.window.rootViewController = self.rootViewController;
+    
+    
+    [[WYConfigManager sharedInstance] configValueForKey:@"test"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
