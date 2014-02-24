@@ -14,10 +14,12 @@
 #define kAmountOfMyGoals    5
 #define kRadiusOfDoneButton 100
 
-#define kRadiusOfMyGoalView 25
+#define kRadiusOfMyGoalView 24
 
-#define kDragRatioK         300
 #define kDoneSectionScale   2.7
+#define kDoneSectionEquationSlope 0.25
+#define kDoneSectionEquationIntercept   392
+
 
 @interface WYGoalCommitViewController ()
 
@@ -68,7 +70,7 @@
 
 - (void)drawMyGoalButtons {
     NSMutableArray *mutableMyGoalButtons = [NSMutableArray arrayWithCapacity:kAmountOfMyGoals];
-    CGFloat horizontalMargin = 20;
+    CGFloat horizontalMargin = 14;
     CGFloat horizontalSpacing = (UI_SCREEN_WIDTH - (kAmountOfMyGoals * 2 * kRadiusOfMyGoalView) - (2 * horizontalMargin)) / (kAmountOfMyGoals - 1);
     CGFloat yOfMyGoalViews = UI_SCREEN_HEIGHT - 75;
     for (int i = 0; i < kAmountOfMyGoals; ++i) {
@@ -169,7 +171,7 @@
 - (BOOL)isDragUpInsideDoneSection:(CGPoint)touchPoint {
     CGFloat calX = touchPoint.x;
     CGFloat calY = touchPoint.y;
-    return (calY < calX + kDragRatioK) && calY < (2 * kDragRatioK - calX);
+    return (calY < kDoneSectionEquationSlope * calX + kDoneSectionEquationIntercept) && (calY < (kDoneSectionEquationIntercept + kDoneSectionEquationIntercept * kDoneSectionEquationSlope) - kDoneSectionEquationSlope * calX);
 }
 
 @end
