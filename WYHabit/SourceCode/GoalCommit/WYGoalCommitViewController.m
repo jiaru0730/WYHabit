@@ -66,7 +66,6 @@
     [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.doneButton.clipsToBounds = YES;
     self.doneButton.layer.cornerRadius = kRadiusOfDoneButton;
-    [self.doneButton addTarget:self action:@selector(dragGoalEnterDoneSection) forControlEvents:UIControlEventTouchDown];
     [self.view bringSubviewToFront:self.doneButton];
 }
 
