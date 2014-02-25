@@ -29,7 +29,7 @@
 @property (assign, nonatomic, getter = isDraggingGoalInDoneSection) BOOL draggingGoalInDoneSection;
 @property (strong, nonatomic) UIView *doneSectionRing;
 
-@property (strong, nonatomic) UILongPressGestureRecognizer *longPressAndDragGoalGestureRecognizer;
+@property (strong, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 
 @end
 
@@ -81,9 +81,8 @@
         eachMyGoalView.radius = kRadiusOfMyGoalView;
         eachMyGoalView.clipsToBounds = YES;
         eachMyGoalView.layer.cornerRadius = kRadiusOfMyGoalView;
-        self.longPressAndDragGoalGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAndDrag:)];
-        self.longPressAndDragGoalGestureRecognizer.minimumPressDuration = 0.1f; // in seconds
-        [eachMyGoalView addGestureRecognizer:self.longPressAndDragGoalGestureRecognizer];
+        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+        [eachMyGoalView addGestureRecognizer:self.panGestureRecognizer];
         [self.view addSubview:eachMyGoalView];
     }
     self.myGoalButtons = mutableMyGoalButtons;
@@ -94,7 +93,7 @@
     doneSectionRing.clipsToBounds = YES;
     CALayer *doneSectionRingLayer = doneSectionRing.layer;
     doneSectionRingLayer.cornerRadius = kRadiusOfDoneButton;
-    doneSectionRingLayer.borderWidth = 5;
+    doneSectionRingLayer.borderWidth = 2;
     doneSectionRingLayer.borderColor = UI_COLOR_TINT_GREEN.CGColor;
     doneSectionRingLayer.anchorPoint = CGPointMake(0.5, 0.5);
     doneSectionRing.backgroundColor = [UIColor clearColor];
@@ -135,7 +134,7 @@
 
 #pragma mark - Other
 
-- (void)longPressAndDrag:(UILongPressGestureRecognizer *)sender {
+- (void)pan:(UILongPressGestureRecognizer *)sender {
     WYMyGoalView *senderView = (WYMyGoalView *)sender.view;
     CGPoint locationInGoalCommitView = [sender locationInView:self.view];
     self.selectedIndex = senderView.goalIndexInContainer;
