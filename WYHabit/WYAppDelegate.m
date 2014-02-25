@@ -31,7 +31,12 @@
     self.rootViewController = [[WYGoalCommitViewController alloc] init];
     self.window.rootViewController = self.rootViewController;
     
-    
+    [self initData];
+}
+
+- (void)initData {
+    [[WYDataManager sharedInstance] initDatabase];
+    [[WYDataManager sharedInstance] initManagers];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

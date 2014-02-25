@@ -48,7 +48,7 @@
 - (void)initTableHandlers {
     self.keyValueTableHandler = [[WYKeyValueTableHandler alloc] init];
     self.goalTableHandler = [[WYGoalTableHandler alloc] init];
-    self.tableHandlers = @[self.goalTableHandler];
+    self.tableHandlers = @[self.keyValueTableHandler, self.goalTableHandler];
 }
 
 - (void)configTableHandlers {

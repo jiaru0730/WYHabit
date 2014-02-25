@@ -10,6 +10,12 @@
 
 #import "WYConstants.h"
 
+#define kIDOfLiveGoalIndexKeyA @"kIDOfLiveGoalIndexKeyA"
+#define kIDOfLiveGoalIndexKeyB @"kIDOfLiveGoalIndexKeyB"
+#define kIDOfLiveGoalIndexKeyC @"kIDOfLiveGoalIndexKeyC"
+#define kIDOfLiveGoalIndexKeyD @"kIDOfLiveGoalIndexKeyD"
+#define kIDOfLiveGoalIndexKeyE @"kIDOfLiveGoalIndexKeyE"
+
 @interface WYConfigManager : NSObject
 
 DECLARE_SHARED_INSTANCE(WYConfigManager)

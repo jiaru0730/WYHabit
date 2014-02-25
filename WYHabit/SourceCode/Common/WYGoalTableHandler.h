@@ -9,7 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <FMDatabaseQueue.h>
 #import "WYTableHandler.h"
+#import "WYGoal.h"
 
 @interface WYGoalTableHandler : WYTableHandler
+
+- (BOOL)updateGoal:(WYGoal *)goal;
+- (WYGoal *)getGoalByID:(NSString *)goalID;
+
+
 
 @end

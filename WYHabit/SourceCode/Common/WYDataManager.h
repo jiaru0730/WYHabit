@@ -1,4 +1,3 @@
-//
 //  WYDataManager.h
 //  WYHabit
 //
@@ -10,6 +9,7 @@
 
 #import "WYConstants.h"
 #import "WYDatabase.h"
+#import "WYGoal.h"
 
 @interface WYDataManager : NSObject
 
@@ -19,5 +19,11 @@ DECLARE_SHARED_INSTANCE(WYDataManager)
 
 - (NSString *)generateUUID;
 - (void)initDatabase;
+- (void)initManagers;
+
+#pragma mark - Goals
+
+- (WYGoal *)getGoalByID:(NSString *)goalID;
+- (BOOL)updateGoal:(WYGoal *)goal;
 
 @end

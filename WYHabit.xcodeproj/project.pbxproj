@@ -31,6 +31,7 @@
 		C1D3AA9D18B9CB27007712E8 /* WYDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D3AA9C18B9CB27007712E8 /* WYDataManager.m */; };
 		C1D3AAA118B9D121007712E8 /* WYGoalTableHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D3AAA018B9D121007712E8 /* WYGoalTableHandler.m */; };
 		C1D3AAA518B9DE02007712E8 /* WYTableHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D3AAA418B9DE02007712E8 /* WYTableHandler.m */; };
+		C1ECC69718BCBC87000B7871 /* WYLiveGoalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1ECC69618BCBC87000B7871 /* WYLiveGoalManager.m */; };
 		F894A2CE631F4203BECC0EAD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F643B27B7D8416EAB085933 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,8 @@
 		C1D3AAA018B9D121007712E8 /* WYGoalTableHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalTableHandler.m; sourceTree = "<group>"; };
 		C1D3AAA318B9DE02007712E8 /* WYTableHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTableHandler.h; sourceTree = "<group>"; };
 		C1D3AAA418B9DE02007712E8 /* WYTableHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTableHandler.m; sourceTree = "<group>"; };
+		C1ECC69518BCBC87000B7871 /* WYLiveGoalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLiveGoalManager.h; sourceTree = "<group>"; };
+		C1ECC69618BCBC87000B7871 /* WYLiveGoalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLiveGoalManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,7 @@
 		C1BF7A2418B9BD3E00F7484C /* SourceCode */ = {
 			isa = PBXGroup;
 			children = (
+				C1ECC69418BCBC65000B7871 /* ViewModel */,
 				C102510118B9EC9C0036D44F /* GoalCommit */,
 				C1BF7A2518B9BD6B00F7484C /* Common */,
 			);
@@ -258,6 +262,15 @@
 				C1D0917D1894B48300FDBB72 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C1ECC69418BCBC65000B7871 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C1ECC69518BCBC87000B7871 /* WYLiveGoalManager.h */,
+				C1ECC69618BCBC87000B7871 /* WYLiveGoalManager.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,6 +418,7 @@
 				C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */,
 				C161DDAE18BB81AD0014A7F3 /* WYGoal.m in Sources */,
 				C1D3AAA518B9DE02007712E8 /* WYTableHandler.m in Sources */,
+				C1ECC69718BCBC87000B7871 /* WYLiveGoalManager.m in Sources */,
 				C161DDB818BB87B70014A7F3 /* FMResultSet+Addition.m in Sources */,
 				C1AB4ED018BA1E47002F3A3E /* WYMyGoalView.m in Sources */,
 				C161DDBB18BB8C890014A7F3 /* WYConfigManager.m in Sources */,

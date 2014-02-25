@@ -7,6 +7,8 @@
 //
 
 #import "WYDataManager.h"
+#import "WYLiveGoalManager.h"
+#import "WYConfigManager.h"
 
 
 @interface WYDataManager()
@@ -21,6 +23,20 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     [self.database openAndInitDatabase];
 }
 
+- (void)initManagers {
+//    WYGoal *goal = [[WYGoal alloc] init];
+//    goal.action = @"testAction";
+//    goal.goalID = [[WYDataManager sharedInstance] generateUUID];
+//    goal.startTime = [NSDate date];
+//    goal.endTime = [NSDate date];
+//    goal.interval = 1;
+//    [[WYDataManager sharedInstance] updateGoal:goal];
+//    
+//    [[WYConfigManager sharedInstance] setConfigValue:goal.goalID forKey:kIDOfLiveGoalIndexKeyA];
+    
+    [[WYLiveGoalManager sharedInstance] loadData];
+}
+
 - (NSString *)generateUUID {
     CFUUIDRef theUUID = CFUUIDCreate(NULL);
     CFStringRef string = CFUUIDCreateString(NULL, theUUID);
@@ -28,5 +44,12 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     return (__bridge_transfer NSString *)string;
 }
 
+- (WYGoal *)getGoalByID:(NSString *)goalID {
+    return [self.database.goalTableHandler getGoalByID:goalID];
+}
+
+- (BOOL)updateGoal:(WYGoal *)goal {
+    return [self.database.goalTableHandler updateGoal:goal];
+}
 
 @end

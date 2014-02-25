@@ -26,7 +26,7 @@ IMPLEMENT_SHARED_INSTANCE(WYConfigManager)
 }
 
 - (NSString *)configValueForKey:(NSString *)key {
-    return [[self getKeyValueTableHandler] valueForKey:key];
+    return [[self getKeyValueTableHandler] configValueForKey:key];
 }
 
 
