@@ -29,7 +29,7 @@
 @property (assign, nonatomic, getter = isDraggingGoalInDoneSection) BOOL draggingGoalInDoneSection;
 @property (strong, nonatomic) UIView *doneSectionRing;
 
-@property (strong, nonatomic) UIGestureRecognizer *longPressAndDragGoalGestureRecognizer;
+@property (strong, nonatomic) UILongPressGestureRecognizer *longPressAndDragGoalGestureRecognizer;
 
 @end
 
@@ -82,6 +82,7 @@
         eachMyGoalView.clipsToBounds = YES;
         eachMyGoalView.layer.cornerRadius = kRadiusOfMyGoalView;
         self.longPressAndDragGoalGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAndDrag:)];
+        self.longPressAndDragGoalGestureRecognizer.minimumPressDuration = 0.1f; // in seconds
         [eachMyGoalView addGestureRecognizer:self.longPressAndDragGoalGestureRecognizer];
         [self.view addSubview:eachMyGoalView];
     }
@@ -104,7 +105,7 @@
 #pragma mark - Done Section
 
 - (void)dragGoalEnterDoneSection {
-    [self extendDoneSectionRingAnimated];
+//    [self extendDoneSectionRingAnimated];
 }
 
 - (void)dragGoalExitDoneSection {
@@ -141,7 +142,7 @@
     
     switch (sender.state) {
         case UIGestureRecognizerStateBegan: {
-
+            [self extendDoneSectionRingAnimated];
             break;
         }
 
