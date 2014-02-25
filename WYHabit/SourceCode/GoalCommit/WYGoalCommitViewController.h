@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum CommitViewMode : NSUInteger
+{
+    CommitViewModeCommit = 0,
+    CommitViewModeEdit = 1,
+} CommitViewStatus;
+
 @interface WYGoalCommitViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;

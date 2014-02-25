@@ -25,11 +25,15 @@
 @interface WYGoalCommitViewController ()
 
 @property (strong, nonatomic) NSArray *myGoalButtons;
-@property (assign, nonatomic) NSInteger selectedIndex;
 @property (assign, nonatomic, getter = isDraggingGoalInDoneSection) BOOL draggingGoalInDoneSection;
 @property (strong, nonatomic) UIView *doneSectionRing;
 
+@property (strong, nonatomic) UIButton *optionButton;
+
 @property (strong, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
+
+@property (assign, nonatomic) NSInteger selectedIndex;
+@property (assign, nonatomic) CommitViewStatus *viewStatus;
 
 @end
 
@@ -51,6 +55,9 @@
     [self drawDoneSectionRing];
     [self drawDoneButton];
     [self drawMyGoalButtons];
+    
+    [self drawOptionButton];
+    self.viewStatus = CommitViewModeCommit;
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,6 +73,7 @@
     [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.doneButton.clipsToBounds = YES;
     self.doneButton.layer.cornerRadius = kRadiusOfDoneButton;
+    self.doneButton.layer.anchorPoint = CGPointMake(0.5, 0.5);
     [self.view bringSubviewToFront:self.doneButton];
 }
 
@@ -77,7 +85,7 @@
     for (int i = 0; i < kAmountOfMyGoals; ++i) {
         WYMyGoalView *eachMyGoalView = [[WYMyGoalView alloc] initWithFrame:CGRectMake((horizontalMargin + i * (horizontalSpacing + 2 *kRadiusOfMyGoalView)), yOfMyGoalViews, 2 * kRadiusOfMyGoalView, 2 * kRadiusOfMyGoalView)];
         eachMyGoalView.goalIndexInContainer = i;
-        eachMyGoalView.backgroundColor = [UIColor orangeColor];
+        eachMyGoalView.backgroundColor = UI_COLOR_ORANGE;
         eachMyGoalView.radius = kRadiusOfMyGoalView;
         eachMyGoalView.clipsToBounds = YES;
         eachMyGoalView.layer.cornerRadius = kRadiusOfMyGoalView;
@@ -101,10 +109,19 @@
     self.doneSectionRing = doneSectionRing;
 }
 
+- (void)drawOptionButton {
+    UIButton *optionButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    optionButton.center = CGPointMake(UI_SCREEN_WIDTH - 35, 35);
+    optionButton.tintColor = UI_COLOR_TINT_GREEN;
+    [optionButton addTarget:self action:@selector(optionButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:optionButton];
+    self.optionButton = optionButton;
+}
+
 #pragma mark - Done Section
 
 - (void)dragGoalEnterDoneSection {
-//    [self extendDoneSectionRingAnimated];
+    [self extendDoneSectionRingAnimated];
 }
 
 - (void)dragGoalExitDoneSection {
@@ -132,6 +149,11 @@
     }];
 }
 
+#pragma mark - Edit model
+
+- (void)enterEditModeAnimated {
+}
+
 #pragma mark - Other
 
 - (void)pan:(UILongPressGestureRecognizer *)sender {
@@ -141,7 +163,7 @@
     
     switch (sender.state) {
         case UIGestureRecognizerStateBegan: {
-            [self extendDoneSectionRingAnimated];
+//            [self extendDoneSectionRingAnimated];
             break;
         }
 
@@ -173,6 +195,10 @@
     CGFloat calX = touchPoint.x;
     CGFloat calY = touchPoint.y;
     return (calY < kDoneSectionEquationSlope * calX + kDoneSectionEquationIntercept) && (calY < (kDoneSectionEquationIntercept + kDoneSectionEquationIntercept * kDoneSectionEquationSlope) - kDoneSectionEquationSlope * calX);
+}
+
+- (void)optionButtonPressed:(id)sender {
+    [self enterEditModeAnimated];
 }
 
 @end
