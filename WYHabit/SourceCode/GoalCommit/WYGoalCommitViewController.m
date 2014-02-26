@@ -56,7 +56,7 @@
     [self drawDoneButton];
     [self drawMyGoalButtons];
     
-    [self drawOptionButton];
+//    [self drawOptionButton];
     self.viewStatus = CommitViewModeCommit;
 }
 
@@ -74,6 +74,7 @@
     self.doneButton.clipsToBounds = YES;
     self.doneButton.layer.cornerRadius = kRadiusOfDoneButton;
     self.doneButton.layer.anchorPoint = CGPointMake(0.5, 0.5);
+    [self.doneButton addTarget:self action:@selector(enterEditModeAnimated) forControlEvents:UIControlEventTouchUpInside];
     [self.view bringSubviewToFront:self.doneButton];
 }
 
@@ -152,6 +153,10 @@
 #pragma mark - Edit model
 
 - (void)enterEditModeAnimated {
+}
+
+- (void)cancelEditModeAnimated {
+    
 }
 
 #pragma mark - Other
