@@ -28,6 +28,7 @@
 @property (assign, nonatomic, getter = isDraggingGoalInDoneSection) BOOL draggingGoalInDoneSection;
 @property (strong, nonatomic) UIView *doneSectionRing;
 
+@property (strong, nonatomic) UIButton *editButton;
 @property (strong, nonatomic) UIButton *optionButton;
 
 @property (strong, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
@@ -55,6 +56,7 @@
     [self drawDoneSectionRing];
     [self drawDoneButton];
     [self drawMyGoalButtons];
+
     
 //    [self drawOptionButton];
     self.viewStatus = CommitViewModeCommit;
@@ -76,6 +78,17 @@
     self.doneButton.layer.anchorPoint = CGPointMake(0.5, 0.5);
     [self.doneButton addTarget:self action:@selector(enterEditModeAnimated) forControlEvents:UIControlEventTouchUpInside];
     [self.view bringSubviewToFront:self.doneButton];
+}
+
+- (void)drawEditButton {
+    self.editButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.editButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.editButton.tintColor = UI_COLOR_ORANGE;
+    self.editButton.clipsToBounds = YES;
+    self.editButton.layer.cornerRadius = kRadiusOfDoneButton;
+    self.editButton.layer.anchorPoint = CGPointMake(0.5, 0.5);
+    [self.editButton addTarget:self action:@selector(cancelEditModeAnimated) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.editButton];
 }
 
 - (void)drawMyGoalButtons {
@@ -153,6 +166,15 @@
 #pragma mark - Edit model
 
 - (void)enterEditModeAnimated {
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.7;
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.type = @"oglFlip";
+    animation.subtype = kCATransitionFromRight;
+    
+//    [self.view exchangeSubviewAtIndex:self.doneButton withSubviewAtIndex:self.editButton];
+    
+    [[self.doneButton layer] addAnimation:animation forKey:@"animation"];
 }
 
 - (void)cancelEditModeAnimated {
