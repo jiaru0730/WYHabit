@@ -21,7 +21,6 @@
 #define kDoneSectionEquationSlope       0.25
 #define kDoneSectionEquationIntercept   392
 
-
 @interface WYGoalCommitViewController ()
 
 @property (strong, nonatomic) NSArray *myGoalButtons;
@@ -53,6 +52,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blackColor];
+    [self drawEditButton];
     [self drawDoneSectionRing];
     [self drawDoneButton];
     [self drawMyGoalButtons];
@@ -82,8 +82,10 @@
 
 - (void)drawEditButton {
     self.editButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.editButton.frame = self.doneButton.frame;
     [self.editButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.editButton.tintColor = UI_COLOR_ORANGE;
+    [self.editButton setTitle:@"Edit" forState:UIControlStateNormal];
+    self.editButton.backgroundColor = UI_COLOR_ORANGE;
     self.editButton.clipsToBounds = YES;
     self.editButton.layer.cornerRadius = kRadiusOfDoneButton;
     self.editButton.layer.anchorPoint = CGPointMake(0.5, 0.5);
@@ -172,13 +174,24 @@
     animation.type = @"oglFlip";
     animation.subtype = kCATransitionFromRight;
     
-//    [self.view exchangeSubviewAtIndex:self.doneButton withSubviewAtIndex:self.editButton];
     
     [[self.doneButton layer] addAnimation:animation forKey:@"animation"];
+    [[self.editButton layer] addAnimation:animation forKey:@"animation"];
+    
+    [self.view exchangeSubviewAtIndex:[self.view.subviews indexOfObject:self.doneButton] withSubviewAtIndex:[self.view.subviews indexOfObject:self.editButton]];
 }
 
 - (void)cancelEditModeAnimated {
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.7;
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.type = @"oglFlip";
+    animation.subtype = kCATransitionFromRight;
     
+    [self.view exchangeSubviewAtIndex:[self.view.subviews indexOfObject:self.doneButton] withSubviewAtIndex:[self.view.subviews indexOfObject:self.editButton]];
+    
+    [[self.doneButton layer] addAnimation:animation forKey:@"animation"];
+    [[self.editButton layer] addAnimation:animation forKey:@"animation"];
 }
 
 #pragma mark - Other
