@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-#import "WYGoalCommitViewController.h"
+#import "WYMainContainerViewController.h"
 
 @interface WYAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
-@property (nonatomic, strong) UIViewController *rootViewController;
+@property (nonatomic, strong) WYMainContainerViewController *mainContainerViewController;
 
 @end

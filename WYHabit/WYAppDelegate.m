@@ -28,8 +28,8 @@
 
 - (void)customizationAfterApplicationLaunch {
     self.window.tintColor = UI_COLOR_TINT_GREEN;
-    self.rootViewController = [[WYGoalCommitViewController alloc] init];
-    self.window.rootViewController = self.rootViewController;
+    self.mainContainerViewController = [[WYMainContainerViewController alloc] init];
+    self.window.rootViewController = self.mainContainerViewController;
     
     [self initData];
 }
