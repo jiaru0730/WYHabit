@@ -306,8 +306,10 @@
 
 - (BOOL) isHistorySelectedDay:(ITTCalDay *)calDay
 {
+    NSLog([NSString stringWithFormat:@"%04d%02d%02d", [calDay getYear], [calDay getMonth], [calDay getDay]]);
     NSString *key = [self getSelectedDayKey:calDay];
-    return ([_selectedDayDic objectForKey:key] != nil);
+//    return ([_selectedDayDic objectForKey:key] != nil);
+    return YES;
 }
 /*
  * update grid state
