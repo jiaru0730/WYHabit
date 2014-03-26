@@ -9,6 +9,50 @@
 /* Begin PBXBuildFile section */
 		C102510518B9EE1B0036D44F /* WYGoalCommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C102510318B9EE1B0036D44F /* WYGoalCommitViewController.m */; };
 		C102510618B9EE1B0036D44F /* WYGoalCommitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C102510418B9EE1B0036D44F /* WYGoalCommitViewController.xib */; };
+		C154E51918E2F97C006F1F2D /* bg_calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4D918E2F97C006F1F2D /* bg_calendar@2x.png */; };
+		C154E51A18E2F97C006F1F2D /* bg_calendar_footer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4DA18E2F97C006F1F2D /* bg_calendar_footer@2x.png */; };
+		C154E51B18E2F97C006F1F2D /* bg_calendar_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4DB18E2F97C006F1F2D /* bg_calendar_header@2x.png */; };
+		C154E51C18E2F97C006F1F2D /* bg_calendar_week_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4DC18E2F97C006F1F2D /* bg_calendar_week_header@2x.png */; };
+		C154E51D18E2F97C006F1F2D /* bg_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4DD18E2F97C006F1F2D /* bg_grid@2x.png */; };
+		C154E51E18E2F97C006F1F2D /* btn_choose_date_left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4DE18E2F97C006F1F2D /* btn_choose_date_left_arrow@2x.png */; };
+		C154E51F18E2F97C006F1F2D /* btn_choose_date_left_arrow_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4DF18E2F97C006F1F2D /* btn_choose_date_left_arrow_highlight@2x.png */; };
+		C154E52018E2F97C006F1F2D /* btn_choose_date_right_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4E018E2F97C006F1F2D /* btn_choose_date_right_arrow@2x.png */; };
+		C154E52118E2F97C006F1F2D /* btn_choose_date_right_arrow_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4E118E2F97C006F1F2D /* btn_choose_date_right_arrow_highlight@2x.png */; };
+		C154E52218E2F97C006F1F2D /* btn_choose_departure_date@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4E218E2F97C006F1F2D /* btn_choose_departure_date@2x.png */; };
+		C154E52318E2F97C006F1F2D /* btn_chose_date@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4E318E2F97C006F1F2D /* btn_chose_date@2x.png */; };
+		C154E52418E2F97C006F1F2D /* btn_chose_date_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4E418E2F97C006F1F2D /* btn_chose_date_highlight@2x.png */; };
+		C154E52518E2F97C006F1F2D /* btn_close_date@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4E518E2F97C006F1F2D /* btn_close_date@2x.png */; };
+		C154E52618E2F97C006F1F2D /* btn_close_date_hihglight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4E618E2F97C006F1F2D /* btn_close_date_hihglight@2x.png */; };
+		C154E52718E2F97C006F1F2D /* btn_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4E718E2F97C006F1F2D /* btn_grid@2x.png */; };
+		C154E52818E2F97C006F1F2D /* btn_grid_cell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4E818E2F97C006F1F2D /* btn_grid_cell@2x.png */; };
+		C154E52918E2F97C006F1F2D /* btn_grid_cell_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4E918E2F97C006F1F2D /* btn_grid_cell_highlight@2x.png */; };
+		C154E52A18E2F97C006F1F2D /* btn_grid_cell_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4EA18E2F97C006F1F2D /* btn_grid_cell_selected@2x.png */; };
+		C154E52B18E2F97C006F1F2D /* btn_grid_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4EB18E2F97C006F1F2D /* btn_grid_highlight@2x.png */; };
+		C154E52C18E2F97C006F1F2D /* btn_grid_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4EC18E2F97C006F1F2D /* btn_grid_selected@2x.png */; };
+		C154E52D18E2F97C006F1F2D /* btn_next_month@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4ED18E2F97C006F1F2D /* btn_next_month@2x.png */; };
+		C154E52E18E2F97C006F1F2D /* btn_next_month_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4EE18E2F97C006F1F2D /* btn_next_month_highlight@2x.png */; };
+		C154E52F18E2F97C006F1F2D /* btn_previous_month@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4EF18E2F97C006F1F2D /* btn_previous_month@2x.png */; };
+		C154E53018E2F97C006F1F2D /* btn_previous_month_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4F018E2F97C006F1F2D /* btn_previous_month_highlight@2x.png */; };
+		C154E53118E2F97C006F1F2D /* btn_radio_check_box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4F118E2F97C006F1F2D /* btn_radio_check_box@2x.png */; };
+		C154E53218E2F97C006F1F2D /* btn_radio_check_box_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C154E4F218E2F97C006F1F2D /* btn_radio_check_box_selected@2x.png */; };
+		C154E53318E2F97C006F1F2D /* ITTCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E4F718E2F97C006F1F2D /* ITTCalendarGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E53418E2F97C006F1F2D /* ITTCalendarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E4F918E2F97C006F1F2D /* ITTCalendarScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E53518E2F97C006F1F2D /* ITTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E4FB18E2F97C006F1F2D /* ITTCalendarView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E53618E2F97C006F1F2D /* ITTCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C154E4FC18E2F97C006F1F2D /* ITTCalendarView.xib */; };
+		C154E53718E2F97C006F1F2D /* ITTCalendarViewFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E50018E2F97C006F1F2D /* ITTCalendarViewFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E53818E2F97C006F1F2D /* ITTCalendarViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E50218E2F97C006F1F2D /* ITTCalendarViewHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E53918E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E50518E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E53A18E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C154E50618E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.xib */; };
+		C154E53B18E2F97C006F1F2D /* ITTBaseCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E50818E2F97C006F1F2D /* ITTBaseCalendarGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E53C18E2F97C006F1F2D /* ITTBaseCalendarGridView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C154E50918E2F97C006F1F2D /* ITTBaseCalendarGridView.xib */; };
+		C154E53D18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E50B18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E53E18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C154E50C18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.xib */; };
+		C154E53F18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E50E18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E54018E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C154E50F18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.xib */; };
+		C154E54118E2F97C006F1F2D /* ITTBaseDataSourceImp.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E51118E2F97C006F1F2D /* ITTBaseDataSourceImp.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E54218E2F97C006F1F2D /* CalendarDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E51418E2F97C006F1F2D /* CalendarDateUtil.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E54318E2F97C006F1F2D /* ITTCalDay.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E51618E2F97C006F1F2D /* ITTCalDay.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C154E54418E2F97C006F1F2D /* ITTCalMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = C154E51818E2F97C006F1F2D /* ITTCalMonth.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C161DDAE18BB81AD0014A7F3 /* WYGoal.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDAD18BB81AD0014A7F3 /* WYGoal.m */; };
 		C161DDB118BB854C0014A7F3 /* WYKeyValueTableHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDB018BB854C0014A7F3 /* WYKeyValueTableHandler.m */; };
 		C161DDB718BB87B70014A7F3 /* FMDatabase+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDB418BB87B70014A7F3 /* FMDatabase+Addition.m */; };
@@ -53,6 +97,67 @@
 		C102510218B9EE1B0036D44F /* WYGoalCommitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoalCommitViewController.h; sourceTree = "<group>"; };
 		C102510318B9EE1B0036D44F /* WYGoalCommitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalCommitViewController.m; sourceTree = "<group>"; };
 		C102510418B9EE1B0036D44F /* WYGoalCommitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYGoalCommitViewController.xib; sourceTree = "<group>"; };
+		C154E4D918E2F97C006F1F2D /* bg_calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_calendar@2x.png"; sourceTree = "<group>"; };
+		C154E4DA18E2F97C006F1F2D /* bg_calendar_footer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_calendar_footer@2x.png"; sourceTree = "<group>"; };
+		C154E4DB18E2F97C006F1F2D /* bg_calendar_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_calendar_header@2x.png"; sourceTree = "<group>"; };
+		C154E4DC18E2F97C006F1F2D /* bg_calendar_week_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_calendar_week_header@2x.png"; sourceTree = "<group>"; };
+		C154E4DD18E2F97C006F1F2D /* bg_grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_grid@2x.png"; sourceTree = "<group>"; };
+		C154E4DE18E2F97C006F1F2D /* btn_choose_date_left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_choose_date_left_arrow@2x.png"; sourceTree = "<group>"; };
+		C154E4DF18E2F97C006F1F2D /* btn_choose_date_left_arrow_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_choose_date_left_arrow_highlight@2x.png"; sourceTree = "<group>"; };
+		C154E4E018E2F97C006F1F2D /* btn_choose_date_right_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_choose_date_right_arrow@2x.png"; sourceTree = "<group>"; };
+		C154E4E118E2F97C006F1F2D /* btn_choose_date_right_arrow_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_choose_date_right_arrow_highlight@2x.png"; sourceTree = "<group>"; };
+		C154E4E218E2F97C006F1F2D /* btn_choose_departure_date@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_choose_departure_date@2x.png"; sourceTree = "<group>"; };
+		C154E4E318E2F97C006F1F2D /* btn_chose_date@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_chose_date@2x.png"; sourceTree = "<group>"; };
+		C154E4E418E2F97C006F1F2D /* btn_chose_date_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_chose_date_highlight@2x.png"; sourceTree = "<group>"; };
+		C154E4E518E2F97C006F1F2D /* btn_close_date@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_date@2x.png"; sourceTree = "<group>"; };
+		C154E4E618E2F97C006F1F2D /* btn_close_date_hihglight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_date_hihglight@2x.png"; sourceTree = "<group>"; };
+		C154E4E718E2F97C006F1F2D /* btn_grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid@2x.png"; sourceTree = "<group>"; };
+		C154E4E818E2F97C006F1F2D /* btn_grid_cell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_cell@2x.png"; sourceTree = "<group>"; };
+		C154E4E918E2F97C006F1F2D /* btn_grid_cell_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_cell_highlight@2x.png"; sourceTree = "<group>"; };
+		C154E4EA18E2F97C006F1F2D /* btn_grid_cell_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_cell_selected@2x.png"; sourceTree = "<group>"; };
+		C154E4EB18E2F97C006F1F2D /* btn_grid_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_highlight@2x.png"; sourceTree = "<group>"; };
+		C154E4EC18E2F97C006F1F2D /* btn_grid_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_selected@2x.png"; sourceTree = "<group>"; };
+		C154E4ED18E2F97C006F1F2D /* btn_next_month@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_next_month@2x.png"; sourceTree = "<group>"; };
+		C154E4EE18E2F97C006F1F2D /* btn_next_month_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_next_month_highlight@2x.png"; sourceTree = "<group>"; };
+		C154E4EF18E2F97C006F1F2D /* btn_previous_month@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_previous_month@2x.png"; sourceTree = "<group>"; };
+		C154E4F018E2F97C006F1F2D /* btn_previous_month_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_previous_month_highlight@2x.png"; sourceTree = "<group>"; };
+		C154E4F118E2F97C006F1F2D /* btn_radio_check_box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_radio_check_box@2x.png"; sourceTree = "<group>"; };
+		C154E4F218E2F97C006F1F2D /* btn_radio_check_box_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_radio_check_box_selected@2x.png"; sourceTree = "<group>"; };
+		C154E4F518E2F97C006F1F2D /* Enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
+		C154E4F618E2F97C006F1F2D /* ITTCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarGridView.h; sourceTree = "<group>"; };
+		C154E4F718E2F97C006F1F2D /* ITTCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarGridView.m; sourceTree = "<group>"; };
+		C154E4F818E2F97C006F1F2D /* ITTCalendarScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarScrollView.h; sourceTree = "<group>"; };
+		C154E4F918E2F97C006F1F2D /* ITTCalendarScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarScrollView.m; sourceTree = "<group>"; };
+		C154E4FA18E2F97C006F1F2D /* ITTCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarView.h; sourceTree = "<group>"; };
+		C154E4FB18E2F97C006F1F2D /* ITTCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarView.m; sourceTree = "<group>"; };
+		C154E4FC18E2F97C006F1F2D /* ITTCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTCalendarView.xib; sourceTree = "<group>"; };
+		C154E4FD18E2F97C006F1F2D /* ITTCalendarViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewDataSource.h; sourceTree = "<group>"; };
+		C154E4FE18E2F97C006F1F2D /* ITTCalendarViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewDelegate.h; sourceTree = "<group>"; };
+		C154E4FF18E2F97C006F1F2D /* ITTCalendarViewFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewFooterView.h; sourceTree = "<group>"; };
+		C154E50018E2F97C006F1F2D /* ITTCalendarViewFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarViewFooterView.m; sourceTree = "<group>"; };
+		C154E50118E2F97C006F1F2D /* ITTCalendarViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewHeaderView.h; sourceTree = "<group>"; };
+		C154E50218E2F97C006F1F2D /* ITTCalendarViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarViewHeaderView.m; sourceTree = "<group>"; };
+		C154E50418E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarDisableGridView.h; sourceTree = "<group>"; };
+		C154E50518E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarDisableGridView.m; sourceTree = "<group>"; };
+		C154E50618E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarDisableGridView.xib; sourceTree = "<group>"; };
+		C154E50718E2F97C006F1F2D /* ITTBaseCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarGridView.h; sourceTree = "<group>"; };
+		C154E50818E2F97C006F1F2D /* ITTBaseCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarGridView.m; sourceTree = "<group>"; };
+		C154E50918E2F97C006F1F2D /* ITTBaseCalendarGridView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarGridView.xib; sourceTree = "<group>"; };
+		C154E50A18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarViewFooterView.h; sourceTree = "<group>"; };
+		C154E50B18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarViewFooterView.m; sourceTree = "<group>"; };
+		C154E50C18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarViewFooterView.xib; sourceTree = "<group>"; };
+		C154E50D18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarViewHeaderView.h; sourceTree = "<group>"; };
+		C154E50E18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarViewHeaderView.m; sourceTree = "<group>"; };
+		C154E50F18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarViewHeaderView.xib; sourceTree = "<group>"; };
+		C154E51018E2F97C006F1F2D /* ITTBaseDataSourceImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseDataSourceImp.h; sourceTree = "<group>"; };
+		C154E51118E2F97C006F1F2D /* ITTBaseDataSourceImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseDataSourceImp.m; sourceTree = "<group>"; };
+		C154E51318E2F97C006F1F2D /* CalendarDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDateUtil.h; sourceTree = "<group>"; };
+		C154E51418E2F97C006F1F2D /* CalendarDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDateUtil.m; sourceTree = "<group>"; };
+		C154E51518E2F97C006F1F2D /* ITTCalDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalDay.h; sourceTree = "<group>"; };
+		C154E51618E2F97C006F1F2D /* ITTCalDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalDay.m; sourceTree = "<group>"; };
+		C154E51718E2F97C006F1F2D /* ITTCalMonth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalMonth.h; sourceTree = "<group>"; };
+		C154E51818E2F97C006F1F2D /* ITTCalMonth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalMonth.m; sourceTree = "<group>"; };
+		C154E54618E2FA1A006F1F2D /* ITTDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITTDebug.h; sourceTree = "<group>"; };
 		C161DDAC18BB81AD0014A7F3 /* WYGoal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoal.h; sourceTree = "<group>"; };
 		C161DDAD18BB81AD0014A7F3 /* WYGoal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoal.m; sourceTree = "<group>"; };
 		C161DDAF18BB854C0014A7F3 /* WYKeyValueTableHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYKeyValueTableHandler.h; sourceTree = "<group>"; };
@@ -146,7 +251,7 @@
 		C1C538C518E2A63200D9C5BB /* NSCoderExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCoderExtensions.h; sourceTree = "<group>"; };
 		C1C538C618E2A63200D9C5BB /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
 		C1C538C718E2A63200D9C5BB /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
-		C1C538C818E2A63200D9C5BB /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
+		C1C538C818E2A63200D9C5BB /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		C1C538CB18E2AB3700D9C5BB /* WYMainContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMainContainerViewController.h; sourceTree = "<group>"; };
 		C1C538CC18E2AB3700D9C5BB /* WYMainContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMainContainerViewController.m; sourceTree = "<group>"; };
 		C1C538CD18E2AB3700D9C5BB /* WYMainContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYMainContainerViewController.xib; sourceTree = "<group>"; };
@@ -211,6 +316,123 @@
 				C102510418B9EE1B0036D44F /* WYGoalCommitViewController.xib */,
 			);
 			path = GoalCommit;
+			sourceTree = "<group>";
+		};
+		C154E43218E2F912006F1F2D /* CorePlot */ = {
+			isa = PBXGroup;
+			children = (
+				C1C5387918E2A63200D9C5BB /* CorePlotHeaders */,
+				C1C538C818E2A63200D9C5BB /* libCorePlot-CocoaTouch.a */,
+			);
+			path = CorePlot;
+			sourceTree = "<group>";
+		};
+		C154E43318E2F928006F1F2D /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				C154E4D818E2F97C006F1F2D /* Images */,
+				C154E4F318E2F97C006F1F2D /* Src */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		C154E4D818E2F97C006F1F2D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C154E4D918E2F97C006F1F2D /* bg_calendar@2x.png */,
+				C154E4DA18E2F97C006F1F2D /* bg_calendar_footer@2x.png */,
+				C154E4DB18E2F97C006F1F2D /* bg_calendar_header@2x.png */,
+				C154E4DC18E2F97C006F1F2D /* bg_calendar_week_header@2x.png */,
+				C154E4DD18E2F97C006F1F2D /* bg_grid@2x.png */,
+				C154E4DE18E2F97C006F1F2D /* btn_choose_date_left_arrow@2x.png */,
+				C154E4DF18E2F97C006F1F2D /* btn_choose_date_left_arrow_highlight@2x.png */,
+				C154E4E018E2F97C006F1F2D /* btn_choose_date_right_arrow@2x.png */,
+				C154E4E118E2F97C006F1F2D /* btn_choose_date_right_arrow_highlight@2x.png */,
+				C154E4E218E2F97C006F1F2D /* btn_choose_departure_date@2x.png */,
+				C154E4E318E2F97C006F1F2D /* btn_chose_date@2x.png */,
+				C154E4E418E2F97C006F1F2D /* btn_chose_date_highlight@2x.png */,
+				C154E4E518E2F97C006F1F2D /* btn_close_date@2x.png */,
+				C154E4E618E2F97C006F1F2D /* btn_close_date_hihglight@2x.png */,
+				C154E4E718E2F97C006F1F2D /* btn_grid@2x.png */,
+				C154E4E818E2F97C006F1F2D /* btn_grid_cell@2x.png */,
+				C154E4E918E2F97C006F1F2D /* btn_grid_cell_highlight@2x.png */,
+				C154E4EA18E2F97C006F1F2D /* btn_grid_cell_selected@2x.png */,
+				C154E4EB18E2F97C006F1F2D /* btn_grid_highlight@2x.png */,
+				C154E4EC18E2F97C006F1F2D /* btn_grid_selected@2x.png */,
+				C154E4ED18E2F97C006F1F2D /* btn_next_month@2x.png */,
+				C154E4EE18E2F97C006F1F2D /* btn_next_month_highlight@2x.png */,
+				C154E4EF18E2F97C006F1F2D /* btn_previous_month@2x.png */,
+				C154E4F018E2F97C006F1F2D /* btn_previous_month_highlight@2x.png */,
+				C154E4F118E2F97C006F1F2D /* btn_radio_check_box@2x.png */,
+				C154E4F218E2F97C006F1F2D /* btn_radio_check_box_selected@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		C154E4F318E2F97C006F1F2D /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				C154E54618E2FA1A006F1F2D /* ITTDebug.h */,
+				C154E4F418E2F97C006F1F2D /* Core */,
+				C154E50318E2F97C006F1F2D /* Imp */,
+				C154E51218E2F97C006F1F2D /* Model */,
+			);
+			path = Src;
+			sourceTree = "<group>";
+		};
+		C154E4F418E2F97C006F1F2D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C154E4F518E2F97C006F1F2D /* Enum.h */,
+				C154E4F618E2F97C006F1F2D /* ITTCalendarGridView.h */,
+				C154E4F718E2F97C006F1F2D /* ITTCalendarGridView.m */,
+				C154E4F818E2F97C006F1F2D /* ITTCalendarScrollView.h */,
+				C154E4F918E2F97C006F1F2D /* ITTCalendarScrollView.m */,
+				C154E4FA18E2F97C006F1F2D /* ITTCalendarView.h */,
+				C154E4FB18E2F97C006F1F2D /* ITTCalendarView.m */,
+				C154E4FC18E2F97C006F1F2D /* ITTCalendarView.xib */,
+				C154E4FD18E2F97C006F1F2D /* ITTCalendarViewDataSource.h */,
+				C154E4FE18E2F97C006F1F2D /* ITTCalendarViewDelegate.h */,
+				C154E4FF18E2F97C006F1F2D /* ITTCalendarViewFooterView.h */,
+				C154E50018E2F97C006F1F2D /* ITTCalendarViewFooterView.m */,
+				C154E50118E2F97C006F1F2D /* ITTCalendarViewHeaderView.h */,
+				C154E50218E2F97C006F1F2D /* ITTCalendarViewHeaderView.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C154E50318E2F97C006F1F2D /* Imp */ = {
+			isa = PBXGroup;
+			children = (
+				C154E50418E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.h */,
+				C154E50518E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.m */,
+				C154E50618E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.xib */,
+				C154E50718E2F97C006F1F2D /* ITTBaseCalendarGridView.h */,
+				C154E50818E2F97C006F1F2D /* ITTBaseCalendarGridView.m */,
+				C154E50918E2F97C006F1F2D /* ITTBaseCalendarGridView.xib */,
+				C154E50A18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.h */,
+				C154E50B18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.m */,
+				C154E50C18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.xib */,
+				C154E50D18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.h */,
+				C154E50E18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.m */,
+				C154E50F18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.xib */,
+				C154E51018E2F97C006F1F2D /* ITTBaseDataSourceImp.h */,
+				C154E51118E2F97C006F1F2D /* ITTBaseDataSourceImp.m */,
+			);
+			path = Imp;
+			sourceTree = "<group>";
+		};
+		C154E51218E2F97C006F1F2D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C154E51318E2F97C006F1F2D /* CalendarDateUtil.h */,
+				C154E51418E2F97C006F1F2D /* CalendarDateUtil.m */,
+				C154E51518E2F97C006F1F2D /* ITTCalDay.h */,
+				C154E51618E2F97C006F1F2D /* ITTCalDay.m */,
+				C154E51718E2F97C006F1F2D /* ITTCalMonth.h */,
+				C154E51818E2F97C006F1F2D /* ITTCalMonth.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C157A10118E0590900339AE6 /* Chart */ = {
@@ -284,8 +506,8 @@
 		C1C5387818E2A61C00D9C5BB /* StaticLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				C1C5387918E2A63200D9C5BB /* CorePlotHeaders */,
-				C1C538C818E2A63200D9C5BB /* libCorePlot-CocoaTouch.a */,
+				C154E43318E2F928006F1F2D /* Calendar */,
+				C154E43218E2F912006F1F2D /* CorePlot */,
 			);
 			path = StaticLibrary;
 			sourceTree = "<group>";
@@ -372,8 +594,9 @@
 				C1C538C618E2A63200D9C5BB /* NSDecimalNumberExtensions.h */,
 				C1C538C718E2A63200D9C5BB /* NSNumberExtensions.h */,
 			);
-			path = CorePlotHeaders;
-			sourceTree = "<group>";
+			name = CorePlotHeaders;
+			path = WYHabit/StaticLibrary/CorePlotHeaders;
+			sourceTree = SOURCE_ROOT;
 		};
 		C1C538CA18E2AB2100D9C5BB /* MainContainer */ = {
 			isa = PBXGroup;
@@ -541,10 +764,41 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C154E52A18E2F97C006F1F2D /* btn_grid_cell_selected@2x.png in Resources */,
+				C154E51C18E2F97C006F1F2D /* bg_calendar_week_header@2x.png in Resources */,
+				C154E52118E2F97C006F1F2D /* btn_choose_date_right_arrow_highlight@2x.png in Resources */,
+				C154E53E18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.xib in Resources */,
+				C154E52F18E2F97C006F1F2D /* btn_previous_month@2x.png in Resources */,
+				C154E53118E2F97C006F1F2D /* btn_radio_check_box@2x.png in Resources */,
+				C154E53618E2F97C006F1F2D /* ITTCalendarView.xib in Resources */,
+				C154E53A18E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.xib in Resources */,
+				C154E52218E2F97C006F1F2D /* btn_choose_departure_date@2x.png in Resources */,
+				C154E52D18E2F97C006F1F2D /* btn_next_month@2x.png in Resources */,
+				C154E52918E2F97C006F1F2D /* btn_grid_cell_highlight@2x.png in Resources */,
 				C1D091661894B48300FDBB72 /* InfoPlist.strings in Resources */,
+				C154E52718E2F97C006F1F2D /* btn_grid@2x.png in Resources */,
+				C154E52B18E2F97C006F1F2D /* btn_grid_highlight@2x.png in Resources */,
+				C154E53C18E2F97C006F1F2D /* ITTBaseCalendarGridView.xib in Resources */,
+				C154E52518E2F97C006F1F2D /* btn_close_date@2x.png in Resources */,
+				C154E52E18E2F97C006F1F2D /* btn_next_month_highlight@2x.png in Resources */,
+				C154E54018E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.xib in Resources */,
+				C154E53018E2F97C006F1F2D /* btn_previous_month_highlight@2x.png in Resources */,
 				C1D0916E1894B48300FDBB72 /* Images.xcassets in Resources */,
+				C154E52418E2F97C006F1F2D /* btn_chose_date_highlight@2x.png in Resources */,
+				C154E52618E2F97C006F1F2D /* btn_close_date_hihglight@2x.png in Resources */,
+				C154E51A18E2F97C006F1F2D /* bg_calendar_footer@2x.png in Resources */,
+				C154E51B18E2F97C006F1F2D /* bg_calendar_header@2x.png in Resources */,
+				C154E51E18E2F97C006F1F2D /* btn_choose_date_left_arrow@2x.png in Resources */,
+				C154E51D18E2F97C006F1F2D /* bg_grid@2x.png in Resources */,
+				C154E52018E2F97C006F1F2D /* btn_choose_date_right_arrow@2x.png in Resources */,
 				C102510618B9EE1B0036D44F /* WYGoalCommitViewController.xib in Resources */,
+				C154E51918E2F97C006F1F2D /* bg_calendar@2x.png in Resources */,
+				C154E52318E2F97C006F1F2D /* btn_chose_date@2x.png in Resources */,
+				C154E53218E2F97C006F1F2D /* btn_radio_check_box_selected@2x.png in Resources */,
+				C154E52818E2F97C006F1F2D /* btn_grid_cell@2x.png in Resources */,
 				C1C538CF18E2AB3700D9C5BB /* WYMainContainerViewController.xib in Resources */,
+				C154E52C18E2F97C006F1F2D /* btn_grid_selected@2x.png in Resources */,
+				C154E51F18E2F97C006F1F2D /* btn_choose_date_left_arrow_highlight@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,12 +855,25 @@
 				C161DDB718BB87B70014A7F3 /* FMDatabase+Addition.m in Sources */,
 				C1D0916C1894B48300FDBB72 /* WYAppDelegate.m in Sources */,
 				C1D3AA9D18B9CB27007712E8 /* WYDataManager.m in Sources */,
+				C154E53D18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.m in Sources */,
 				C1C538CE18E2AB3700D9C5BB /* WYMainContainerViewController.m in Sources */,
+				C154E53318E2F97C006F1F2D /* ITTCalendarGridView.m in Sources */,
+				C154E53F18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.m in Sources */,
+				C154E53418E2F97C006F1F2D /* ITTCalendarScrollView.m in Sources */,
 				C1D3AAA118B9D121007712E8 /* WYGoalTableHandler.m in Sources */,
 				C1D091681894B48300FDBB72 /* main.m in Sources */,
+				C154E53718E2F97C006F1F2D /* ITTCalendarViewFooterView.m in Sources */,
 				C161DDB118BB854C0014A7F3 /* WYKeyValueTableHandler.m in Sources */,
+				C154E54418E2F97C006F1F2D /* ITTCalMonth.m in Sources */,
+				C154E54118E2F97C006F1F2D /* ITTBaseDataSourceImp.m in Sources */,
+				C154E53518E2F97C006F1F2D /* ITTCalendarView.m in Sources */,
+				C154E54218E2F97C006F1F2D /* CalendarDateUtil.m in Sources */,
+				C154E54318E2F97C006F1F2D /* ITTCalDay.m in Sources */,
 				C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */,
 				C161DDAE18BB81AD0014A7F3 /* WYGoal.m in Sources */,
+				C154E53B18E2F97C006F1F2D /* ITTBaseCalendarGridView.m in Sources */,
+				C154E53818E2F97C006F1F2D /* ITTCalendarViewHeaderView.m in Sources */,
+				C154E53918E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.m in Sources */,
 				C1D3AAA518B9DE02007712E8 /* WYTableHandler.m in Sources */,
 				C161DDB818BB87B70014A7F3 /* FMResultSet+Addition.m in Sources */,
 				C161DDBB18BB8C890014A7F3 /* WYConfigManager.m in Sources */,
