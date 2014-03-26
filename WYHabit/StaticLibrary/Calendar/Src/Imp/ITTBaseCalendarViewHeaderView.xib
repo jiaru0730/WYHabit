@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="297" height="31"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_calendar_header.png" id="21">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="21">
                     <rect key="frame" x="0.0" y="0.0" width="297" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -56,7 +56,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.44579721715328469" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="monthLabel" destination="7" id="18"/>
                 <outlet property="nextMonthButton" destination="6" id="23"/>
@@ -65,7 +65,6 @@
         </view>
     </objects>
     <resources>
-        <image name="bg_calendar_header.png" width="296" height="31"/>
         <image name="btn_next_month.png" width="22" height="22"/>
         <image name="btn_next_month_highlight.png" width="22" height="22"/>
         <image name="btn_previous_month.png" width="22" height="22"/>
