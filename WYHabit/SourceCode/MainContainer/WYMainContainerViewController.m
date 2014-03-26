@@ -7,6 +7,8 @@
 //
 
 #import "WYMainContainerViewController.h"
+#import "ITTCalendarView.h"
+#import "ITTBaseDataSourceImp.h"
 
 @interface WYMainContainerViewController ()
 
@@ -37,6 +39,19 @@
         [self.mainContainerScrollView addSubview:elementView];
         if (i % 2 == 0) {
             elementView.backgroundColor = [UIColor orangeColor];
+        }
+        if (i == 0) {
+            UIView *calendarContainerView = [[UIView alloc] initWithFrame:CGRectMake(8, 30, 309, 255)];
+            [self.view addSubview:calendarContainerView];
+            calendarContainerView.clipsToBounds = YES;
+            ITTCalendarView *calendarView = [ITTCalendarView viewFromNib];
+            ITTBaseDataSourceImp *dataSource = [[ITTBaseDataSourceImp alloc] init];
+            calendarView.date = [NSDate dateWithTimeIntervalSinceNow:2*24*60*60];
+            calendarView.dataSource = dataSource;
+            calendarView.delegate = self;
+            calendarView.frame = CGRectMake(0, 0, 309, 410);
+            calendarView.allowsMultipleSelection = YES;
+            [calendarView showInView:calendarContainerView];
         }
     }
 }
