@@ -42,7 +42,7 @@
         }
         if (i == 0) {
             UIView *calendarContainerView = [[UIView alloc] initWithFrame:CGRectMake(8, 30, 309, 255)];
-            [self.view addSubview:calendarContainerView];
+            [elementView addSubview:calendarContainerView];
             calendarContainerView.clipsToBounds = YES;
             ITTCalendarView *calendarView = [ITTCalendarView viewFromNib];
             ITTBaseDataSourceImp *dataSource = [[ITTBaseDataSourceImp alloc] init];

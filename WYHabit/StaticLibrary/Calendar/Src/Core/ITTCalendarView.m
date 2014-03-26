@@ -437,7 +437,8 @@
         gridView.calDay = calDay;
         gridView.row = row;
         gridView.column = column;
-        gridView.selectedEanable = ([self isEarlyerMinimumDay:calDay] || [self isAfterMaximumDay:calDay]) ? FALSE:TRUE;
+//        gridView.selectedEanable = ([self isEarlyerMinimumDay:calDay] || [self isAfterMaximumDay:calDay]) ? FALSE:TRUE;
+        gridView.selectedEanable = YES;
         if ([self isHistorySelectedDay:calDay]) {
             hasSelectedDay = TRUE;
             gridView.selected = TRUE;
