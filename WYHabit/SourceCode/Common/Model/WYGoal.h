@@ -15,6 +15,7 @@
 @property (assign, nonatomic) NSDate *startTime;
 @property (assign, nonatomic) NSDate *endTime;
 @property (assign, nonatomic) NSDate *achiveTime;
-@property (assign, nonatomic) int interval;
+@property (assign, nonatomic) int totalDays;
+@property (assign, nonatomic) int totalHours;
 
 @end

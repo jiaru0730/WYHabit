@@ -33,6 +33,8 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 //    
 //    [[WYConfigManager sharedInstance] setConfigValue:goal.goalID forKey:kIDOfLiveGoalIndexKeyA];
     
+    // WYConfigManager is not used by DataManager, previous lines are just test for DB operations.
+    
 }
 
 - (NSString *)generateUUID {
@@ -42,6 +44,9 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     return (__bridge_transfer NSString *)string;
 }
 
+
+#pragma mark - Goals
+
 - (WYGoal *)getGoalByID:(NSString *)goalID {
     return [self.database.goalTableHandler getGoalByID:goalID];
 }
@@ -49,5 +54,16 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 - (BOOL)updateGoal:(WYGoal *)goal {
     return [self.database.goalTableHandler updateGoal:goal];
 }
+
+
+#pragma mark - CommitLogs
+- (WYCommitLog *)getCommitLogByGoalID:(NSString *)goalID year:(int)year month:(int)month day:(int)day {
+    return [self.database.commitLogTableHandler getCommitLogBy:goalID year:year month:month day:day];
+}
+
+- (BOOL)updateCommitLog:(WYCommitLog *)commitLog {
+    return [self.database.commitLogTableHandler updateCommitLog:commitLog];
+}
+
 
 @end

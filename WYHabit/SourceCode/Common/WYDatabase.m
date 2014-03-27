@@ -48,7 +48,8 @@
 - (void)initTableHandlers {
     self.keyValueTableHandler = [[WYKeyValueTableHandler alloc] init];
     self.goalTableHandler = [[WYGoalTableHandler alloc] init];
-    self.tableHandlers = @[self.keyValueTableHandler, self.goalTableHandler];
+    self.commitLogTableHandler = [[WYCommitLogTableHandler alloc] init];
+    self.tableHandlers = @[self.keyValueTableHandler, self.goalTableHandler, self.commitLogTableHandler];
 }
 
 - (void)configTableHandlers {

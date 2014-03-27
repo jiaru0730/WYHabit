@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "WYGoalTableHandler.h"
 #import "WYKeyValueTableHandler.h"
+#import "WYCommitLogTableHandler.h"
 
 @interface WYDatabase : NSObject
 
@@ -16,6 +17,7 @@
 
 @property (strong, nonatomic) WYKeyValueTableHandler *keyValueTableHandler;
 @property (strong, nonatomic) WYGoalTableHandler *goalTableHandler;
+@property (strong, nonatomic) WYCommitLogTableHandler *commitLogTableHandler;
 
 
 - (BOOL)openAndInitDatabase;

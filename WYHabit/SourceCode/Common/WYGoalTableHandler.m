@@ -25,7 +25,7 @@
 - (BOOL)createGoalsTable {
     __block BOOL createTableSucceed = NO;
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        NSString *sql = @"CREATE TABLE IF NOT EXISTS Goals(goalID TEXT NO NULL, action TEXT, startTime INT8, endTime INT8, achiveTime INT8, interval INT8, Reserve1 TEXT, Reserve2 TEXT, Reserve3 TEXT, PRIMARY KEY(goalID));";
+        NSString *sql = @"CREATE TABLE IF NOT EXISTS Goals(goalID TEXT NO NULL, action TEXT, startTime INT8, endTime INT8, achiveTime INT8, totalDays INT, totalHours INT, Reserve1 TEXT, Reserve2 TEXT, Reserve3 TEXT, PRIMARY KEY(goalID));";
         createTableSucceed = [database executeUpdate:sql];
     }];
     return createTableSucceed;
@@ -40,7 +40,8 @@
         dataDict[@"startTime"] = @([goal.startTime timeIntervalSince1970]);
         dataDict[@"endTime"] = @([goal.endTime timeIntervalSince1970]);
         dataDict[@"achiveTime"] = @([goal.achiveTime timeIntervalSince1970]);
-        dataDict[@"interval"] = @(goal.interval);
+        dataDict[@"totalDays"] = @(goal.totalDays);
+        dataDict[@"totalHours"] = @(goal.totalHours);
         updateGoalSucceed = [database updateTable:@"Goals" withParameterDictionary:dataDict];
     }];
     return updateGoalSucceed;
@@ -63,7 +64,8 @@
     goal.startTime = [NSDate dateWithTimeIntervalSince1970:[resultSet intForColumn:@"startTime"]];
     goal.endTime = [NSDate dateWithTimeIntervalSince1970:[resultSet intForColumn:@"endTime"]];
     goal.achiveTime = [NSDate dateWithTimeIntervalSince1970:[resultSet intForColumn:@"achiveTime"]];
-    goal.interval = [resultSet intForColumn:@"interval"];
+    goal.totalDays = [resultSet intForColumn:@"totalDays"];
+    goal.totalHours = [resultSet intForColumn:@"totalHours"];
     return goal;
 }
 

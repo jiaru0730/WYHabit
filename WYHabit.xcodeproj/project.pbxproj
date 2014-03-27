@@ -58,6 +58,8 @@
 		C161DDB718BB87B70014A7F3 /* FMDatabase+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDB418BB87B70014A7F3 /* FMDatabase+Addition.m */; };
 		C161DDB818BB87B70014A7F3 /* FMResultSet+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDB618BB87B70014A7F3 /* FMResultSet+Addition.m */; };
 		C161DDBB18BB8C890014A7F3 /* WYConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C161DDBA18BB8C890014A7F3 /* WYConfigManager.m */; };
+		C1845F2C18E3D17700BC2157 /* WYCommitLogTableHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C1845F2B18E3D17700BC2157 /* WYCommitLogTableHandler.m */; };
+		C1845F2F18E3D4EA00BC2157 /* WYCommitLog.m in Sources */ = {isa = PBXBuildFile; fileRef = C1845F2E18E3D4EA00BC2157 /* WYCommitLog.m */; };
 		C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2718B9C02300F7484C /* WYDatabase.m */; };
 		C1C5387718E2A58500D9C5BB /* WYMyGoalView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C5387618E2A58500D9C5BB /* WYMyGoalView.m */; };
 		C1C538C918E2A63200D9C5BB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C538C818E2A63200D9C5BB /* libCorePlot-CocoaTouch.a */; };
@@ -168,6 +170,10 @@
 		C161DDB618BB87B70014A7F3 /* FMResultSet+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMResultSet+Addition.m"; sourceTree = "<group>"; };
 		C161DDB918BB8C890014A7F3 /* WYConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYConfigManager.h; sourceTree = "<group>"; };
 		C161DDBA18BB8C890014A7F3 /* WYConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYConfigManager.m; sourceTree = "<group>"; };
+		C1845F2A18E3D17700BC2157 /* WYCommitLogTableHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCommitLogTableHandler.h; sourceTree = "<group>"; };
+		C1845F2B18E3D17700BC2157 /* WYCommitLogTableHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCommitLogTableHandler.m; sourceTree = "<group>"; };
+		C1845F2D18E3D4EA00BC2157 /* WYCommitLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCommitLog.h; sourceTree = "<group>"; };
+		C1845F2E18E3D4EA00BC2157 /* WYCommitLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCommitLog.m; sourceTree = "<group>"; };
 		C1AB4ECD18B9FF37002F3A3E /* WYUIContants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUIContants.h; sourceTree = "<group>"; };
 		C1BF7A2618B9C02300F7484C /* WYDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDatabase.h; sourceTree = "<group>"; };
 		C1BF7A2718B9C02300F7484C /* WYDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDatabase.m; sourceTree = "<group>"; };
@@ -447,6 +453,8 @@
 			children = (
 				C161DDAC18BB81AD0014A7F3 /* WYGoal.h */,
 				C161DDAD18BB81AD0014A7F3 /* WYGoal.m */,
+				C1845F2D18E3D4EA00BC2157 /* WYCommitLog.h */,
+				C1845F2E18E3D4EA00BC2157 /* WYCommitLog.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -499,6 +507,8 @@
 				C161DDB018BB854C0014A7F3 /* WYKeyValueTableHandler.m */,
 				C161DDB918BB8C890014A7F3 /* WYConfigManager.h */,
 				C161DDBA18BB8C890014A7F3 /* WYConfigManager.m */,
+				C1845F2A18E3D17700BC2157 /* WYCommitLogTableHandler.h */,
+				C1845F2B18E3D17700BC2157 /* WYCommitLogTableHandler.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -856,6 +866,7 @@
 				C1D0916C1894B48300FDBB72 /* WYAppDelegate.m in Sources */,
 				C1D3AA9D18B9CB27007712E8 /* WYDataManager.m in Sources */,
 				C154E53D18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.m in Sources */,
+				C1845F2F18E3D4EA00BC2157 /* WYCommitLog.m in Sources */,
 				C1C538CE18E2AB3700D9C5BB /* WYMainContainerViewController.m in Sources */,
 				C154E53318E2F97C006F1F2D /* ITTCalendarGridView.m in Sources */,
 				C154E53F18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.m in Sources */,
@@ -875,6 +886,7 @@
 				C154E53818E2F97C006F1F2D /* ITTCalendarViewHeaderView.m in Sources */,
 				C154E53918E2F97C006F1F2D /* ITTBaseCalendarDisableGridView.m in Sources */,
 				C1D3AAA518B9DE02007712E8 /* WYTableHandler.m in Sources */,
+				C1845F2C18E3D17700BC2157 /* WYCommitLogTableHandler.m in Sources */,
 				C161DDB818BB87B70014A7F3 /* FMResultSet+Addition.m in Sources */,
 				C161DDBB18BB8C890014A7F3 /* WYConfigManager.m in Sources */,
 			);

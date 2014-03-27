@@ -10,6 +10,7 @@
 #import "WYConstants.h"
 #import "WYDatabase.h"
 #import "WYGoal.h"
+#import "WYCommitLog.h"
 
 @interface WYDataManager : NSObject
 
@@ -25,5 +26,8 @@ DECLARE_SHARED_INSTANCE(WYDataManager)
 
 - (WYGoal *)getGoalByID:(NSString *)goalID;
 - (BOOL)updateGoal:(WYGoal *)goal;
+
+- (WYCommitLog *)getCommitLogByGoalID:(NSString *)goalID year:(int)year month:(int)month day:(int)day;
+- (BOOL)updateCommitLog:(WYCommitLog *)commitLog;
 
 @end
