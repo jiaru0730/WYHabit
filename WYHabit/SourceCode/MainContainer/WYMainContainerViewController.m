@@ -132,17 +132,17 @@ static const int kOperationButtonSideMargin = 10;
     
     UIButton *finishGoalButton = [[WYUIElementManager sharedInstance] createRoundButtonWithRadius:kOperationButtonRadius];
     finishGoalButton.frame = CGRectMake(kOperationButtonSideMargin, (kOperationSectionHeight - kOperationButtonRadius) / 2, kOperationButtonRadius, kOperationButtonRadius);
-    finishGoalButton.backgroundColor = UI_COLOR_ORANGE;
-    [finishGoalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    finishGoalButton.layer.borderWidth = 2.0f;
+    finishGoalButton.layer.borderColor = [UI_COLOR_ORANGE CGColor];
+    [finishGoalButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
     [finishGoalButton setTitle:@"Finish" forState:UIControlStateNormal];
     [operationSectionContainerView addSubview:finishGoalButton];
     
     UIButton *editGoalButton = [[WYUIElementManager sharedInstance] createRoundButtonWithRadius:kOperationButtonRadius];
+    editGoalButton.backgroundColor = UI_COLOR_ORANGE;
+    [editGoalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     editGoalButton.frame = CGRectMake(UI_SCREEN_WIDTH - kOperationButtonRadius - kOperationButtonSideMargin, (kOperationSectionHeight - kOperationButtonRadius) / 2, kOperationButtonRadius, kOperationButtonRadius);
-    editGoalButton.layer.borderWidth = 2.0f;
-    editGoalButton.layer.borderColor = [UI_COLOR_ORANGE CGColor];
-    [editGoalButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
-    [editGoalButton setTitle:@"Edit" forState:UIControlStateNormal];
+    [editGoalButton setTitle:@"Detail" forState:UIControlStateNormal];
     [operationSectionContainerView addSubview:editGoalButton];
 }
 
