@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYMainContainerViewController : UIViewController
+@interface WYMainContainerViewController : UIViewController<UIScrollViewDelegate>
 
 @end

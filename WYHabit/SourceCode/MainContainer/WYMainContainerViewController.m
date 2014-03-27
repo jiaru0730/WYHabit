@@ -32,6 +32,7 @@ static const int kOperationButtonSideMargin = 10;
 @property (strong, nonatomic) UIScrollView *mainContainerScrollView;
 
 @property (strong, nonatomic) NSArray *liveGoalViewModelList;
+@property (assign, nonatomic) int currentPageIndex;
 
 // this is not used
 //@property (strong, nonatomic) UIPageControl *mainContainerPageControl;
@@ -45,6 +46,7 @@ static const int kOperationButtonSideMargin = 10;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _liveGoalViewModelList = [[WYDataManager sharedInstance] getMainViewLiveGoalViewModelList];
+        _currentPageIndex = 0;
     }
     return self;
 }
@@ -60,6 +62,7 @@ static const int kOperationButtonSideMargin = 10;
     
     CGSize sizeOfScrollView = self.mainContainerScrollView.frame.size;
     self.mainContainerScrollView.contentSize = CGSizeMake(sizeOfScrollView.width * self.liveGoalViewModelList.count, sizeOfScrollView.height);
+    self.mainContainerScrollView.delegate = self;
     
     for (int i = 0; i < self.liveGoalViewModelList.count; ++i) {
         CGRect frameOfSingleGoalView = (CGRect){.origin=CGPointMake(sizeOfScrollView.width * i, 0), .size=sizeOfScrollView};
@@ -85,14 +88,14 @@ static const int kOperationButtonSideMargin = 10;
     UIScrollView *singleGoalScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
     singleGoalScrollView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, kCommitButtonSectionHeight + kChartsSectionHeight + kOperationSectionHeight);
     
-    [self drawCommitButtonOnSingleGoalView:singleGoalScrollView goal:goalViewModel];
-    [self drawChartsOnSingleGoalView:singleGoalScrollView goal:goalViewModel];
-    [self drawOperationButtonsOnSingleGoalView:singleGoalScrollView goal:goalViewModel];
+    [self drawCommitButtonOnSingleGoalView:singleGoalScrollView];
+    [self drawChartsOnSingleGoalView:singleGoalScrollView];
+    [self drawOperationButtonsOnSingleGoalView:singleGoalScrollView];
     
     return singleGoalScrollView;
 }
 
-- (void)drawCommitButtonOnSingleGoalView:(UIScrollView *)singleGoalScrollView goal:(WYGoalInMainViewModel*)goalViewModel {
+- (void)drawCommitButtonOnSingleGoalView:(UIScrollView *)singleGoalScrollView {
     UIButton *commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [singleGoalScrollView addSubview:commitButton];
     //    commitButton.backgroundColor = UI_COLOR_GRAY_LIGHT;
@@ -107,9 +110,11 @@ static const int kOperationButtonSideMargin = 10;
     [commitButton setTitle:@"I am kool!" forState:UIControlStateNormal];
     [commitButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
     commitButton.titleLabel.font = [UIFont boldSystemFontOfSize:35];
+    
+    [commitButton addTarget:self action:@selector(commitGoalOnCurrentPage) forControlEvents:UIControlEventTouchDown];
 }
 
-- (void)drawChartsOnSingleGoalView:(UIScrollView *)singleGoalScrollView goal:(WYGoalInMainViewModel*)goalViewModel {
+- (void)drawChartsOnSingleGoalView:(UIScrollView *)singleGoalScrollView {
     UIView *chartsContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, kCommitButtonSectionHeight, UI_SCREEN_WIDTH, kChartsSectionHeight)];
     [singleGoalScrollView addSubview:chartsContainerView];
     
@@ -130,7 +135,7 @@ static const int kOperationButtonSideMargin = 10;
     [chartsContainerView addSubview:lineChartView];
 }
 
-- (void)drawOperationButtonsOnSingleGoalView:(UIScrollView *)singleGoalScrollView goal:(WYGoalInMainViewModel*)goalViewModel {
+- (void)drawOperationButtonsOnSingleGoalView:(UIScrollView *)singleGoalScrollView {
     UIView *operationSectionContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, kCommitButtonSectionHeight + kChartsSectionHeight, UI_SCREEN_WIDTH, kOperationSectionHeight)];
     [singleGoalScrollView addSubview:operationSectionContainerView];
     
@@ -142,6 +147,8 @@ static const int kOperationButtonSideMargin = 10;
     [finishGoalButton setTitle:@"Finish" forState:UIControlStateNormal];
     [operationSectionContainerView addSubview:finishGoalButton];
     
+    [finishGoalButton addTarget:self action:@selector(finishGoalOnCurrentPage) forControlEvents:UIControlEventTouchDown];
+    
     UIButton *editGoalButton = [[WYUIElementManager sharedInstance] createRoundButtonWithRadius:kOperationButtonRadius];
     editGoalButton.backgroundColor = UI_COLOR_ORANGE;
     [editGoalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -150,4 +157,27 @@ static const int kOperationButtonSideMargin = 10;
     [operationSectionContainerView addSubview:editGoalButton];
 }
 
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self updateCurrentPageIndex:(scrollView.contentOffset.x / scrollView.frame.size.width)];
+}
+
+#pragma mark - GoalOperations
+
+- (void)commitGoalOnCurrentPage {
+    NSLog(@"Commit goal on page: %d", self.currentPageIndex);
+}
+
+- (void)finishGoalOnCurrentPage {
+    NSLog(@"Finish goal on page: %d", self.currentPageIndex);
+}
+
+#pragma mark - Other
+
+- (void)updateCurrentPageIndex:(int)pageIndex {
+    NSLog(@"Update currentPageIndex: %d", pageIndex);
+    self.currentPageIndex = pageIndex;
+}
 @end
