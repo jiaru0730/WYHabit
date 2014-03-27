@@ -24,15 +24,15 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 }
 
 - (void)initManagers {
-    WYGoal *goal = [[WYGoal alloc] init];
-    goal.goalID = [[WYDataManager sharedInstance] generateUUID];
-    goal.action = @"testAction";
-    goal.startTime = [NSDate date];
-    goal.endTime = [NSDate date];
-    [[WYDataManager sharedInstance] updateGoal:goal];
+//    WYGoal *goal = [[WYGoal alloc] init];
+//    goal.goalID = [[WYDataManager sharedInstance] generateUUID];
+//    goal.action = @"testAction";
+//    goal.startTime = [NSDate date];
+//    goal.endTime = [NSDate date];
+//    [[WYDataManager sharedInstance] updateGoal:goal];
 
     // WYConfigManager is not used by DataManager, previous lines are just test for DB operations.
-    [[WYConfigManager sharedInstance] setConfigValue:goal.goalID forKey:kIDOfLiveGoalIndexKeyA];
+//    [[WYConfigManager sharedInstance] setConfigValue:goal.goalID forKey:kIDOfLiveGoalIndexKeyA];
     
     
 }

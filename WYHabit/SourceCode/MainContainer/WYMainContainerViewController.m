@@ -36,18 +36,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor lightGrayColor];
     CGSize sizeOfScrollView = self.mainContainerScrollView.frame.size;
     self.mainContainerScrollView.contentSize = CGSizeMake(sizeOfScrollView.width * self.liveGoalViewModelList.count, sizeOfScrollView.height);
     
     for (int i = 0; i < self.liveGoalViewModelList.count; ++i) {
-        UIView *elementView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(sizeOfScrollView.width * i, 0), .size=sizeOfScrollView}];
-        [self.mainContainerScrollView addSubview:elementView];
+        UIScrollView *mainGoalView = [[UIScrollView alloc] initWithFrame:(CGRect){.origin=CGPointMake(sizeOfScrollView.width * i, 0), .size=sizeOfScrollView}];
+        mainGoalView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, 1000);
+        [self.mainContainerScrollView addSubview:mainGoalView];
         if (i % 2 == 0) {
-            elementView.backgroundColor = [UIColor orangeColor];
+            mainGoalView.backgroundColor = [UIColor orangeColor];
+        } else {
+            mainGoalView.backgroundColor = UI_COLOR_GRAY_LIGHT;
         }
+        
         if (i == 0) {
+        
             UIView *calendarContainerView = [[UIView alloc] initWithFrame:CGRectMake(8, 30, 309, 255)];
-            [elementView addSubview:calendarContainerView];
+            [mainGoalView addSubview:calendarContainerView];
             calendarContainerView.clipsToBounds = YES;
             ITTCalendarView *calendarView = [ITTCalendarView viewFromNib];
             ITTBaseDataSourceImp *dataSource = [[ITTBaseDataSourceImp alloc] init];
