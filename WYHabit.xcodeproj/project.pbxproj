@@ -61,6 +61,7 @@
 		C1845F2C18E3D17700BC2157 /* WYCommitLogTableHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C1845F2B18E3D17700BC2157 /* WYCommitLogTableHandler.m */; };
 		C1845F2F18E3D4EA00BC2157 /* WYCommitLog.m in Sources */ = {isa = PBXBuildFile; fileRef = C1845F2E18E3D4EA00BC2157 /* WYCommitLog.m */; };
 		C1845F3218E3E89F00BC2157 /* WYGoalInMainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1845F3118E3E89F00BC2157 /* WYGoalInMainViewModel.m */; };
+		C1845F3A18E4192000BC2157 /* WYUIElementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1845F3918E4192000BC2157 /* WYUIElementManager.m */; };
 		C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2718B9C02300F7484C /* WYDatabase.m */; };
 		C1C5387718E2A58500D9C5BB /* WYMyGoalView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C5387618E2A58500D9C5BB /* WYMyGoalView.m */; };
 		C1C538C918E2A63200D9C5BB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C538C818E2A63200D9C5BB /* libCorePlot-CocoaTouch.a */; };
@@ -177,6 +178,8 @@
 		C1845F2E18E3D4EA00BC2157 /* WYCommitLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCommitLog.m; sourceTree = "<group>"; };
 		C1845F3018E3E89F00BC2157 /* WYGoalInMainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoalInMainViewModel.h; sourceTree = "<group>"; };
 		C1845F3118E3E89F00BC2157 /* WYGoalInMainViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalInMainViewModel.m; sourceTree = "<group>"; };
+		C1845F3818E4192000BC2157 /* WYUIElementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUIElementManager.h; sourceTree = "<group>"; };
+		C1845F3918E4192000BC2157 /* WYUIElementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUIElementManager.m; sourceTree = "<group>"; };
 		C1AB4ECD18B9FF37002F3A3E /* WYUIContants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUIContants.h; sourceTree = "<group>"; };
 		C1BF7A2618B9C02300F7484C /* WYDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDatabase.h; sourceTree = "<group>"; };
 		C1BF7A2718B9C02300F7484C /* WYDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDatabase.m; sourceTree = "<group>"; };
@@ -512,6 +515,8 @@
 				C161DDBA18BB8C890014A7F3 /* WYConfigManager.m */,
 				C1845F2A18E3D17700BC2157 /* WYCommitLogTableHandler.h */,
 				C1845F2B18E3D17700BC2157 /* WYCommitLogTableHandler.m */,
+				C1845F3818E4192000BC2157 /* WYUIElementManager.h */,
+				C1845F3918E4192000BC2157 /* WYUIElementManager.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -866,6 +871,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C102510518B9EE1B0036D44F /* WYGoalCommitViewController.m in Sources */,
+				C1845F3A18E4192000BC2157 /* WYUIElementManager.m in Sources */,
 				C1C5387718E2A58500D9C5BB /* WYMyGoalView.m in Sources */,
 				C161DDB718BB87B70014A7F3 /* FMDatabase+Addition.m in Sources */,
 				C1D0916C1894B48300FDBB72 /* WYAppDelegate.m in Sources */,

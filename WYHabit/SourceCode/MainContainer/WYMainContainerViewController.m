@@ -11,17 +11,21 @@
 #import "ITTBaseDataSourceImp.h"
 #import "WYDataManager.h"
 #import "WYGoalInMainViewModel.h"
+#import "WYUIElementManager.h"
 
 static const int kCommitButtonSectionHeight = 250;
 static const int kCommitButtonTopMargin = 40;
 static const int kCommitButtonRedius = 200;
 
-static const int kChartsSectionHeight = 800;
+static const int kCalendarTopMargin = 30;
+static const int kCalendarHeight = 255;
+static const int kLineChratTopSpacingToCalendar = 30;
+static const int kLineChartHeight = 255;
+static const int kChartsSectionHeight = kCalendarTopMargin + kCalendarHeight + kLineChratTopSpacingToCalendar + kLineChartHeight;
 
-
-
-
-
+static const int kOperationSectionHeight = 100;
+static const int kOperationButtonRadius = 80;
+static const int kOperationButtonSideMargin = 10;
 
 @interface WYMainContainerViewController ()
 
@@ -75,15 +79,16 @@ static const int kChartsSectionHeight = 800;
 
 - (UIScrollView *)drawVerticalScrollViewByGoal:(WYGoalInMainViewModel *)goalViewModel {
     UIScrollView *singleGoalScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
-    singleGoalScrollView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, kCommitButtonSectionHeight + kChartsSectionHeight);
+    singleGoalScrollView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, kCommitButtonSectionHeight + kChartsSectionHeight + kOperationSectionHeight);
     
-    [self drawCommitButtonOnScrollView:singleGoalScrollView];
-    [self drawChartsOnScrollView:singleGoalScrollView];
+    [self drawCommitButtonOnSingleGoalView:singleGoalScrollView];
+    [self drawChartsOnSingleGoalView:singleGoalScrollView];
+    [self drawOperationButtonsOnSingleGoalView:singleGoalScrollView];
     
     return singleGoalScrollView;
 }
 
-- (void)drawCommitButtonOnScrollView:(UIScrollView *)singleGoalScrollView {
+- (void)drawCommitButtonOnSingleGoalView:(UIScrollView *)singleGoalScrollView {
     UIButton *commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [singleGoalScrollView addSubview:commitButton];
     //    commitButton.backgroundColor = UI_COLOR_GRAY_LIGHT;
@@ -100,10 +105,11 @@ static const int kChartsSectionHeight = 800;
     commitButton.titleLabel.font = [UIFont boldSystemFontOfSize:35];
 }
 
-- (void)drawChartsOnScrollView:(UIScrollView *)singleGoalScrollView {
+- (void)drawChartsOnSingleGoalView:(UIScrollView *)singleGoalScrollView {
     UIView *chartsContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, kCommitButtonSectionHeight, UI_SCREEN_WIDTH, kChartsSectionHeight)];
     [singleGoalScrollView addSubview:chartsContainerView];
-    UIView *calendarContainerView = [[UIView alloc] initWithFrame:CGRectMake(8, 30, 309, 255)];
+    
+    UIView *calendarContainerView = [[UIView alloc] initWithFrame:CGRectMake(8, kCalendarTopMargin, 309, kCalendarHeight)];
     [chartsContainerView addSubview:calendarContainerView];
     calendarContainerView.clipsToBounds = YES;
     ITTCalendarView *calendarView = [ITTCalendarView viewFromNib];
@@ -115,6 +121,29 @@ static const int kChartsSectionHeight = 800;
     calendarView.allowsMultipleSelection = YES;
     [calendarView showInView:calendarContainerView];
     
+    UIView *lineChartView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(calendarContainerView.frame) +  kLineChratTopSpacingToCalendar, UI_SCREEN_WIDTH, kLineChartHeight)];
+    lineChartView.backgroundColor = UI_COLOR_GRAY_LIGHT;
+    [chartsContainerView addSubview:lineChartView];
+}
+
+- (void)drawOperationButtonsOnSingleGoalView:(UIScrollView *)singleGoalScrollView {
+    UIView *operationSectionContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, kCommitButtonSectionHeight + kChartsSectionHeight, UI_SCREEN_WIDTH, kOperationSectionHeight)];
+    [singleGoalScrollView addSubview:operationSectionContainerView];
+    
+    UIButton *finishGoalButton = [[WYUIElementManager sharedInstance] createRoundButtonWithRadius:kOperationButtonRadius];
+    finishGoalButton.frame = CGRectMake(kOperationButtonSideMargin, (kOperationSectionHeight - kOperationButtonRadius) / 2, kOperationButtonRadius, kOperationButtonRadius);
+    finishGoalButton.backgroundColor = UI_COLOR_ORANGE;
+    [finishGoalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [finishGoalButton setTitle:@"Finish" forState:UIControlStateNormal];
+    [operationSectionContainerView addSubview:finishGoalButton];
+    
+    UIButton *editGoalButton = [[WYUIElementManager sharedInstance] createRoundButtonWithRadius:kOperationButtonRadius];
+    editGoalButton.frame = CGRectMake(UI_SCREEN_WIDTH - kOperationButtonRadius - kOperationButtonSideMargin, (kOperationSectionHeight - kOperationButtonRadius) / 2, kOperationButtonRadius, kOperationButtonRadius);
+    editGoalButton.layer.borderWidth = 2.0f;
+    editGoalButton.layer.borderColor = [UI_COLOR_ORANGE CGColor];
+    [editGoalButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
+    [editGoalButton setTitle:@"Edit" forState:UIControlStateNormal];
+    [operationSectionContainerView addSubview:editGoalButton];
 }
 
 
