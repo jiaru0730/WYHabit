@@ -79,13 +79,18 @@ static const int kChartsSectionHeight = 800;
     
     UIButton *commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [singleGoalScrollView addSubview:commitButton];
-    commitButton.backgroundColor = UI_COLOR_GRAY_LIGHT;
+//    commitButton.backgroundColor = UI_COLOR_GRAY_LIGHT;
     CGFloat frameOfCommitButtonX = (UI_SCREEN_WIDTH - kCommitButtonRedius) / 2;
     commitButton.frame = CGRectMake(frameOfCommitButtonX, kCommitButtonTopMargin, kCommitButtonRedius, kCommitButtonRedius);
     commitButton.clipsToBounds = YES;
     CALayer *commitButtonLayer = [commitButton layer];
     commitButtonLayer.cornerRadius = kCommitButtonRedius / 2;
+    commitButtonLayer.borderWidth = 2.0f;
     commitButtonLayer.borderColor = [UI_COLOR_ORANGE CGColor];
+    
+    [commitButton setTitle:@"I am kool!" forState:UIControlStateNormal];
+    [commitButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
+    commitButton.titleLabel.font = [UIFont boldSystemFontOfSize:35];
     
     UIView *chartsContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, kCommitButtonSectionHeight, UI_SCREEN_WIDTH, kChartsSectionHeight)];
     [singleGoalScrollView addSubview:chartsContainerView];
