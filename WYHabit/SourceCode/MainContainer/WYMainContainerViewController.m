@@ -37,6 +37,8 @@ static const int kOperationButtonSideMargin = 10;
 @property (strong, nonatomic) UIButton *addGoalButton;
 @property (strong, nonatomic) UITextField *addGoalActionNameTextField;
 
+
+@property (strong, nonatomic) NSMutableArray *elementGoalViewList;
 @property (strong, nonatomic) NSArray *liveGoalViewModelList;
 @property (assign, nonatomic) int currentPageIndex;
 
@@ -74,6 +76,7 @@ static const int kOperationButtonSideMargin = 10;
         UIScrollView *elementScrollView = nil;
         if (i < self.liveGoalViewModelList.count) {
             elementScrollView = [self drawVerticalScrollViewByGoal:[self.liveGoalViewModelList objectAtIndex:i]];
+            [self.elementGoalViewList addObject:elementScrollView];
         } else if (i == self.liveGoalViewModelList.count) {
             elementScrollView = [self drawAddGoalView];
         }
