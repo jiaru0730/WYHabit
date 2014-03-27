@@ -81,14 +81,14 @@ static const int kOperationButtonSideMargin = 10;
     UIScrollView *singleGoalScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
     singleGoalScrollView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, kCommitButtonSectionHeight + kChartsSectionHeight + kOperationSectionHeight);
     
-    [self drawCommitButtonOnSingleGoalView:singleGoalScrollView];
-    [self drawChartsOnSingleGoalView:singleGoalScrollView];
-    [self drawOperationButtonsOnSingleGoalView:singleGoalScrollView];
+    [self drawCommitButtonOnSingleGoalView:singleGoalScrollView goal:goalViewModel];
+    [self drawChartsOnSingleGoalView:singleGoalScrollView goal:goalViewModel];
+    [self drawOperationButtonsOnSingleGoalView:singleGoalScrollView goal:goalViewModel];
     
     return singleGoalScrollView;
 }
 
-- (void)drawCommitButtonOnSingleGoalView:(UIScrollView *)singleGoalScrollView {
+- (void)drawCommitButtonOnSingleGoalView:(UIScrollView *)singleGoalScrollView goal:(WYGoalInMainViewModel*)goalViewModel {
     UIButton *commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [singleGoalScrollView addSubview:commitButton];
     //    commitButton.backgroundColor = UI_COLOR_GRAY_LIGHT;
@@ -105,7 +105,7 @@ static const int kOperationButtonSideMargin = 10;
     commitButton.titleLabel.font = [UIFont boldSystemFontOfSize:35];
 }
 
-- (void)drawChartsOnSingleGoalView:(UIScrollView *)singleGoalScrollView {
+- (void)drawChartsOnSingleGoalView:(UIScrollView *)singleGoalScrollView goal:(WYGoalInMainViewModel*)goalViewModel {
     UIView *chartsContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, kCommitButtonSectionHeight, UI_SCREEN_WIDTH, kChartsSectionHeight)];
     [singleGoalScrollView addSubview:chartsContainerView];
     
@@ -126,7 +126,7 @@ static const int kOperationButtonSideMargin = 10;
     [chartsContainerView addSubview:lineChartView];
 }
 
-- (void)drawOperationButtonsOnSingleGoalView:(UIScrollView *)singleGoalScrollView {
+- (void)drawOperationButtonsOnSingleGoalView:(UIScrollView *)singleGoalScrollView goal:(WYGoalInMainViewModel*)goalViewModel {
     UIView *operationSectionContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, kCommitButtonSectionHeight + kChartsSectionHeight, UI_SCREEN_WIDTH, kOperationSectionHeight)];
     [singleGoalScrollView addSubview:operationSectionContainerView];
     
