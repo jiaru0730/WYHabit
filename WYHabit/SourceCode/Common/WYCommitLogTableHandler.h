@@ -16,4 +16,6 @@
 - (WYCommitLog *)getCommitLogBy:(NSString *)goalID year:(int)year month:(int) month day:(int)day;
 - (BOOL)updateCommitLog:(WYCommitLog *)commitLog;
 
+- (NSArray *)getCommitLogListByGoalID:(NSString *)goalID;
+
 @end

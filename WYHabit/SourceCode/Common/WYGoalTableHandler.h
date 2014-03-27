@@ -16,6 +16,8 @@
 - (BOOL)updateGoal:(WYGoal *)goal;
 - (WYGoal *)getGoalByID:(NSString *)goalID;
 
+- (NSArray *)getAllGoalList;
+- (NSArray *)getLiveGoalList;
 
 
 @end

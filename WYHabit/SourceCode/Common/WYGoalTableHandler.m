@@ -50,11 +50,35 @@
 - (WYGoal *)getGoalByID:(NSString *)goalID {
     __block WYGoal *goal = nil;
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        FMResultSet *resultSet = [database executeQuery:@"SELECT * from Goals WHERE goalID=?", goalID];
+        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM Goals WHERE goalID=?", goalID];
         [resultSet next];
         goal = [self fillGoal:resultSet];
     }];
     return goal;
+}
+
+- (NSArray *)getAllGoalList {
+    __block NSMutableArray *allGoalList = [NSMutableArray array];
+    [self.databaseQueue inDatabase:^(FMDatabase *database) {
+        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM Goals"];
+        while ([resultSet next]) {
+            WYGoal *eachGoal = [self fillGoal:resultSet];
+            [allGoalList addObject:eachGoal];
+        }
+    }];
+    return allGoalList;
+}
+
+- (NSArray *)getLiveGoalList {
+    __block NSMutableArray *allGoalList = [NSMutableArray array];
+    [self.databaseQueue inDatabase:^(FMDatabase *database) {
+        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM Goals WHERE achiveTime = 0"];
+        while ([resultSet next]) {
+            WYGoal *eachGoal = [self fillGoal:resultSet];
+            [allGoalList addObject:eachGoal];
+        }
+    }];
+    return allGoalList;
 }
 
 - (WYGoal *)fillGoal:(FMResultSet *)resultSet {

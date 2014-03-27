@@ -10,4 +10,8 @@
 
 @implementation WYCommitLog
 
+- (int)combinedIntValue {
+    return self.year * 10000 + self.month * 100 + self.day;
+}
+
 @end

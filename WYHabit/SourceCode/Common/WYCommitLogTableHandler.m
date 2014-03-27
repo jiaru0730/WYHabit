@@ -52,6 +52,17 @@
     return commitLog;
 }
 
+- (NSArray *)getCommitLogListByGoalID:(NSString *)goalID {
+    __block NSMutableArray *commitLogList = [NSMutableArray array];
+    [self.databaseQueue inDatabase:^(FMDatabase *database) {
+        FMResultSet *resultSet = [database executeQuery:@"SELECT * from CommitLog WHERE goalID=?", goalID];
+        while ([resultSet next]) {
+            [commitLogList addObject:[self fillCommitLog:resultSet]];
+        }
+    }];
+    return commitLogList;
+}
+
 - (WYCommitLog *)fillCommitLog:(FMResultSet *)resultSet {
     WYCommitLog *commitLog = [[WYCommitLog alloc] init];
     commitLog.goalID = [resultSet stringForColumn:@"goalID"];

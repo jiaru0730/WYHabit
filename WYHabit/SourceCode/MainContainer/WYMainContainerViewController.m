@@ -9,10 +9,15 @@
 #import "WYMainContainerViewController.h"
 #import "ITTCalendarView.h"
 #import "ITTBaseDataSourceImp.h"
+#import "WYDataManager.h"
 
 @interface WYMainContainerViewController ()
 
 @property (strong, nonatomic) IBOutlet UIScrollView *mainContainerScrollView;
+
+@property (strong, nonatomic) NSArray *liveGoalViewModelList;
+
+// this is not used
 @property (strong, nonatomic) UIPageControl *mainContainerPageControl;
 
 @end
@@ -23,7 +28,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _liveGoalViewModelList = [[WYDataManager sharedInstance] getMainViewLiveGoalViewModelList];
     }
     return self;
 }
@@ -32,9 +37,9 @@
 {
     [super viewDidLoad];
     CGSize sizeOfScrollView = self.mainContainerScrollView.frame.size;
-    self.mainContainerScrollView.contentSize = CGSizeMake(sizeOfScrollView.width * 5, sizeOfScrollView.height);
+    self.mainContainerScrollView.contentSize = CGSizeMake(sizeOfScrollView.width * self.liveGoalViewModelList.count, sizeOfScrollView.height);
     
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < self.liveGoalViewModelList.count; ++i) {
         UIView *elementView = [[UIView alloc] initWithFrame:(CGRect){.origin=CGPointMake(sizeOfScrollView.width * i, 0), .size=sizeOfScrollView}];
         [self.mainContainerScrollView addSubview:elementView];
         if (i % 2 == 0) {

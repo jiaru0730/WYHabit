@@ -8,6 +8,7 @@
 
 #import "WYDataManager.h"
 #import "WYConfigManager.h"
+#import "WYGoalInMainViewModel.h"
 
 
 @interface WYDataManager()
@@ -23,17 +24,16 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 }
 
 - (void)initManagers {
-//    WYGoal *goal = [[WYGoal alloc] init];
-//    goal.action = @"testAction";
-//    goal.goalID = [[WYDataManager sharedInstance] generateUUID];
-//    goal.startTime = [NSDate date];
-//    goal.endTime = [NSDate date];
-//    goal.interval = 1;
-//    [[WYDataManager sharedInstance] updateGoal:goal];
-//    
-//    [[WYConfigManager sharedInstance] setConfigValue:goal.goalID forKey:kIDOfLiveGoalIndexKeyA];
-    
+    WYGoal *goal = [[WYGoal alloc] init];
+    goal.goalID = [[WYDataManager sharedInstance] generateUUID];
+    goal.action = @"testAction";
+    goal.startTime = [NSDate date];
+    goal.endTime = [NSDate date];
+    [[WYDataManager sharedInstance] updateGoal:goal];
+
     // WYConfigManager is not used by DataManager, previous lines are just test for DB operations.
+    [[WYConfigManager sharedInstance] setConfigValue:goal.goalID forKey:kIDOfLiveGoalIndexKeyA];
+    
     
 }
 
@@ -64,6 +64,31 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 - (BOOL)updateCommitLog:(WYCommitLog *)commitLog {
     return [self.database.commitLogTableHandler updateCommitLog:commitLog];
 }
+
+
+#pragma mark - MainView
+- (NSArray *)getMainViewLiveGoalViewModelList {
+    NSMutableArray *liveGoalViewModelList = [NSMutableArray array];
+    NSArray *liveGoalList = [self.database.goalTableHandler getLiveGoalList];
+    for (WYGoal *eachLiveGoal in liveGoalList) {
+        WYGoalInMainViewModel *goalInMainViewModel = [[WYGoalInMainViewModel alloc] init];
+        goalInMainViewModel.goal = eachLiveGoal;
+        goalInMainViewModel.commitLogIntValueSet = [self getCommitLogIntValueSetForGoal:eachLiveGoal.goalID];
+        [liveGoalViewModelList addObject:goalInMainViewModel];
+    }
+    return liveGoalViewModelList;
+}
+
+- (NSSet *)getCommitLogIntValueSetForGoal:(NSString *)goalID {
+    NSArray *commitLogList = [self.database.commitLogTableHandler getCommitLogListByGoalID:goalID];
+    NSMutableSet *commitLogIntValueSet = [NSMutableSet set];
+    for (WYCommitLog *eachCommitLog in commitLogList) {
+        [commitLogIntValueSet addObject:@([eachCommitLog combinedIntValue])];
+    }
+    return commitLogIntValueSet;
+}
+
+
 
 
 @end

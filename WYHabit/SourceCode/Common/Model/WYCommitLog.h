@@ -19,4 +19,7 @@
 @property (assign, nonatomic) int totalDaysUntilNow;
 @property (assign, nonatomic) int totalHoursUntilNow;
 
+
+- (int)combinedIntValue;
+
 @end

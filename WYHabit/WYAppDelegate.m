@@ -27,11 +27,11 @@
 }
 
 - (void)customizationAfterApplicationLaunch {
-    self.window.tintColor = UI_COLOR_TINT_GREEN;
-    self.mainContainerViewController = [[WYMainContainerViewController alloc] init];
-    self.window.rootViewController = self.mainContainerViewController;
-    
     [self initData];
+    
+    self.window.tintColor = UI_COLOR_TINT_GREEN;
+    self.mainContainerViewController = [[WYMainContainerViewController alloc] initWithNibName:nil bundle:nil];
+    self.window.rootViewController = self.mainContainerViewController;
 }
 
 - (void)initData {
