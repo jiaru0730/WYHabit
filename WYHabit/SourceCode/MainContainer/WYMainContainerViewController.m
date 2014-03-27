@@ -65,7 +65,7 @@ static const int kOperationButtonSideMargin = 10;
         if (i % 2 == 0) {
             singleGoalScrollView.backgroundColor = [UIColor whiteColor];
         } else {
-            singleGoalScrollView.backgroundColor = UI_COLOR_GRAY_LIGHT;
+            singleGoalScrollView.backgroundColor = UI_COLOR_MAIN_BACKGROUND_GRAY_EXSTREAM_LIGHT;
         }
         
     }

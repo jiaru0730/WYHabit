@@ -30,5 +30,8 @@ alpha:(alphaValue)]
 #define UI_COLOR_ORANGE     [UIColor orangeColor]
 #define UI_COLOR_GRAY_LIGHT [UIColor lightGrayColor] 
 
+#define UI_COLOR_MAIN_BACKGROUND_GRAY UIColorFromRGB(0xd9d9d9)
+#define UI_COLOR_MAIN_BACKGROUND_GRAY_EXSTREAM_LIGHT UIColorFromRGB(0xf2f2f2)
+
 
 #define kAnimationDurationShort 0.1f
