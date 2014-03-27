@@ -31,9 +31,9 @@
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
         NSMutableDictionary *dataDict = [NSMutableDictionary dictionaryWithCapacity:10];
         dataDict[@"goalID"] = commitLog.goalID;
-        dataDict[@"year"] = @(commitLog.year);
-        dataDict[@"month"] = @(commitLog.month);
-        dataDict[@"day"] = @(commitLog.day);
+        dataDict[@"year"] = @(commitLog.date.year);
+        dataDict[@"month"] = @(commitLog.date.month);
+        dataDict[@"day"] = @(commitLog.date.day);
         dataDict[@"duration"] = @(commitLog.duration);
         dataDict[@"totalDaysUntilNow"] = @(commitLog.totalDaysUntilNow);
         dataDict[@"totalHoursUntilNow"] = @(commitLog.totalHoursUntilNow);
@@ -66,9 +66,9 @@
 - (WYCommitLog *)fillCommitLog:(FMResultSet *)resultSet {
     WYCommitLog *commitLog = [[WYCommitLog alloc] init];
     commitLog.goalID = [resultSet stringForColumn:@"goalID"];
-    commitLog.year = [resultSet intForColumn:@"year"];
-    commitLog.month = [resultSet intForColumn:@"month"];
-    commitLog.day = [resultSet intForColumn:@"day"];
+    commitLog.date.year = [resultSet intForColumn:@"year"];
+    commitLog.date.month = [resultSet intForColumn:@"month"];
+    commitLog.date.day = [resultSet intForColumn:@"day"];
     commitLog.duration = [resultSet intForColumn:@"duration"];
     commitLog.totalDaysUntilNow = [resultSet intForColumn:@"totalDaysUntilNow"];
     commitLog.totalHoursUntilNow = [resultSet intForColumn:@"totalHoursUntilNow"];

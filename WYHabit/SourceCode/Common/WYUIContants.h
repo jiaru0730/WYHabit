@@ -26,7 +26,7 @@ alpha:(alphaValue)]
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 
-#define UI_COLOR_TINT_GREEN UIColorFromRGB(0x638e22)
+#define UI_COLOR_GREEN_GRASS UIColorFromRGB(0x638e22)
 #define UI_COLOR_ORANGE     [UIColor orangeColor]
 #define UI_COLOR_GRAY_LIGHT [UIColor lightGrayColor] 
 
@@ -34,4 +34,5 @@ alpha:(alphaValue)]
 #define UI_COLOR_MAIN_BACKGROUND_GRAY_EXSTREAM_LIGHT UIColorFromRGB(0xf2f2f2)
 
 
-#define kAnimationDurationShort 0.1f
+#define kAnimationDurationShort     0.1f
+#define kAnimationDurationNormal    0.25f

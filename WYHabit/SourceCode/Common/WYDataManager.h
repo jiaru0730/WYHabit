@@ -24,6 +24,7 @@ DECLARE_SHARED_INSTANCE(WYDataManager)
 
 #pragma mark - Goals
 
+- (WYGoal *)addGoalNamed:(NSString *)actionNameOfGoal;
 - (WYGoal *)getGoalByID:(NSString *)goalID;
 - (BOOL)updateGoal:(WYGoal *)goal;
 

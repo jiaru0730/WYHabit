@@ -71,7 +71,7 @@
 #pragma mark - UI Drawing
 
 - (void)drawDoneButton {
-    self.doneButton.backgroundColor = UI_COLOR_TINT_GREEN;
+    self.doneButton.backgroundColor = UI_COLOR_GREEN_GRASS;
     [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.doneButton.clipsToBounds = YES;
     self.doneButton.layer.cornerRadius = kRadiusOfDoneButton;
@@ -118,7 +118,7 @@
     CALayer *doneSectionRingLayer = doneSectionRing.layer;
     doneSectionRingLayer.cornerRadius = kRadiusOfDoneButton;
     doneSectionRingLayer.borderWidth = 2;
-    doneSectionRingLayer.borderColor = UI_COLOR_TINT_GREEN.CGColor;
+    doneSectionRingLayer.borderColor = UI_COLOR_GREEN_GRASS.CGColor;
     doneSectionRingLayer.anchorPoint = CGPointMake(0.5, 0.5);
     doneSectionRing.backgroundColor = [UIColor clearColor];
     [self.view addSubview:doneSectionRing];
@@ -128,7 +128,7 @@
 - (void)drawOptionButton {
     UIButton *optionButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     optionButton.center = CGPointMake(UI_SCREEN_WIDTH - 35, 35);
-    optionButton.tintColor = UI_COLOR_TINT_GREEN;
+    optionButton.tintColor = UI_COLOR_GREEN_GRASS;
     [optionButton addTarget:self action:@selector(optionButtonPressed:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:optionButton];
     self.optionButton = optionButton;

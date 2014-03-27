@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "WYDate.h"
+
 @interface WYCommitLog : NSObject
 
 @property (copy, nonatomic) NSString *goalID;
-@property (assign, nonatomic) int year;
-@property (assign, nonatomic) int month;
-@property (assign, nonatomic) int day;
+@property (strong, nonatomic) WYDate *date;
 
 @property (assign, nonatomic) int duration;
 @property (assign, nonatomic) int totalDaysUntilNow;

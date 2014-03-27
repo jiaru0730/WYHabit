@@ -26,7 +26,7 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 - (void)initManagers {
 //    WYGoal *goal = [[WYGoal alloc] init];
 //    goal.goalID = [[WYDataManager sharedInstance] generateUUID];
-//    goal.action = @"testAction";
+//    goal.action = @"testActionActionActionActionAction";
 //    goal.startTime = [NSDate date];
 //    goal.endTime = [NSDate date];
 //    [[WYDataManager sharedInstance] updateGoal:goal];
@@ -46,6 +46,17 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 
 
 #pragma mark - Goals
+
+- (WYGoal *)addGoalNamed:(NSString *)actionNameOfGoal {
+    WYGoal *newGoal = [[WYGoal alloc] init];
+    newGoal.goalID = [self generateUUID];
+    newGoal.action = actionNameOfGoal;
+    newGoal.startTime = [NSDate date];
+    
+    [self.database.goalTableHandler updateGoal:newGoal];
+    
+    return newGoal;
+}
 
 - (WYGoal *)getGoalByID:(NSString *)goalID {
     return [self.database.goalTableHandler getGoalByID:goalID];
