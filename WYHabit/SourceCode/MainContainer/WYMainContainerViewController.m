@@ -146,5 +146,4 @@ static const int kOperationButtonSideMargin = 10;
     [operationSectionContainerView addSubview:editGoalButton];
 }
 
-
 @end
