@@ -29,12 +29,12 @@ static const int kOperationButtonSideMargin = 10;
 
 @interface WYMainContainerViewController ()
 
-@property (strong, nonatomic) IBOutlet UIScrollView *mainContainerScrollView;
+@property (strong, nonatomic) UIScrollView *mainContainerScrollView;
 
 @property (strong, nonatomic) NSArray *liveGoalViewModelList;
 
 // this is not used
-@property (strong, nonatomic) UIPageControl *mainContainerPageControl;
+//@property (strong, nonatomic) UIPageControl *mainContainerPageControl;
 
 @end
 
@@ -53,7 +53,11 @@ static const int kOperationButtonSideMargin = 10;
 {
     [super viewDidLoad];
     
+    self.mainContainerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
+    self.mainContainerScrollView.pagingEnabled = YES;
+    [self.view addSubview:self.mainContainerScrollView];
     self.view.backgroundColor = [UIColor lightGrayColor];
+    
     CGSize sizeOfScrollView = self.mainContainerScrollView.frame.size;
     self.mainContainerScrollView.contentSize = CGSizeMake(sizeOfScrollView.width * self.liveGoalViewModelList.count, sizeOfScrollView.height);
     

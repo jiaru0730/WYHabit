@@ -66,7 +66,6 @@
 		C1C5387718E2A58500D9C5BB /* WYMyGoalView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C5387618E2A58500D9C5BB /* WYMyGoalView.m */; };
 		C1C538C918E2A63200D9C5BB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C538C818E2A63200D9C5BB /* libCorePlot-CocoaTouch.a */; };
 		C1C538CE18E2AB3700D9C5BB /* WYMainContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C538CC18E2AB3700D9C5BB /* WYMainContainerViewController.m */; };
-		C1C538CF18E2AB3700D9C5BB /* WYMainContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C538CD18E2AB3700D9C5BB /* WYMainContainerViewController.xib */; };
 		C1D0915C1894B48300FDBB72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915B1894B48300FDBB72 /* Foundation.framework */; };
 		C1D0915E1894B48300FDBB72 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915D1894B48300FDBB72 /* CoreGraphics.framework */; };
 		C1D091601894B48300FDBB72 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0915F1894B48300FDBB72 /* UIKit.framework */; };
@@ -266,7 +265,6 @@
 		C1C538C818E2A63200D9C5BB /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		C1C538CB18E2AB3700D9C5BB /* WYMainContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMainContainerViewController.h; sourceTree = "<group>"; };
 		C1C538CC18E2AB3700D9C5BB /* WYMainContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYMainContainerViewController.m; sourceTree = "<group>"; };
-		C1C538CD18E2AB3700D9C5BB /* WYMainContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYMainContainerViewController.xib; sourceTree = "<group>"; };
 		C1D091581894B48300FDBB72 /* WYHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1D0915B1894B48300FDBB72 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C1D0915D1894B48300FDBB72 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -621,7 +619,6 @@
 			children = (
 				C1C538CB18E2AB3700D9C5BB /* WYMainContainerViewController.h */,
 				C1C538CC18E2AB3700D9C5BB /* WYMainContainerViewController.m */,
-				C1C538CD18E2AB3700D9C5BB /* WYMainContainerViewController.xib */,
 				C1845F3018E3E89F00BC2157 /* WYGoalInMainViewModel.h */,
 				C1845F3118E3E89F00BC2157 /* WYGoalInMainViewModel.m */,
 			);
@@ -816,7 +813,6 @@
 				C154E52318E2F97C006F1F2D /* btn_chose_date@2x.png in Resources */,
 				C154E53218E2F97C006F1F2D /* btn_radio_check_box_selected@2x.png in Resources */,
 				C154E52818E2F97C006F1F2D /* btn_grid_cell@2x.png in Resources */,
-				C1C538CF18E2AB3700D9C5BB /* WYMainContainerViewController.xib in Resources */,
 				C154E52C18E2F97C006F1F2D /* btn_grid_selected@2x.png in Resources */,
 				C154E51F18E2F97C006F1F2D /* btn_choose_date_left_arrow_highlight@2x.png in Resources */,
 			);
