@@ -10,6 +10,18 @@
 #import "ITTCalendarView.h"
 #import "ITTBaseDataSourceImp.h"
 #import "WYDataManager.h"
+#import "WYGoalInMainViewModel.h"
+
+static const int kCommitButtonSectionHeight = 250;
+static const int kCommitButtonTopMargin = 40;
+static const int kCommitButtonRedius = 200;
+
+static const int kChartsSectionHeight = 800;
+
+
+
+
+
 
 @interface WYMainContainerViewController ()
 
@@ -42,29 +54,16 @@
     self.mainContainerScrollView.contentSize = CGSizeMake(sizeOfScrollView.width * self.liveGoalViewModelList.count, sizeOfScrollView.height);
     
     for (int i = 0; i < self.liveGoalViewModelList.count; ++i) {
-        UIScrollView *mainGoalView = [[UIScrollView alloc] initWithFrame:(CGRect){.origin=CGPointMake(sizeOfScrollView.width * i, 0), .size=sizeOfScrollView}];
-        mainGoalView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, 1000);
-        [self.mainContainerScrollView addSubview:mainGoalView];
+        CGRect frameOfSingleGoalView = (CGRect){.origin=CGPointMake(sizeOfScrollView.width * i, 0), .size=sizeOfScrollView};
+        UIScrollView *singleGoalScrollView = [self drawVerticalScrollViewByGoal:[self.liveGoalViewModelList objectAtIndex:i]];
+        singleGoalScrollView.frame = frameOfSingleGoalView;
+        [self.mainContainerScrollView addSubview:singleGoalScrollView];
         if (i % 2 == 0) {
-            mainGoalView.backgroundColor = [UIColor orangeColor];
+            singleGoalScrollView.backgroundColor = [UIColor whiteColor];
         } else {
-            mainGoalView.backgroundColor = UI_COLOR_GRAY_LIGHT;
+            singleGoalScrollView.backgroundColor = UI_COLOR_GRAY_LIGHT;
         }
         
-        if (i == 0) {
-        
-            UIView *calendarContainerView = [[UIView alloc] initWithFrame:CGRectMake(8, 30, 309, 255)];
-            [mainGoalView addSubview:calendarContainerView];
-            calendarContainerView.clipsToBounds = YES;
-            ITTCalendarView *calendarView = [ITTCalendarView viewFromNib];
-            ITTBaseDataSourceImp *dataSource = [[ITTBaseDataSourceImp alloc] init];
-            calendarView.date = [NSDate dateWithTimeIntervalSinceNow:2*24*60*60];
-            calendarView.dataSource = dataSource;
-            calendarView.delegate = self;
-            calendarView.frame = CGRectMake(0, 0, 309, 410);
-            calendarView.allowsMultipleSelection = YES;
-            [calendarView showInView:calendarContainerView];
-        }
     }
 }
 
@@ -73,5 +72,37 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (UIScrollView *)drawVerticalScrollViewByGoal:(WYGoalInMainViewModel *)goalViewModel {
+    UIScrollView *singleGoalScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
+    singleGoalScrollView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, kCommitButtonSectionHeight + kChartsSectionHeight);
+    
+    UIButton *commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [singleGoalScrollView addSubview:commitButton];
+    commitButton.backgroundColor = UI_COLOR_GRAY_LIGHT;
+    CGFloat frameOfCommitButtonX = (UI_SCREEN_WIDTH - kCommitButtonRedius) / 2;
+    commitButton.frame = CGRectMake(frameOfCommitButtonX, kCommitButtonTopMargin, kCommitButtonRedius, kCommitButtonRedius);
+    commitButton.clipsToBounds = YES;
+    CALayer *commitButtonLayer = [commitButton layer];
+    commitButtonLayer.cornerRadius = kCommitButtonRedius / 2;
+    commitButtonLayer.borderColor = [UI_COLOR_ORANGE CGColor];
+    
+    UIView *chartsContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, kCommitButtonSectionHeight, UI_SCREEN_WIDTH, kChartsSectionHeight)];
+    [singleGoalScrollView addSubview:chartsContainerView];
+    UIView *calendarContainerView = [[UIView alloc] initWithFrame:CGRectMake(8, 30, 309, 255)];
+    [chartsContainerView addSubview:calendarContainerView];
+    calendarContainerView.clipsToBounds = YES;
+    ITTCalendarView *calendarView = [ITTCalendarView viewFromNib];
+    ITTBaseDataSourceImp *dataSource = [[ITTBaseDataSourceImp alloc] init];
+    calendarView.date = [NSDate dateWithTimeIntervalSinceNow:2*24*60*60];
+    calendarView.dataSource = dataSource;
+//    calendarView.delegate = self;
+    calendarView.frame = CGRectMake(0, 0, 309, 410);
+    calendarView.allowsMultipleSelection = YES;
+    [calendarView showInView:calendarContainerView];
+    
+    return singleGoalScrollView;
+}
+
 
 @end
