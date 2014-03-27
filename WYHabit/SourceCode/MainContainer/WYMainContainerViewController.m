@@ -77,9 +77,16 @@ static const int kChartsSectionHeight = 800;
     UIScrollView *singleGoalScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
     singleGoalScrollView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, kCommitButtonSectionHeight + kChartsSectionHeight);
     
+    [self drawCommitButtonOnScrollView:singleGoalScrollView];
+    [self drawChartsOnScrollView:singleGoalScrollView];
+    
+    return singleGoalScrollView;
+}
+
+- (void)drawCommitButtonOnScrollView:(UIScrollView *)singleGoalScrollView {
     UIButton *commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [singleGoalScrollView addSubview:commitButton];
-//    commitButton.backgroundColor = UI_COLOR_GRAY_LIGHT;
+    //    commitButton.backgroundColor = UI_COLOR_GRAY_LIGHT;
     CGFloat frameOfCommitButtonX = (UI_SCREEN_WIDTH - kCommitButtonRedius) / 2;
     commitButton.frame = CGRectMake(frameOfCommitButtonX, kCommitButtonTopMargin, kCommitButtonRedius, kCommitButtonRedius);
     commitButton.clipsToBounds = YES;
@@ -91,7 +98,9 @@ static const int kChartsSectionHeight = 800;
     [commitButton setTitle:@"I am kool!" forState:UIControlStateNormal];
     [commitButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
     commitButton.titleLabel.font = [UIFont boldSystemFontOfSize:35];
-    
+}
+
+- (void)drawChartsOnScrollView:(UIScrollView *)singleGoalScrollView {
     UIView *chartsContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, kCommitButtonSectionHeight, UI_SCREEN_WIDTH, kChartsSectionHeight)];
     [singleGoalScrollView addSubview:chartsContainerView];
     UIView *calendarContainerView = [[UIView alloc] initWithFrame:CGRectMake(8, 30, 309, 255)];
@@ -101,12 +110,11 @@ static const int kChartsSectionHeight = 800;
     ITTBaseDataSourceImp *dataSource = [[ITTBaseDataSourceImp alloc] init];
     calendarView.date = [NSDate dateWithTimeIntervalSinceNow:2*24*60*60];
     calendarView.dataSource = dataSource;
-//    calendarView.delegate = self;
+    //    calendarView.delegate = self;
     calendarView.frame = CGRectMake(0, 0, 309, 410);
     calendarView.allowsMultipleSelection = YES;
     [calendarView showInView:calendarContainerView];
     
-    return singleGoalScrollView;
 }
 
 
