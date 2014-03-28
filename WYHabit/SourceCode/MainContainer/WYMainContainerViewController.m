@@ -11,6 +11,7 @@
 #import "ITTBaseDataSourceImp.h"
 #import "WYDataManager.h"
 #import "WYGoalInMainViewModel.h"
+#import "WYAllGoalStatisticsViewController.h"
 #import "WYUIElementManager.h"
 
 static const int kCommitButtonSectionHeight = 250;
@@ -41,7 +42,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 @property (strong, nonatomic) UITextField *addGoalActionNameTextField;
 @property (strong, nonatomic) UIButton *addGoalOKButton;
 @property (strong, nonatomic) UIButton *addGoalCancelButton;
-
+@property (strong, nonatomic) UINavigationController *allGoalDetailsNavigationController;
 
 @property (strong, nonatomic) NSMutableArray *elementGoalViewList;
 @property (strong, nonatomic) NSArray *liveGoalViewModelList;
@@ -234,6 +235,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [editGoalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     editGoalButton.frame = CGRectMake(UI_SCREEN_WIDTH - kOperationButtonRadius - kOperationButtonSideMargin, (kOperationSectionHeight - kOperationButtonRadius) / 2, kOperationButtonRadius, kOperationButtonRadius);
     [editGoalButton setTitle:@"Detail" forState:UIControlStateNormal];
+    [editGoalButton addTarget:self action:@selector(detailButtonPressed:) forControlEvents:UIControlEventTouchDown];
     [operationSectionContainerView addSubview:editGoalButton];
 }
 
@@ -249,6 +251,10 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 }
 
 #pragma mark - ButtonActions
+
+- (void)detailButtonPressed:(id)sender {
+    [self presentAllGoalDetailsViewController];
+}
 
 - (void)addGoalButtonPressed:(id)sender {
     [self showEditGoalNameViewAnimated];
@@ -319,6 +325,12 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     self.addGoalCancelButton.frame = CGRectMake(kOperationButtonSideMargin, kAddGoalOKAndCancelButtonY, kOperationButtonRadius, kOperationButtonRadius);
 }
 
+- (void)presentAllGoalDetailsViewController {
+    if (nil == self.allGoalDetailsNavigationController) {
+        self.allGoalDetailsNavigationController = [[UINavigationController alloc] initWithRootViewController:[[WYAllGoalStatisticsViewController alloc] initWithNibName:nil bundle:nil]];
+    }
+    [self presentViewController:self.allGoalDetailsNavigationController animated:YES completion:nil];
+}
 
 #pragma mark - GoalOperations
 
