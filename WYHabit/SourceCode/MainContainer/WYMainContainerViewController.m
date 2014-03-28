@@ -126,12 +126,15 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     self.addGoalButton.backgroundColor = UI_COLOR_GREEN_GRASS;
     [self.addGoalButton setTitle:@"ADD" forState:UIControlStateNormal];
     [self.addGoalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.addGoalButton.titleLabel.font = [UIFont systemFontOfSize:35];
     [self.addGoalButton addTarget:self action:@selector(addGoalButtonPressed:) forControlEvents:UIControlEventTouchDown];
     
     self.addGoalActionNameTextField = [[UITextField alloc] init];
     [self setFrameAndAlphaOfAddGoalActionNameTextFieldToHidePosition];
+    self.addGoalActionNameTextField.font = [UIFont boldSystemFontOfSize:25];
+    self.addGoalActionNameTextField.textColor = UI_COLOR_GREEN_GRASS;
     self.addGoalActionNameTextField.backgroundColor = [UIColor whiteColor];
-    self.addGoalActionNameTextField.placeholder = @"Name for new goal";
+    self.addGoalActionNameTextField.placeholder = @"GoalName";
     self.addGoalActionNameTextField.hidden = YES;
     self.addGoalActionNameTextField.textAlignment = NSTextAlignmentCenter;
     [self.addGoalButton addSubview:self.addGoalActionNameTextField];
@@ -232,7 +235,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [self.addGoalActionNameTextField resignFirstResponder];
+    [self cancelEditGoalNameViewAnimated];
 }
 
 #pragma mark - ButtonActions
@@ -252,6 +255,8 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 #pragma mark - UIUtilities
 
 - (void)showEditGoalNameViewAnimated {
+    [self.addGoalActionNameTextField becomeFirstResponder];
+    self.addGoalActionNameTextField.text = @"";
     self.addGoalActionNameTextField.hidden = NO;
     [self.addGoalButton setTitle:nil forState:UIControlStateNormal];
     [UIView animateWithDuration:kAnimationDurationNormal animations:^(void) {
@@ -261,6 +266,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 }
 
 - (void)cancelEditGoalNameViewAnimated {
+    [self.addGoalActionNameTextField resignFirstResponder];
     [UIView animateWithDuration:kAnimationDurationNormal animations:^(void) {
         [self setFrameAndAlphaOfAddGoalActionNameTextFieldToHidePosition];
         [self setFrameOfAddGoalCheckButtonsToHidePosition];
