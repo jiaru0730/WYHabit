@@ -28,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelItemPressed:)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,7 +37,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Button actions
+
+- (void)cancelItemPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - UITableView DataSource & Delegate
+
+
+#pragma mark - UI Utils
 
 @end
