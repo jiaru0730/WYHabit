@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYAllGoalStatisticsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+@interface WYAllGoalDetailsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *charContainerView;
 @property (weak, nonatomic) IBOutlet UITableView *allGoalDetailTableView;

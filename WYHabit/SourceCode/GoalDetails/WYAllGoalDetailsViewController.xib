@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYAllGoalStatisticsViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYAllGoalDetailsViewController">
             <connections>
                 <outlet property="allGoalDetailTableView" destination="GER-vS-VR3" id="YBB-rn-BEM"/>
                 <outlet property="charContainerView" destination="zbF-6w-hON" id="tto-5h-W9x"/>

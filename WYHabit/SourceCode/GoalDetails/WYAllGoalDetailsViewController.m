@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 JiaruPrimer. All rights reserved.
 //
 
-#import "WYAllGoalStatisticsViewController.h"
+#import "WYAllGoalDetailsViewController.h"
 
 #import "WYDataManager.h"
 #import "WYGoalInDetailViewModel.h"
 
 
-@interface WYAllGoalStatisticsViewController ()
+@interface WYAllGoalDetailsViewController ()
 
 @property (strong, nonatomic) UIBarButtonItem *editTableViewItem;
 @property (strong, nonatomic) UIBarButtonItem *finishEditTableViewItem;
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation WYAllGoalStatisticsViewController
+@implementation WYAllGoalDetailsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

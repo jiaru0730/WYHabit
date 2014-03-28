@@ -63,8 +63,8 @@
 		C1845F2F18E3D4EA00BC2157 /* WYCommitLog.m in Sources */ = {isa = PBXBuildFile; fileRef = C1845F2E18E3D4EA00BC2157 /* WYCommitLog.m */; };
 		C1845F3218E3E89F00BC2157 /* WYGoalInMainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1845F3118E3E89F00BC2157 /* WYGoalInMainViewModel.m */; };
 		C1845F3A18E4192000BC2157 /* WYUIElementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1845F3918E4192000BC2157 /* WYUIElementManager.m */; };
-		C1850B8618E54ED8001D5A47 /* WYAllGoalStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1850B8418E54ED8001D5A47 /* WYAllGoalStatisticsViewController.m */; };
-		C1850B8718E54ED8001D5A47 /* WYAllGoalStatisticsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1850B8518E54ED8001D5A47 /* WYAllGoalStatisticsViewController.xib */; };
+		C1850B8618E54ED8001D5A47 /* WYAllGoalDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1850B8418E54ED8001D5A47 /* WYAllGoalDetailsViewController.m */; };
+		C1850B8718E54ED8001D5A47 /* WYAllGoalDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1850B8518E54ED8001D5A47 /* WYAllGoalDetailsViewController.xib */; };
 		C1850B8A18E559D4001D5A47 /* WYGoalInDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */; };
 		C1850B9118E5673F001D5A47 /* editButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1850B9018E5673F001D5A47 /* editButton@2x.png */; };
 		C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2718B9C02300F7484C /* WYDatabase.m */; };
@@ -186,9 +186,9 @@
 		C1845F3118E3E89F00BC2157 /* WYGoalInMainViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalInMainViewModel.m; sourceTree = "<group>"; };
 		C1845F3818E4192000BC2157 /* WYUIElementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUIElementManager.h; sourceTree = "<group>"; };
 		C1845F3918E4192000BC2157 /* WYUIElementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYUIElementManager.m; sourceTree = "<group>"; };
-		C1850B8318E54ED8001D5A47 /* WYAllGoalStatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAllGoalStatisticsViewController.h; sourceTree = "<group>"; };
-		C1850B8418E54ED8001D5A47 /* WYAllGoalStatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAllGoalStatisticsViewController.m; sourceTree = "<group>"; };
-		C1850B8518E54ED8001D5A47 /* WYAllGoalStatisticsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYAllGoalStatisticsViewController.xib; sourceTree = "<group>"; };
+		C1850B8318E54ED8001D5A47 /* WYAllGoalDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAllGoalDetailsViewController.h; sourceTree = "<group>"; };
+		C1850B8418E54ED8001D5A47 /* WYAllGoalDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAllGoalDetailsViewController.m; sourceTree = "<group>"; };
+		C1850B8518E54ED8001D5A47 /* WYAllGoalDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYAllGoalDetailsViewController.xib; sourceTree = "<group>"; };
 		C1850B8818E559D4001D5A47 /* WYGoalInDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoalInDetailViewModel.h; sourceTree = "<group>"; };
 		C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalInDetailViewModel.m; sourceTree = "<group>"; };
 		C1850B9018E5673F001D5A47 /* editButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editButton@2x.png"; sourceTree = "<group>"; };
@@ -492,9 +492,9 @@
 		C1850B8218E54E6A001D5A47 /* GoalDetails */ = {
 			isa = PBXGroup;
 			children = (
-				C1850B8318E54ED8001D5A47 /* WYAllGoalStatisticsViewController.h */,
-				C1850B8418E54ED8001D5A47 /* WYAllGoalStatisticsViewController.m */,
-				C1850B8518E54ED8001D5A47 /* WYAllGoalStatisticsViewController.xib */,
+				C1850B8318E54ED8001D5A47 /* WYAllGoalDetailsViewController.h */,
+				C1850B8418E54ED8001D5A47 /* WYAllGoalDetailsViewController.m */,
+				C1850B8518E54ED8001D5A47 /* WYAllGoalDetailsViewController.xib */,
 				C1850B8818E559D4001D5A47 /* WYGoalInDetailViewModel.h */,
 				C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */,
 			);
@@ -815,7 +815,7 @@
 				C154E52118E2F97C006F1F2D /* btn_choose_date_right_arrow_highlight@2x.png in Resources */,
 				C154E53E18E2F97C006F1F2D /* ITTBaseCalendarViewFooterView.xib in Resources */,
 				C154E52F18E2F97C006F1F2D /* btn_previous_month@2x.png in Resources */,
-				C1850B8718E54ED8001D5A47 /* WYAllGoalStatisticsViewController.xib in Resources */,
+				C1850B8718E54ED8001D5A47 /* WYAllGoalDetailsViewController.xib in Resources */,
 				C154E53118E2F97C006F1F2D /* btn_radio_check_box@2x.png in Resources */,
 				C154E53618E2F97C006F1F2D /* ITTCalendarView.xib in Resources */,
 				C1850B9118E5673F001D5A47 /* editButton@2x.png in Resources */,
@@ -913,7 +913,7 @@
 				C1D091681894B48300FDBB72 /* main.m in Sources */,
 				C154E53718E2F97C006F1F2D /* ITTCalendarViewFooterView.m in Sources */,
 				C1850B8A18E559D4001D5A47 /* WYGoalInDetailViewModel.m in Sources */,
-				C1850B8618E54ED8001D5A47 /* WYAllGoalStatisticsViewController.m in Sources */,
+				C1850B8618E54ED8001D5A47 /* WYAllGoalDetailsViewController.m in Sources */,
 				C161DDB118BB854C0014A7F3 /* WYKeyValueTableHandler.m in Sources */,
 				C154E54418E2F97C006F1F2D /* ITTCalMonth.m in Sources */,
 				C16FE62218E447ED00DE50BC /* WYDate.m in Sources */,

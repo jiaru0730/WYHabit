@@ -11,7 +11,7 @@
 #import "ITTBaseDataSourceImp.h"
 #import "WYDataManager.h"
 #import "WYGoalInMainViewModel.h"
-#import "WYAllGoalStatisticsViewController.h"
+#import "WYAllGoalDetailsViewController.h"
 #import "WYUIElementManager.h"
 
 static const int kCommitButtonSectionHeight = 250;
@@ -230,15 +230,15 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [finishGoalButton setTitle:@"Finish" forState:UIControlStateNormal];
     [operationSectionContainerView addSubview:finishGoalButton];
     
-    [finishGoalButton addTarget:self action:@selector(finishGoalOnCurrentPage:) forControlEvents:UIControlEventTouchUpInside];
+    [finishGoalButton addTarget:self action:@selector(finishGoalButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *editGoalButton = [[WYUIElementManager sharedInstance] createRoundButtonWithRadius:kOperationButtonRadius];
-    editGoalButton.backgroundColor = UI_COLOR_ORANGE;
-    [editGoalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    editGoalButton.frame = CGRectMake(UI_SCREEN_WIDTH - kOperationButtonRadius - kOperationButtonSideMargin, (kOperationSectionHeight - kOperationButtonRadius) / 2, kOperationButtonRadius, kOperationButtonRadius);
-    [editGoalButton setTitle:@"Detail" forState:UIControlStateNormal];
-    [editGoalButton addTarget:self action:@selector(detailButtonPressed:) forControlEvents:UIControlEventTouchDown];
-    [operationSectionContainerView addSubview:editGoalButton];
+    UIButton *allGoalDetailsButton = [[WYUIElementManager sharedInstance] createRoundButtonWithRadius:kOperationButtonRadius];
+    allGoalDetailsButton.backgroundColor = UI_COLOR_ORANGE;
+    [allGoalDetailsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    allGoalDetailsButton.frame = CGRectMake(UI_SCREEN_WIDTH - kOperationButtonRadius - kOperationButtonSideMargin, (kOperationSectionHeight - kOperationButtonRadius) / 2, kOperationButtonRadius, kOperationButtonRadius);
+    [allGoalDetailsButton setTitle:@"Detail" forState:UIControlStateNormal];
+    [allGoalDetailsButton addTarget:self action:@selector(detailButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [operationSectionContainerView addSubview:allGoalDetailsButton];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -272,6 +272,17 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 
 - (void)hideKeyboardButtonPressed:(id)sender {
     [self.addGoalActionNameTextField resignFirstResponder];
+}
+
+- (void)commitGoalOnCurrentPage:(id)sender {
+    NSLog(@"Commit goal on page: %d", self.currentPageIndex);
+}
+
+- (void)finishGoalButtonPressed:(id)sender {
+    NSLog(@"Finish goal on page: %d", self.currentPageIndex);
+    WYGoal *finishGoal = ((WYGoalInMainViewModel *)[self.liveGoalViewModelList objectAtIndex:self.currentPageIndex]).goal;
+    UIAlertView *finishGoalAlertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Finish %@", finishGoal.action] message:@"Do you really want to finish this goal?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Finish", nil];
+    [finishGoalAlertView show];
 }
 
 - (void)notifyRefreshGoalMetaData:(NSNotification *)notification {
@@ -334,22 +345,19 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 
 - (void)presentAllGoalDetailsViewController {
     if (nil == self.allGoalDetailsNavigationController) {
-        self.allGoalDetailsNavigationController = [[UINavigationController alloc] initWithRootViewController:[[WYAllGoalStatisticsViewController alloc] initWithNibName:nil bundle:nil]];
+        self.allGoalDetailsNavigationController = [[UINavigationController alloc] initWithRootViewController:[[WYAllGoalDetailsViewController alloc] initWithNibName:nil bundle:nil]];
     }
     [self presentViewController:self.allGoalDetailsNavigationController animated:YES completion:nil];
 }
 
 #pragma mark - GoalOperations
 
-- (void)commitGoalOnCurrentPage:(id)sender {
-    NSLog(@"Commit goal on page: %d", self.currentPageIndex);
+
+- (void)finishGoalInCurrentPage {
+    WYGoal *finishGoal = ((WYGoalInMainViewModel *)[self.liveGoalViewModelList objectAtIndex:self.currentPageIndex]).goal;
+    finishGoal.achiveTime = [NSDate date];
+    [[WYDataManager sharedInstance] updateGoal:finishGoal];
 }
-
-- (void)finishGoalOnCurrentPage:(id)sender {
-    NSLog(@"Finish goal on page: %d", self.currentPageIndex);
-}
-
-
 
 - (void)addGoalWithName:(NSString *)nameOfNewGoal {
     if (nameOfNewGoal.length > 0) {
@@ -361,6 +369,15 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     } else {
         UIAlertView *emptyGoalNameAlertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Please enter name of new goal." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [emptyGoalNameAlertView show];
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self finishGoalInCurrentPage];
+        [self refreshMainContainerScrollViewAfterGoalMetaDataChanges];
     }
 }
 
