@@ -19,7 +19,7 @@
 @property (assign, nonatomic) int totalDaysUntilNow;
 @property (assign, nonatomic) int totalHoursUntilNow;
 
-
+- (void)setWYDate:(NSDate *)date;
 - (int)combinedIntValue;
 
 @end

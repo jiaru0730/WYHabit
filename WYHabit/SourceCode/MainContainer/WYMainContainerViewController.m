@@ -179,7 +179,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [commitButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
     commitButton.titleLabel.font = [UIFont boldSystemFontOfSize:35];
     
-    [commitButton addTarget:self action:@selector(commitGoalOnCurrentPage:) forControlEvents:UIControlEventTouchDown];
+    [commitButton addTarget:self action:@selector(commitGoalButtonPressed:) forControlEvents:UIControlEventTouchDown];
 }
 
 - (UIButton *)drawMainButtonOnView:(UIView *)parentView {
@@ -274,8 +274,9 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [self.addGoalActionNameTextField resignFirstResponder];
 }
 
-- (void)commitGoalOnCurrentPage:(id)sender {
+- (void)commitGoalButtonPressed:(id)sender {
     NSLog(@"Commit goal on page: %d", self.currentPageIndex);
+    [self commitGoalInCurrentPage];
 }
 
 - (void)finishGoalButtonPressed:(id)sender {
@@ -352,6 +353,17 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 
 #pragma mark - GoalOperations
 
+-(void)commitGoalInCurrentPage {
+    WYGoal *commitGoal = ((WYGoalInMainViewModel *)[self.liveGoalViewModelList objectAtIndex:self.currentPageIndex]).goal;
+    commitGoal.totalDays++;
+    [[WYDataManager sharedInstance] updateGoal:commitGoal];
+    
+    WYCommitLog *commitLog = [[WYCommitLog alloc] init];
+    [commitLog setWYDate:[NSDate date]];
+    commitLog.goalID = commitGoal.goalID;
+    
+    [[WYDataManager sharedInstance] updateCommitLog:commitLog];
+}
 
 - (void)finishGoalInCurrentPage {
     WYGoal *finishGoal = ((WYGoalInMainViewModel *)[self.liveGoalViewModelList objectAtIndex:self.currentPageIndex]).goal;
