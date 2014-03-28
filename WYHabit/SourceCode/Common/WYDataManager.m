@@ -53,9 +53,12 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     newGoal.action = actionNameOfGoal;
     newGoal.startTime = [NSDate date];
     
-    [self.database.goalTableHandler updateGoal:newGoal];
-    
-    return newGoal;
+    BOOL addGoalSucceed = [self.database.goalTableHandler updateGoal:newGoal];
+    if (addGoalSucceed) {
+        return newGoal;
+    } else {
+        return nil;
+    }
 }
 
 - (WYGoal *)getGoalByID:(NSString *)goalID {

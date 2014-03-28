@@ -67,7 +67,11 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self drawMainContainerScrollView];
     
+}
+
+- (void)drawMainContainerScrollView {
     self.mainContainerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
     self.mainContainerScrollView.pagingEnabled = YES;
     [self.view addSubview:self.mainContainerScrollView];
@@ -95,7 +99,6 @@ static const int kAddGoalOKAndCancelButtonY = 190;
         } else {
             elementScrollView.backgroundColor = UI_COLOR_MAIN_BACKGROUND_GRAY_EXSTREAM_LIGHT;
         }
-        
     }
 }
 
@@ -106,6 +109,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 }
 
 - (UIScrollView *)drawVerticalScrollViewByGoal:(WYGoalInMainViewModel *)goalViewModel {
+    NSLog(@"Draw view for goal: %@", goalViewModel.goal.action);
     UIScrollView *singleGoalScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
     singleGoalScrollView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, kCommitButtonSectionHeight + kChartsSectionHeight + kOperationSectionHeight);
     
@@ -118,6 +122,11 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 
 - (UIScrollView *)drawAddGoalView {
     self.addGoalView = [[UIScrollView alloc] init];
+    
+    UIButton *hideKeyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    hideKeyboardButton.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT);
+    [hideKeyboardButton addTarget:self action:@selector(hideKeyboardButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [self.addGoalView addSubview:hideKeyboardButton];
     
     self.addGoalButton = [self drawMainButtonOnView:self.addGoalView];
     CALayer *addGoalButtonLayer = self.addGoalButton.layer;
@@ -143,6 +152,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     self.addGoalOKButton.backgroundColor = UI_COLOR_ORANGE;
     [self.addGoalOKButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.addGoalOKButton setTitle:@"Add" forState:UIControlStateNormal];
+    [self.addGoalOKButton addTarget:self action:@selector(addGoalOKButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.addGoalView addSubview:self.addGoalOKButton];
     
     self.addGoalCancelButton = [[WYUIElementManager sharedInstance] createRoundButtonWithRadius:kOperationButtonRadius];
@@ -245,14 +255,26 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 }
 
 - (void)addGoalOKButtonPressed:(id)sender {
-    
+    [self addGoalWithName:self.addGoalActionNameTextField.text];
 }
 
 - (void)addGoalCancelButtonPressed:(id)sender {
     [self cancelEditGoalNameViewAnimated];
 }
 
+- (void)hideKeyboardButtonPressed:(id)sender {
+    [self.addGoalActionNameTextField resignFirstResponder];
+}
+
 #pragma mark - UIUtilities
+
+- (void)refreshMainContainerScrollViewAfterAddingGoal {
+    self.liveGoalViewModelList = [[WYDataManager sharedInstance] getMainViewLiveGoalViewModelList];
+    [self.mainContainerScrollView removeFromSuperview];
+    self.mainContainerScrollView = nil;
+    [self drawMainContainerScrollView];
+    self.mainContainerScrollView.contentOffset = CGPointMake(UI_SCREEN_WIDTH * (self.liveGoalViewModelList.count - 1), 0);
+}
 
 - (void)showEditGoalNameViewAnimated {
     [self.addGoalActionNameTextField becomeFirstResponder];
@@ -311,8 +333,11 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 
 
 - (void)addGoalWithName:(NSString *)nameOfNewGoal {
-    if (self.addGoalActionNameTextField.text.length > 0) {
-        [[WYDataManager sharedInstance] addGoalNamed:nameOfNewGoal];
+    if (nameOfNewGoal.length > 0) {
+        WYGoal *newGoal = [[WYDataManager sharedInstance] addGoalNamed:nameOfNewGoal];
+        if (nil != newGoal) {
+            [self refreshMainContainerScrollViewAfterAddingGoal];
+        }
     } else {
         UIAlertView *emptyGoalNameAlertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Please enter name of new goal." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [emptyGoalNameAlertView show];
