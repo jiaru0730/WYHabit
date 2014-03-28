@@ -143,6 +143,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [self setFrameAndAlphaOfAddGoalActionNameTextFieldToHidePosition];
     self.addGoalActionNameTextField.font = [UIFont boldSystemFontOfSize:25];
     self.addGoalActionNameTextField.textColor = UI_COLOR_GREEN_GRASS;
+    self.addGoalActionNameTextField.tintColor = UI_COLOR_GREEN_GRASS;
     self.addGoalActionNameTextField.backgroundColor = [UIColor whiteColor];
     self.addGoalActionNameTextField.placeholder = @"GoalName";
     self.addGoalActionNameTextField.hidden = YES;
