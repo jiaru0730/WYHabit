@@ -6,8 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYAllGoalStatisticsViewController">
             <connections>
+                <outlet property="allGoalDetailTableView" destination="GER-vS-VR3" id="YBB-rn-BEM"/>
                 <outlet property="charContainerView" destination="zbF-6w-hON" id="tto-5h-W9x"/>
-                <outlet property="goalDetailTableView" destination="GER-vS-VR3" id="vS3-Ic-Ko0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

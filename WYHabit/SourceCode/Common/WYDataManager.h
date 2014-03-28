@@ -36,4 +36,8 @@ DECLARE_SHARED_INSTANCE(WYDataManager)
 #pragma mark - MainView
 
 - (NSArray *)getMainViewLiveGoalViewModelList;
+
+#pragma mark - AllDetailView
+
+- (NSArray *)getAllGoalDetailViewModelList;
 @end

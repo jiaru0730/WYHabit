@@ -11,6 +11,6 @@
 @interface WYAllGoalStatisticsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *charContainerView;
-@property (weak, nonatomic) IBOutlet UITableView *goalDetailTableView;
+@property (weak, nonatomic) IBOutlet UITableView *allGoalDetailTableView;
 
 @end

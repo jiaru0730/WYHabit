@@ -65,6 +65,7 @@
 		C1845F3A18E4192000BC2157 /* WYUIElementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1845F3918E4192000BC2157 /* WYUIElementManager.m */; };
 		C1850B8618E54ED8001D5A47 /* WYAllGoalStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1850B8418E54ED8001D5A47 /* WYAllGoalStatisticsViewController.m */; };
 		C1850B8718E54ED8001D5A47 /* WYAllGoalStatisticsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1850B8518E54ED8001D5A47 /* WYAllGoalStatisticsViewController.xib */; };
+		C1850B8A18E559D4001D5A47 /* WYGoalInDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */; };
 		C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2718B9C02300F7484C /* WYDatabase.m */; };
 		C1C5387718E2A58500D9C5BB /* WYMyGoalView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C5387618E2A58500D9C5BB /* WYMyGoalView.m */; };
 		C1C538C918E2A63200D9C5BB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C538C818E2A63200D9C5BB /* libCorePlot-CocoaTouch.a */; };
@@ -187,6 +188,8 @@
 		C1850B8318E54ED8001D5A47 /* WYAllGoalStatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAllGoalStatisticsViewController.h; sourceTree = "<group>"; };
 		C1850B8418E54ED8001D5A47 /* WYAllGoalStatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAllGoalStatisticsViewController.m; sourceTree = "<group>"; };
 		C1850B8518E54ED8001D5A47 /* WYAllGoalStatisticsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYAllGoalStatisticsViewController.xib; sourceTree = "<group>"; };
+		C1850B8818E559D4001D5A47 /* WYGoalInDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoalInDetailViewModel.h; sourceTree = "<group>"; };
+		C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalInDetailViewModel.m; sourceTree = "<group>"; };
 		C1AB4ECD18B9FF37002F3A3E /* WYUIContants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUIContants.h; sourceTree = "<group>"; };
 		C1BF7A2618B9C02300F7484C /* WYDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDatabase.h; sourceTree = "<group>"; };
 		C1BF7A2718B9C02300F7484C /* WYDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDatabase.m; sourceTree = "<group>"; };
@@ -490,6 +493,8 @@
 				C1850B8318E54ED8001D5A47 /* WYAllGoalStatisticsViewController.h */,
 				C1850B8418E54ED8001D5A47 /* WYAllGoalStatisticsViewController.m */,
 				C1850B8518E54ED8001D5A47 /* WYAllGoalStatisticsViewController.xib */,
+				C1850B8818E559D4001D5A47 /* WYGoalInDetailViewModel.h */,
+				C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */,
 			);
 			path = GoalDetails;
 			sourceTree = "<group>";
@@ -903,6 +908,7 @@
 				C1D3AAA118B9D121007712E8 /* WYGoalTableHandler.m in Sources */,
 				C1D091681894B48300FDBB72 /* main.m in Sources */,
 				C154E53718E2F97C006F1F2D /* ITTCalendarViewFooterView.m in Sources */,
+				C1850B8A18E559D4001D5A47 /* WYGoalInDetailViewModel.m in Sources */,
 				C1850B8618E54ED8001D5A47 /* WYAllGoalStatisticsViewController.m in Sources */,
 				C161DDB118BB854C0014A7F3 /* WYKeyValueTableHandler.m in Sources */,
 				C154E54418E2F97C006F1F2D /* ITTCalMonth.m in Sources */,

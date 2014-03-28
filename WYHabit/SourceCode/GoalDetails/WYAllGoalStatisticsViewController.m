@@ -8,9 +8,12 @@
 
 #import "WYAllGoalStatisticsViewController.h"
 
+#import "WYDataManager.h"
+#import "WYGoalInDetailViewModel.h"
+
 @interface WYAllGoalStatisticsViewController ()
 
-
+@property (strong, nonatomic) NSArray *allGoalViewModelList;
 
 @end
 
@@ -20,7 +23,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -28,7 +31,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.allGoalDetailTableView.dataSource = self;
+    self.allGoalDetailTableView.delegate = self;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelItemPressed:)];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self loadAllGoalViewModel];
+    [self.allGoalDetailTableView reloadData];
+}
+
+- (void)loadAllGoalViewModel {
+    self.allGoalViewModelList = [[WYDataManager sharedInstance] getAllGoalDetailViewModelList];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,7 +62,15 @@
 
 #pragma mark - UITableView DataSource & Delegate
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.allGoalViewModelList.count;
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    cell.textLabel.text = ((WYGoalInDetailViewModel *)[self.allGoalViewModelList objectAtIndex:indexPath.row]).goal.action;
+    return cell;
+}
 #pragma mark - UI Utils
 
 @end

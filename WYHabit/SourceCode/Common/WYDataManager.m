@@ -9,7 +9,7 @@
 #import "WYDataManager.h"
 #import "WYConfigManager.h"
 #import "WYGoalInMainViewModel.h"
-
+#import "WYGoalInDetailViewModel.h"
 
 @interface WYDataManager()
 
@@ -102,6 +102,18 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     return commitLogIntValueSet;
 }
 
+#pragma mark - AllDetailView
+
+- (NSArray *)getAllGoalDetailViewModelList {
+    NSMutableArray *allGoalDetailViewModelList = [NSMutableArray array];
+    NSArray *allGoalList = [self.database.goalTableHandler getAllGoalList];
+    for (WYGoal *eachGoal in allGoalList) {
+        WYGoalInDetailViewModel *goalInDetailViewModel = [[WYGoalInDetailViewModel alloc] init];
+        goalInDetailViewModel.goal = eachGoal;
+        [allGoalDetailViewModelList addObject:goalInDetailViewModel];
+    }
+    return allGoalDetailViewModelList;
+}
 
 
 
