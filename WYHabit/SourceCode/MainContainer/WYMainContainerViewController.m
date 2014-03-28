@@ -30,6 +30,8 @@ static const int kOperationSectionHeight = 100;
 static const int kOperationButtonRadius = 80;
 static const int kOperationButtonSideMargin = 10;
 
+static const int kAddGoalOKAndCancelButtonY = 190;
+
 @interface WYMainContainerViewController ()
 
 // UI elements
@@ -37,6 +39,8 @@ static const int kOperationButtonSideMargin = 10;
 @property (strong, nonatomic) UIScrollView *addGoalView;
 @property (strong, nonatomic) UIButton *addGoalButton;
 @property (strong, nonatomic) UITextField *addGoalActionNameTextField;
+@property (strong, nonatomic) UIButton *addGoalOKButton;
+@property (strong, nonatomic) UIButton *addGoalCancelButton;
 
 
 @property (strong, nonatomic) NSMutableArray *elementGoalViewList;
@@ -124,12 +128,30 @@ static const int kOperationButtonSideMargin = 10;
     [self.addGoalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.addGoalButton addTarget:self action:@selector(addGoalButtonPressed:) forControlEvents:UIControlEventTouchDown];
     
-    self.addGoalActionNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, (kCommitButtonRedius - kTextHeight) / 2, kCommitButtonRedius, kTextHeight)];
+    self.addGoalActionNameTextField = [[UITextField alloc] init];
+    [self setFrameAndAlphaOfAddGoalActionNameTextFieldToHidePosition];
     self.addGoalActionNameTextField.backgroundColor = [UIColor whiteColor];
     self.addGoalActionNameTextField.placeholder = @"Name for new goal";
     self.addGoalActionNameTextField.hidden = YES;
     self.addGoalActionNameTextField.textAlignment = NSTextAlignmentCenter;
     [self.addGoalButton addSubview:self.addGoalActionNameTextField];
+    
+    self.addGoalOKButton = [[WYUIElementManager sharedInstance] createRoundButtonWithRadius:kOperationButtonRadius];
+    self.addGoalOKButton.backgroundColor = UI_COLOR_ORANGE;
+    [self.addGoalOKButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.addGoalOKButton setTitle:@"Add" forState:UIControlStateNormal];
+    [self.addGoalView addSubview:self.addGoalOKButton];
+    
+    self.addGoalCancelButton = [[WYUIElementManager sharedInstance] createRoundButtonWithRadius:kOperationButtonRadius];
+    self.addGoalCancelButton.layer.borderWidth = 1.0f;
+    self.addGoalCancelButton.layer.borderColor = UI_COLOR_ORANGE.CGColor;
+    self.addGoalCancelButton.backgroundColor = [UIColor whiteColor];
+    [self.addGoalCancelButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
+    [self.addGoalCancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [self.addGoalCancelButton addTarget:self action:@selector(addGoalCancelButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [self.addGoalView addSubview:self.addGoalCancelButton];
+    
+    [self setFrameOfAddGoalCheckButtonsToHidePosition];
     
     return self.addGoalView;
 }
@@ -216,17 +238,35 @@ static const int kOperationButtonSideMargin = 10;
 #pragma mark - ButtonActions
 
 - (void)addGoalButtonPressed:(id)sender {
-    [self showAddGoalNameTextFielsAnimated];
+    [self showEditGoalNameViewAnimated];
+}
+
+- (void)addGoalOKButtonPressed:(id)sender {
+    
+}
+
+- (void)addGoalCancelButtonPressed:(id)sender {
+    [self cancelEditGoalNameViewAnimated];
 }
 
 #pragma mark - UIUtilities
 
-- (void)showAddGoalNameTextFielsAnimated {
+- (void)showEditGoalNameViewAnimated {
     self.addGoalActionNameTextField.hidden = NO;
-    [self setFrameAndAlphaOfAddGoalActionNameTextFieldToHidePosition];
     [self.addGoalButton setTitle:nil forState:UIControlStateNormal];
     [UIView animateWithDuration:kAnimationDurationNormal animations:^(void) {
         [self setFrameAndAlphaOfAddGoalActionnameTextFieldToShowPosition];
+        [self setFrameOfAddGoalCheckButtonToShowPosition];
+    }];
+}
+
+- (void)cancelEditGoalNameViewAnimated {
+    [UIView animateWithDuration:kAnimationDurationNormal animations:^(void) {
+        [self setFrameAndAlphaOfAddGoalActionNameTextFieldToHidePosition];
+        [self setFrameOfAddGoalCheckButtonsToHidePosition];
+    }completion:^(BOOL finished) {
+        self.addGoalActionNameTextField.hidden = YES;
+        [self.addGoalButton setTitle:@"ADD" forState:UIControlStateNormal];
     }];
 }
 
@@ -239,6 +279,16 @@ static const int kOperationButtonSideMargin = 10;
 - (void)setFrameAndAlphaOfAddGoalActionnameTextFieldToShowPosition {
     self.addGoalActionNameTextField.alpha = 1.0f;
     self.addGoalActionNameTextField.frame = CGRectMake(0, (kCommitButtonRedius - kTextHeight) / 2, kCommitButtonRedius, kTextHeight);
+}
+
+- (void)setFrameOfAddGoalCheckButtonsToHidePosition {
+    self.addGoalOKButton.frame = CGRectMake(UI_SCREEN_WIDTH + kOperationButtonRadius, kAddGoalOKAndCancelButtonY, kOperationButtonRadius, kOperationButtonRadius);
+    self.addGoalCancelButton.frame = CGRectMake(-kOperationButtonRadius, kAddGoalOKAndCancelButtonY, kOperationButtonRadius, kOperationButtonRadius);
+}
+
+- (void)setFrameOfAddGoalCheckButtonToShowPosition {
+    self.addGoalOKButton.frame = CGRectMake(UI_SCREEN_WIDTH - kOperationButtonSideMargin - kOperationButtonRadius, kAddGoalOKAndCancelButtonY, kOperationButtonRadius, kOperationButtonRadius);
+    self.addGoalCancelButton.frame = CGRectMake(kOperationButtonSideMargin, kAddGoalOKAndCancelButtonY, kOperationButtonRadius, kOperationButtonRadius);
 }
 
 
