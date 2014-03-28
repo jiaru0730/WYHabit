@@ -21,9 +21,10 @@ static const int kTextHeight = 70;
 
 static const int kCalendarTopMargin = 30;
 static const int kCalendarHeight = 255;
-static const int kLineChratTopSpacingToCalendar = 30;
-static const int kLineChartHeight = 255;
-static const int kChartsSectionHeight = kCalendarTopMargin + kCalendarHeight + kLineChratTopSpacingToCalendar + kLineChartHeight;
+//static const int kLineChratTopSpacingToCalendar = 30;
+//static const int kLineChartHeight = 255;
+//static const int kChartsSectionHeight = kCalendarTopMargin + kCalendarHeight + kLineChratTopSpacingToCalendar + kLineChartHeight;
+static const int kChartsSectionHeight = kCalendarTopMargin + kCalendarHeight;
 
 static const int kOperationSectionHeight = 100;
 static const int kOperationButtonRadius = 80;
@@ -125,7 +126,7 @@ static const int kOperationButtonSideMargin = 10;
     
     self.addGoalActionNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, (kCommitButtonRedius - kTextHeight) / 2, kCommitButtonRedius, kTextHeight)];
     self.addGoalActionNameTextField.backgroundColor = [UIColor whiteColor];
-    self.addGoalActionNameTextField.placeholder = @"Name for new goal here";
+    self.addGoalActionNameTextField.placeholder = @"Name for new goal";
     self.addGoalActionNameTextField.hidden = YES;
     self.addGoalActionNameTextField.textAlignment = NSTextAlignmentCenter;
     [self.addGoalButton addSubview:self.addGoalActionNameTextField];
@@ -174,9 +175,9 @@ static const int kOperationButtonSideMargin = 10;
     calendarView.allowsMultipleSelection = YES;
     [calendarView showInView:calendarContainerView];
     
-    UIView *lineChartView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(calendarContainerView.frame) +  kLineChratTopSpacingToCalendar, UI_SCREEN_WIDTH, kLineChartHeight)];
-    lineChartView.backgroundColor = UI_COLOR_GRAY_LIGHT;
-    [chartsContainerView addSubview:lineChartView];
+//    UIView *lineChartView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(calendarContainerView.frame) +  kLineChratTopSpacingToCalendar, UI_SCREEN_WIDTH, kLineChartHeight)];
+//    lineChartView.backgroundColor = UI_COLOR_GRAY_LIGHT;
+//    [chartsContainerView addSubview:lineChartView];
 }
 
 - (void)drawOperationButtonsOnSingleGoalView:(UIScrollView *)singleGoalScrollView {
@@ -204,7 +205,12 @@ static const int kOperationButtonSideMargin = 10;
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self updateCurrentPageIndex:(scrollView.contentOffset.x / scrollView.frame.size.width)];
+    int currentPageIndex = (int)(scrollView.contentOffset.x / scrollView.frame.size.width);
+    [self updateCurrentPageIndex:currentPageIndex];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.addGoalActionNameTextField resignFirstResponder];
 }
 
 #pragma mark - ButtonActions
