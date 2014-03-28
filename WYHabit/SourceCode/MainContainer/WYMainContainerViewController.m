@@ -127,7 +127,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [self.addGoalButton setTitle:@"ADD" forState:UIControlStateNormal];
     [self.addGoalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.addGoalButton.titleLabel.font = [UIFont systemFontOfSize:35];
-    [self.addGoalButton addTarget:self action:@selector(addGoalButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [self.addGoalButton addTarget:self action:@selector(addGoalButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     self.addGoalActionNameTextField = [[UITextField alloc] init];
     [self setFrameAndAlphaOfAddGoalActionNameTextFieldToHidePosition];
@@ -217,7 +217,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [finishGoalButton setTitle:@"Finish" forState:UIControlStateNormal];
     [operationSectionContainerView addSubview:finishGoalButton];
     
-    [finishGoalButton addTarget:self action:@selector(finishGoalOnCurrentPage:) forControlEvents:UIControlEventTouchDown];
+    [finishGoalButton addTarget:self action:@selector(finishGoalOnCurrentPage:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *editGoalButton = [[WYUIElementManager sharedInstance] createRoundButtonWithRadius:kOperationButtonRadius];
     editGoalButton.backgroundColor = UI_COLOR_ORANGE;
