@@ -92,8 +92,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.textLabel.text = ((WYGoalInDetailViewModel *)[self.allGoalViewModelList objectAtIndex:indexPath.row]).goal.action;
+    NSString *cellReuseIdentifier = @"allGoalDetailTableViewCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuseIdentifier];
+    if (nil == cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellReuseIdentifier];
+    }
+    WYGoal *goalForCell = ((WYGoalInDetailViewModel *)[self.allGoalViewModelList objectAtIndex:indexPath.row]).goal;
+    cell.textLabel.text = goalForCell.action;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", goalForCell.totalDays];
     cell.editingAccessoryType = UITableViewCellAccessoryDetailButton;
     return cell;
 }
