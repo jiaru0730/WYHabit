@@ -60,7 +60,7 @@
 - (NSArray *)getAllGoalList {
     __block NSMutableArray *allGoalList = [NSMutableArray array];
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM Goals;"];
+        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM Goals ORDER BY startTime ASC;"];
         while ([resultSet next]) {
             WYGoal *eachGoal = [self fillGoal:resultSet];
             [allGoalList addObject:eachGoal];

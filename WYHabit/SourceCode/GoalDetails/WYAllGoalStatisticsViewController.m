@@ -47,6 +47,9 @@
     self.editTableViewItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editTableViewItemPressed:)];
     self.finishEditTableViewItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishEditTableViewItemPressed:)];
     self.navigationItem.rightBarButtonItem = self.editTableViewItem;
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyRefreshGoalMetaData:) name:kNotifyRefreshGoalMetaData object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -90,7 +93,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.backgroundColor = [UIColor greenColor];
     cell.textLabel.text = ((WYGoalInDetailViewModel *)[self.allGoalViewModelList objectAtIndex:indexPath.row]).goal.action;
     cell.editingAccessoryType = UITableViewCellAccessoryDetailButton;
     return cell;
@@ -106,15 +108,33 @@
     self.renameIndexPath = indexPath;
     [self showRenameAlert];
 }
-                                 
+
+#pragma mark - Button and Notification actions
+
+- (void)notifyRefreshGoalMetaData:(NSNotification *)notification {
+    self.allGoalViewModelList = [[WYDataManager sharedInstance] getAllGoalDetailViewModelList];
+    [self.allGoalDetailTableView reloadData];
+}
                                  
 #pragma mark - UI Utils
 
 - (void)showRenameAlert {
     NSString *oldName = ((WYGoalInDetailViewModel *)[self.allGoalViewModelList objectAtIndex:self.renameIndexPath.row]).goal.action;
-    UIAlertView *renameAlertView = [[UIAlertView alloc] initWithTitle:@"Rename goal" message:[NSString stringWithFormat:@"Old Name: %@", oldName] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Rename", nil];
+    UIAlertView *renameAlertView = [[UIAlertView alloc] initWithTitle:@"Rename goal" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Rename", nil];
     renameAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [renameAlertView textFieldAtIndex:0].text = oldName;
     [renameAlertView show];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        WYGoal *renamedGoal = ((WYGoalInDetailViewModel *)[self.allGoalViewModelList objectAtIndex:self.renameIndexPath.row]).goal;
+        renamedGoal.action = [alertView textFieldAtIndex:0].text;
+        [[WYDataManager sharedInstance] updateGoal:renamedGoal];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyRefreshGoalMetaData object:self];
+    }
 }
 
 @end

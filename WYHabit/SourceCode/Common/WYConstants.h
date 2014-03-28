@@ -21,3 +21,5 @@
         }); \
         return sharedInstance; \
     }
+
+#define kNotifyRefreshGoalMetaData @"kNotifyRefreshGoalMetaData"

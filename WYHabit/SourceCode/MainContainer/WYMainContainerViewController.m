@@ -70,6 +70,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [super viewDidLoad];
     [self drawMainContainerScrollView];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyRefreshGoalMetaData:) name:kNotifyRefreshGoalMetaData object:nil];
 }
 
 - (void)drawMainContainerScrollView {
@@ -251,7 +252,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [self cancelEditGoalNameViewAnimated];
 }
 
-#pragma mark - ButtonActions
+#pragma mark - Button and Notification Actions
 
 - (void)detailButtonPressed:(id)sender {
     [self presentAllGoalDetailsViewController];
@@ -273,14 +274,19 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [self.addGoalActionNameTextField resignFirstResponder];
 }
 
+- (void)notifyRefreshGoalMetaData:(NSNotification *)notification {
+    [self refreshMainContainerScrollViewAfterGoalMetaDataChanges];
+}
+
 #pragma mark - UIUtilities
 
-- (void)refreshMainContainerScrollViewAfterAddingGoal {
+- (void)refreshMainContainerScrollViewAfterGoalMetaDataChanges {
     self.liveGoalViewModelList = [[WYDataManager sharedInstance] getMainViewLiveGoalViewModelList];
     [self.mainContainerScrollView removeFromSuperview];
     self.mainContainerScrollView = nil;
     [self drawMainContainerScrollView];
-    self.mainContainerScrollView.contentOffset = CGPointMake(UI_SCREEN_WIDTH * (self.liveGoalViewModelList.count - 1), 0);
+    self.currentPageIndex = (int)MIN(self.currentPageIndex, self.liveGoalViewModelList.count - 1);
+    self.mainContainerScrollView.contentOffset = CGPointMake(UI_SCREEN_WIDTH * self.currentPageIndex, 0);
 }
 
 - (void)showEditGoalNameViewAnimated {
@@ -349,7 +355,8 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     if (nameOfNewGoal.length > 0) {
         WYGoal *newGoal = [[WYDataManager sharedInstance] addGoalNamed:nameOfNewGoal];
         if (nil != newGoal) {
-            [self refreshMainContainerScrollViewAfterAddingGoal];
+            [self refreshMainContainerScrollViewAfterGoalMetaDataChanges];
+            self.mainContainerScrollView.contentOffset = CGPointMake(UI_SCREEN_WIDTH * (self.liveGoalViewModelList.count - 1), 0);
         }
     } else {
         UIAlertView *emptyGoalNameAlertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Please enter name of new goal." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
