@@ -68,6 +68,7 @@
 		C1850B8618E54ED8001D5A47 /* WYAllGoalDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1850B8418E54ED8001D5A47 /* WYAllGoalDetailsViewController.m */; };
 		C1850B8718E54ED8001D5A47 /* WYAllGoalDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1850B8518E54ED8001D5A47 /* WYAllGoalDetailsViewController.xib */; };
 		C1850B8A18E559D4001D5A47 /* WYGoalInDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */; };
+		C18AA00318E6C3D30072CD0A /* WYGoalTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18AA00218E6C3D30072CD0A /* WYGoalTimeLineViewController.m */; };
 		C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2718B9C02300F7484C /* WYDatabase.m */; };
 		C1C5387718E2A58500D9C5BB /* WYMyGoalView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C5387618E2A58500D9C5BB /* WYMyGoalView.m */; };
 		C1C538C918E2A63200D9C5BB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C538C818E2A63200D9C5BB /* libCorePlot-CocoaTouch.a */; };
@@ -195,6 +196,8 @@
 		C1850B8518E54ED8001D5A47 /* WYAllGoalDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYAllGoalDetailsViewController.xib; sourceTree = "<group>"; };
 		C1850B8818E559D4001D5A47 /* WYGoalInDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoalInDetailViewModel.h; sourceTree = "<group>"; };
 		C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalInDetailViewModel.m; sourceTree = "<group>"; };
+		C18AA00118E6C3D30072CD0A /* WYGoalTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoalTimeLineViewController.h; sourceTree = "<group>"; };
+		C18AA00218E6C3D30072CD0A /* WYGoalTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalTimeLineViewController.m; sourceTree = "<group>"; };
 		C1AB4ECD18B9FF37002F3A3E /* WYUIContants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUIContants.h; sourceTree = "<group>"; };
 		C1BF7A2618B9C02300F7484C /* WYDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDatabase.h; sourceTree = "<group>"; };
 		C1BF7A2718B9C02300F7484C /* WYDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDatabase.m; sourceTree = "<group>"; };
@@ -517,6 +520,8 @@
 				C1850B8518E54ED8001D5A47 /* WYAllGoalDetailsViewController.xib */,
 				C1850B8818E559D4001D5A47 /* WYGoalInDetailViewModel.h */,
 				C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */,
+				C18AA00118E6C3D30072CD0A /* WYGoalTimeLineViewController.h */,
+				C18AA00218E6C3D30072CD0A /* WYGoalTimeLineViewController.m */,
 			);
 			path = GoalDetails;
 			sourceTree = "<group>";
@@ -932,6 +937,7 @@
 				C154E54418E2F97C006F1F2D /* ITTCalMonth.m in Sources */,
 				C16FE62218E447ED00DE50BC /* WYDate.m in Sources */,
 				C154E54118E2F97C006F1F2D /* ITTBaseDataSourceImp.m in Sources */,
+				C18AA00318E6C3D30072CD0A /* WYGoalTimeLineViewController.m in Sources */,
 				C154E53518E2F97C006F1F2D /* ITTCalendarView.m in Sources */,
 				C154E54218E2F97C006F1F2D /* CalendarDateUtil.m in Sources */,
 				C154E54318E2F97C006F1F2D /* ITTCalDay.m in Sources */,
@@ -1094,6 +1100,7 @@
 					"$(PROJECT_DIR)/WYHabit/StaticLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "D4D5FA26-87E6-4495-AE48-CE53FF7566D2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
