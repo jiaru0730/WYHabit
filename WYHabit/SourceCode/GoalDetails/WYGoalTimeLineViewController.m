@@ -56,10 +56,8 @@
 }
 
 - (int)calculateElapsedDays {
-    int elapsedDays = 0;
-    
-    
-    return elapsedDays;
+    NSTimeInterval elapsedTimeInterval = [self.goal.achiveTime timeIntervalSinceDate:self.goal.startTime];
+    return elapsedTimeInterval / 86400;
 }
 
 - (void)didReceiveMemoryWarning
