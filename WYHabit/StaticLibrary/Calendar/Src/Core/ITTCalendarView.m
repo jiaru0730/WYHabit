@@ -192,12 +192,13 @@
 
 - (NSString*)findMonthDescription
 {
+    NSArray *months = @[@"January", @"February", @"March", @"April", @"May", @"June", @"July", @"August", @"September", @"October", @"November", @"December"];
     NSString *title = nil;
     if (_dataSource && [_dataSource respondsToSelector:@selector(calendarView:titleForMonth:)]) {
         title = [_dataSource calendarView:self titleForMonth:_calMonth];
     }
     if (!title||![title length]) {        
-        title = [NSString stringWithFormat:@"%d年%d月", [_calMonth getYear], [_calMonth getMonth]];        
+        title = [NSString stringWithFormat:@"%d %@", [_calMonth getYear], months[[_calMonth getMonth]]];
     }
     return title;
 }
@@ -209,7 +210,7 @@
         titles = [_dataSource weekTitlesForCalendarView:self];
     }
     if (!titles||![titles count]) {
-        titles = [NSArray arrayWithObjects:@"日", @"一", @"二", @"三", @"四", @"五", @"六", nil];
+        titles = [NSArray arrayWithObjects:@"Sun", @"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat", nil];
     }
     return titles;
 }
