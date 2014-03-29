@@ -37,9 +37,9 @@
         NSMutableDictionary *dataDict = [NSMutableDictionary dictionaryWithCapacity:10];
         dataDict[@"goalID"] = goal.goalID;
         dataDict[@"action"] = goal.action;
-        dataDict[@"startTime"] = @([goal.startTime timeIntervalSince1970]);
-        dataDict[@"endTime"] = @([goal.endTime timeIntervalSince1970]);
-        dataDict[@"achiveTime"] = @([goal.achiveTime timeIntervalSince1970]);
+        dataDict[@"startTime"] = @((goal.startTime == nil ? 0 : [goal.startTime timeIntervalSince1970]));
+        dataDict[@"endTime"] = @((goal.endTime == nil ? 0 : [goal.endTime timeIntervalSince1970]));
+        dataDict[@"achiveTime"] = @((goal.achiveTime == nil ? 0 : [goal.achiveTime timeIntervalSince1970]));
         dataDict[@"totalDays"] = @(goal.totalDays);
         dataDict[@"totalHours"] = @(goal.totalHours);
         updateGoalSucceed = [database updateTable:@"Goals" withParameterDictionary:dataDict];
