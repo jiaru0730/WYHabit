@@ -18,6 +18,7 @@
 
 - (NSArray *)getAllGoalList;
 - (NSArray *)getLiveGoalList;
+- (NSArray *)getALlGoalListOrderByTotalCommitsDESC;
 
 - (BOOL)deleteGoalByID:(NSString *)goalID;
 

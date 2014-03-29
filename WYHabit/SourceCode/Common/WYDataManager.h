@@ -48,6 +48,7 @@ DECLARE_SHARED_INSTANCE(WYDataManager)
 
 - (int)calculateContinueSequenceForGoal:(NSString *)goalID;
 - (float)calculateCommitPercentageForGoal:(NSString *)goalID;
+- (int)calculateCommitRankingForGoal:(NSString *)goalID;
 
 #pragma mark - Utils
 

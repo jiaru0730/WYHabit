@@ -110,7 +110,7 @@
             timelineDescription = [NSString stringWithFormat:@"TotalPercentage:%f%%", [[WYDataManager sharedInstance] calculateCommitPercentageForGoal:self.goalID] * 100];
             break;
         case 5:
-            timelineDescription = [NSString stringWithFormat:@"Ranking:"];
+            timelineDescription = [NSString stringWithFormat:@"Ranking:%d", [[WYDataManager sharedInstance] calculateCommitRankingForGoal:self.goalID]];
             break;
         default:
             timelineDescription = [NSString stringWithFormat:@""];

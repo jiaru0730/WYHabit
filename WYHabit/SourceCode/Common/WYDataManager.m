@@ -42,7 +42,7 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     commitLog.date.day = 25;
     commitLog.goalID = testGoal.goalID;
     
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < 1; ++i) {
         testGoal.totalDays++;
         [self updateGoal:testGoal];
         commitLog.totalDaysUntilNow = testGoal.totalDays;
@@ -178,6 +178,27 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     float goalCommitCount = (float)[self getCommitLogListForGoal:goalID].count;
     float allGoalCommitCount = (float)[self getAllCommitLogList].count;
     return goalCommitCount / allGoalCommitCount;
+}
+
+- (int)calculateCommitRankingForGoal:(NSString *)goalID {
+    NSArray *goalListOrderByTotalCommitsDESC = [self.database.goalTableHandler getALlGoalListOrderByTotalCommitsDESC];
+    int commitRanking = 0;
+    int goalCountOnCurrentRank = 1;
+    int totalCommitOnCurrentRank = INT16_MAX;
+    for (WYGoal *eachGoal in goalListOrderByTotalCommitsDESC) {
+        ++commitRanking;
+        if (eachGoal.totalDays < totalCommitOnCurrentRank) {
+            totalCommitOnCurrentRank = eachGoal.totalDays;
+            goalCountOnCurrentRank = 1;
+        } else if (eachGoal.totalDays == totalCommitOnCurrentRank) {
+            ++goalCountOnCurrentRank;
+        }
+        
+        if ([goalID isEqualToString:eachGoal.goalID]) {
+            break;
+        }
+    }
+    return commitRanking - goalCountOnCurrentRank + 1;
 }
 
 #pragma mark - Utils

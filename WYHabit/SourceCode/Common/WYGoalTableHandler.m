@@ -69,6 +69,18 @@
     return allGoalList;
 }
 
+- (NSArray *)getALlGoalListOrderByTotalCommitsDESC {
+    __block NSMutableArray *allGoalList = [NSMutableArray array];
+    [self.databaseQueue inDatabase:^(FMDatabase *database) {
+        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM Goals ORDER BY totalDays DESC;"];
+        while ([resultSet next]) {
+            WYGoal *eachGoal = [self fillGoal:resultSet];
+            [allGoalList addObject:eachGoal];
+        }
+    }];
+    return allGoalList;
+}
+
 - (NSArray *)getLiveGoalList {
     __block NSMutableArray *allGoalList = [NSMutableArray array];
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
