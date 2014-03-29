@@ -354,6 +354,11 @@
     return early;
 }
 
+- (BOOL)isHistoryDay:(ITTCalDay *)calDay {
+    ITTCalDay *latestHistoryDay = [[ITTCalDay alloc] initWithDate:[NSDate date]];
+    return (NSOrderedAscending == [calDay compare:latestHistoryDay]);
+}
+
 - (BOOL)isAfterMaximumDay:(ITTCalDay*)calDay
 {
     BOOL after = FALSE;
@@ -439,7 +444,7 @@
         gridView.row = row;
         gridView.column = column;
 //        gridView.selectedEanable = ([self isEarlyerMinimumDay:calDay] || [self isAfterMaximumDay:calDay]) ? FALSE:TRUE;
-        gridView.selectedEanable = YES;
+        gridView.selectedEanable = [self isHistoryDay:calDay];
         if ([self isHistorySelectedDay:calDay]) {
             hasSelectedDay = TRUE;
             gridView.selected = TRUE;
