@@ -280,11 +280,13 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     WYToggleButton *commitButton = (WYToggleButton *)sender;
     commitButton.actionHasPerformed = !commitButton.actionHasPerformed;
     if (commitButton.actionHasPerformed) {
-        commitButton.backgroundColor = UI_COLOR_ORANGE;
+        [commitButton setBackgroundImage:[UIImage imageNamed:@"commit_button.png"] forState:UIControlStateNormal];
+        commitButton.layer.borderWidth = 0;
         [commitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self commitGoalInCurrentPage];
     } else {
-        commitButton.backgroundColor = [UIColor whiteColor];
+        [commitButton setBackgroundImage:nil forState:UIControlStateNormal];
+        commitButton.layer.borderWidth = 1;
         [commitButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
         [self revertGoalInCurrentPage];
     }
