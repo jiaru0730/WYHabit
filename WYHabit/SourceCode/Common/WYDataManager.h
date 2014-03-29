@@ -12,6 +12,8 @@
 #import "WYGoal.h"
 #import "WYCommitLog.h"
 
+extern const int kSecondsPerDay;
+
 @interface WYDataManager : NSObject
 
 DECLARE_SHARED_INSTANCE(WYDataManager)
@@ -41,6 +43,11 @@ DECLARE_SHARED_INSTANCE(WYDataManager)
 #pragma mark - AllDetailView
 
 - (NSArray *)getAllGoalDetailViewModelList;
+
+#pragma mark - Timeline
+
+- (int)calculateContinueSequenceForGoal:(NSString *)goalID;
+- (float)calculateCommitPercentageForGoal:(NSString *)goalID;
 
 #pragma mark - Utils
 

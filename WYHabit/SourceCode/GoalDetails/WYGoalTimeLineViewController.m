@@ -11,6 +11,7 @@
 #import "WYDataManager.h"
 #import "WYDate.h"
 
+
 @interface WYGoalTimeLineViewController ()
 
 @property (copy, nonatomic) NSString *goalID;
@@ -57,7 +58,7 @@
 
 - (int)calculateElapsedDays {
     NSTimeInterval elapsedTimeInterval = [self.goal.achiveTime timeIntervalSinceDate:self.goal.startTime];
-    return elapsedTimeInterval / 86400;
+    return (elapsedTimeInterval / kSecondsPerDay) + 1;
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,17 +76,48 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"timeLineCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *cellIdentifier = @"timeLineCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (nil == cell) {
-//        cell =
+        cell = [[UITableViewCell alloc] init];
     }
-    // Configure the cell...
+    
+    NSString *timelineDescription = nil;
+    switch (indexPath.row) {
+        case 0: {
+            WYDate *startWYDate = [[WYDataManager sharedInstance] convertDateToWYDate:self.goal.startTime];
+            timelineDescription = [NSString stringWithFormat:@"StartTime:%d %d %d", startWYDate.year, startWYDate.month, startWYDate.day];
+            break;
+        }
+        case 1: {
+            WYDate *achiveWYDate = [[WYDataManager sharedInstance] convertDateToWYDate:self.goal.achiveTime];
+            timelineDescription = [NSString stringWithFormat:@"AchiveTime:%d %d %d", achiveWYDate.year, achiveWYDate.month, achiveWYDate.day];
+            break;
+        }
+        case 2:
+            timelineDescription = [NSString stringWithFormat:@"ElapsedDays:%d", [self calculateElapsedDays]];
+            break;
+        case 3: {
+            timelineDescription = [NSString stringWithFormat:@"ContinueSequence:%d", [[WYDataManager sharedInstance] calculateContinueSequenceForGoal:self.goalID]];
+            break;
+        }
+        case 4:
+            timelineDescription = [NSString stringWithFormat:@"TotalPercentage:%f%%", [[WYDataManager sharedInstance] calculateCommitPercentageForGoal:self.goalID] * 100];
+            break;
+        case 5:
+            timelineDescription = [NSString stringWithFormat:@"Ranking:"];
+            break;
+        default:
+            timelineDescription = [NSString stringWithFormat:@""];
+            break;
+    }
+    
+    cell.textLabel.text = timelineDescription;
     
     return cell;
 }

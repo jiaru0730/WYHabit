@@ -12,6 +12,8 @@
 #import "WYGoalInDetailViewModel.h"
 #import "WYDate.h"
 
+const int kSecondsPerDay = 86400;
+
 @interface WYDataManager()
 
 @end
@@ -25,6 +27,31 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 }
 
 - (void)initManagers {
+    WYGoal *testGoal = [[WYGoal alloc] init];
+    testGoal.goalID = [self generateUUID];
+    testGoal.action = @"testGoal";
+    NSDate *currentTime = [NSDate date];
+    NSDateComponents *startTimeComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:currentTime];
+    startTimeComponents.day = startTimeComponents.day - 5;
+    NSDate *fakeStartTime = [[NSCalendar currentCalendar] dateFromComponents:startTimeComponents];
+    testGoal.startTime = fakeStartTime;
+    
+    WYCommitLog *commitLog = [[WYCommitLog alloc] init];
+    commitLog.date.year = 2014;
+    commitLog.date.month = 3;
+    commitLog.date.day = 25;
+    commitLog.goalID = testGoal.goalID;
+    
+    for (int i = 0; i < 3; ++i) {
+        testGoal.totalDays++;
+        [self updateGoal:testGoal];
+        commitLog.totalDaysUntilNow = testGoal.totalDays;
+        [self updateCommitLog:commitLog];
+        commitLog.date.day++;
+    }
+    
+    commitLog.goalID = @"TEST";
+    [self updateCommitLog:commitLog];
 }
 
 - (NSString *)generateUUID {
@@ -82,6 +109,10 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     return (commitLog != nil);
 }
 
+- (NSArray *)getAllCommitLogList {
+    return [self.database.commitLogTableHandler getAllCommitLogList];
+}
+
 #pragma mark - MainView
 - (NSArray *)getMainViewLiveGoalViewModelList {
     NSMutableArray *liveGoalViewModelList = [NSMutableArray array];
@@ -105,6 +136,11 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     return commitLogIntValueSet;
 }
 
+- (NSArray *)getCommitLogListForGoal:(NSString *)goalID {
+    NSArray *commitLogList = [self.database.commitLogTableHandler getCommitLogListByGoalID:goalID];
+    return commitLogList;
+}
+
 #pragma mark - AllDetailView
 
 - (NSArray *)getAllGoalDetailViewModelList {
@@ -118,15 +154,57 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     return allGoalDetailViewModelList;
 }
 
+#pragma mark - Timeline
+
+- (int)calculateContinueSequenceForGoal:(NSString *)goalID {
+    NSArray *commitLogList = [self getCommitLogListForGoal:goalID];
+    int maxContinueSequence = 1;
+    int tempContinueSequence = 1;
+    for (int i = 1; i < commitLogList.count; ++i) {
+        WYCommitLog *previousCommitLog = commitLogList[i - 1];
+        WYCommitLog *afterCommitLog = commitLogList[i];
+        if ([self isDate:afterCommitLog.date theNextDayOfDate:previousCommitLog.date]) {
+            ++tempContinueSequence;
+        } else {
+            maxContinueSequence = MAX(maxContinueSequence, tempContinueSequence);
+            tempContinueSequence = 1;
+        }
+    }
+    maxContinueSequence = MAX(maxContinueSequence, tempContinueSequence);
+    return maxContinueSequence;
+}
+
+- (float)calculateCommitPercentageForGoal:(NSString *)goalID {
+    float goalCommitCount = (float)[self getCommitLogListForGoal:goalID].count;
+    float allGoalCommitCount = (float)[self getAllCommitLogList].count;
+    return goalCommitCount / allGoalCommitCount;
+}
+
 #pragma mark - Utils
 
 - (WYDate *)convertDateToWYDate:(NSDate *)date {
     WYDate *wyDate = [[WYDate alloc] init];
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    wyDate.year = dateComponents.year;
-    wyDate.month = dateComponents.month;
-    wyDate.day = dateComponents.day;
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+    wyDate.year = (int)dateComponents.year;
+    wyDate.month = (int)dateComponents.month;
+    wyDate.day = (int)dateComponents.day;
     return wyDate;
+}
+
+- (BOOL)isDate:(WYDate *)dateAfter theNextDayOfDate:(WYDate *)dateBefore {
+    NSDate *nsDateAfter = [self getRoughNSDateByWYDate:dateAfter];
+    NSDate *nsDateBefore = [self getRoughNSDateByWYDate:dateBefore];
+    NSTimeInterval timeInterval = [nsDateAfter timeIntervalSinceDate:nsDateBefore];
+    
+    return (timeInterval < 2 * kSecondsPerDay);
+}
+
+- (NSDate *)getRoughNSDateByWYDate:(WYDate *)wyDate {
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    dateComponents.year = wyDate.year;
+    dateComponents.month = wyDate.month;
+    dateComponents.day = wyDate.day;
+    return [[NSCalendar currentCalendar] dateFromComponents:dateComponents];
 }
 
 

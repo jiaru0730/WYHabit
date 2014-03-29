@@ -14,6 +14,7 @@
 #import "WYAllGoalDetailsViewController.h"
 #import "WYUIElementManager.h"
 #import "WYToggleButton.h"
+#import "WYGoalTimeLineViewController.h"
 
 static const int kCommitButtonSectionHeight = 250;
 static const int kCommitButtonTopMargin = 40;
@@ -386,6 +387,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     WYCommitLog *commitLog = [[WYCommitLog alloc] init];
     [commitLog setWYDate:[NSDate date]];
     commitLog.goalID = commitGoal.goalID;
+    commitLog.totalDaysUntilNow = commitGoal.totalDays;
     
     [[WYDataManager sharedInstance] updateCommitLog:commitLog];
 }
@@ -426,7 +428,11 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         [self finishGoalInCurrentPage];
-        [self refreshMainContainerScrollViewAfterGoalMetaDataChanges];
+        WYGoal *finishGoal = ((WYGoalInMainViewModel *)[self.liveGoalViewModelList objectAtIndex:self.currentPageIndex]).goal;
+        WYGoalTimeLineViewController *goalTimeLineViewController = [[WYGoalTimeLineViewController alloc] initWithGoal:finishGoal.goalID];
+        [self presentViewController:goalTimeLineViewController animated:YES completion:^(void) {
+            [self refreshMainContainerScrollViewAfterGoalMetaDataChanges];
+        }];
     }
 }
 

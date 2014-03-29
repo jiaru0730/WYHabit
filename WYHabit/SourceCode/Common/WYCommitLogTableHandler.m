@@ -57,7 +57,18 @@
 - (NSArray *)getCommitLogListByGoalID:(NSString *)goalID {
     __block NSMutableArray *commitLogList = [NSMutableArray array];
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM CommitLog WHERE goalID=?", goalID];
+        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM CommitLog WHERE goalID=? ORDER BY totalDaysUntilNow ASC;", goalID];
+        while ([resultSet next]) {
+            [commitLogList addObject:[self fillCommitLog:resultSet]];
+        }
+    }];
+    return commitLogList;
+}
+
+- (NSArray *)getAllCommitLogList {
+    __block NSMutableArray *commitLogList = [NSMutableArray array];
+    [self.databaseQueue inDatabase:^(FMDatabase *database) {
+        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM CommitLog ORDER BY totalDaysUntilNow ASC;"];
         while ([resultSet next]) {
             [commitLogList addObject:[self fillCommitLog:resultSet]];
         }

@@ -17,6 +17,7 @@
 - (BOOL)updateCommitLog:(WYCommitLog *)commitLog;
 
 - (NSArray *)getCommitLogListByGoalID:(NSString *)goalID;
+- (NSArray *)getAllCommitLogList;
 
 - (BOOL)deleteCommitLog:(WYCommitLog *)commitLogToDelete;
 @end
