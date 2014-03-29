@@ -7,10 +7,20 @@
 //
 
 #import "WYGoalTimeLineViewController.h"
+#import "WYGoal.h"
+#import "WYDataManager.h"
+#import "WYDate.h"
 
 @interface WYGoalTimeLineViewController ()
 
 @property (copy, nonatomic) NSString *goalID;
+
+@property (strong, nonatomic) WYGoal *goal;
+@property (assign, nonatomic) int elapsedDays;
+@property (assign, nonatomic) int longestSequence;
+@property (assign, nonatomic) float percentageInAll;
+@property (assign, nonatomic) int rankingInAll;
+
 
 @end
 
@@ -20,6 +30,7 @@
     self = [super init];
     if (self) {
         _goalID = goalID;
+        _goal = [[WYDataManager sharedInstance] getGoalByID:self.goalID];
     }
     return self;
 }
@@ -42,6 +53,13 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (int)calculateElapsedDays {
+    int elapsedDays = 0;
+    
+    
+    return elapsedDays;
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,7 +85,7 @@
     static NSString *CellIdentifier = @"timeLineCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if (nil == cell) {
-        cell =
+//        cell =
     }
     // Configure the cell...
     
