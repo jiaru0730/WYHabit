@@ -356,7 +356,9 @@
 
 - (BOOL)isHistoryDay:(ITTCalDay *)calDay {
     ITTCalDay *latestHistoryDay = [[ITTCalDay alloc] initWithDate:[NSDate date]];
-    return (NSOrderedAscending == [calDay compare:latestHistoryDay]);
+    NSComparisonResult compareResult = [calDay compare:latestHistoryDay];
+//    return (NSOrderedAscending == compareResult || NSOrderedSame == compareResult);
+    return (NSOrderedAscending == compareResult);
 }
 
 - (BOOL)isAfterMaximumDay:(ITTCalDay*)calDay
