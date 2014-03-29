@@ -20,7 +20,7 @@
 - (BOOL)createCommitLogTable {
     __block BOOL createTableSucceed = NO;
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        NSString *sql = @"CREATE TABLE IF NOT EXISTS CommitLog(goalID TEXT NO NULL, year INT, month INT, day INT, duration INT8, totalDaysUntilNow INT, totalHoursUntilNow INT, Reserve1 TEXT, Reserve2 TEXT, Reserve3 TEXT, PRIMARY KEY(goalID, year, month, day));";
+        NSString *sql = @"CREATE TABLE IF NOT EXISTS CommitLog(goalID TEXT NO NULL, year INT NO NULL, month INT NO NULL, day INT NO NULL, duration INT8, totalDaysUntilNow INT, totalHoursUntilNow INT, Reserve1 TEXT, Reserve2 TEXT, Reserve3 TEXT, PRIMARY KEY(goalID, year, month, day));";
         createTableSucceed = [database executeUpdate:sql];
     }];
     return createTableSucceed;
@@ -45,7 +45,7 @@
 - (WYCommitLog *)getCommitLogBy:(NSString *)goalID year:(int)year month:(int) month day:(int)day {
     __block WYCommitLog *commitLog = nil;
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        FMResultSet *resultSet = [database executeQuery:@"SELECT * from CommitLog WHERE goalID=? AND year=? AND month=? AND day=?", goalID, year, month, day];
+        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM CommitLog WHERE goalID=? AND year=? AND month=? AND day=?", goalID, year, month, day];
         [resultSet next];
         commitLog = [self fillCommitLog:resultSet];
     }];
@@ -73,6 +73,16 @@
     commitLog.totalDaysUntilNow = [resultSet intForColumn:@"totalDaysUntilNow"];
     commitLog.totalHoursUntilNow = [resultSet intForColumn:@"totalHoursUntilNow"];
     return commitLog;
+}
+
+- (BOOL)deleteCommitLog:(WYCommitLog *)commitLogToDelete {
+    __block BOOL deleteCommitLogSucceed = NO;
+    [self.databaseQueue inDatabase:^(FMDatabase *database) {
+        NSString *sql = [NSString stringWithFormat:@"DELETE FROM CommitLog WHERE goalID=%@ AND year=%d AND month=%d AND day=%d", commitLogToDelete.goalID, commitLogToDelete.date.year, commitLogToDelete.date.month, commitLogToDelete.date
+                         .day];
+        deleteCommitLogSucceed = [database executeUpdate: sql];
+    }];
+    return deleteCommitLogSucceed;
 }
 
 @end

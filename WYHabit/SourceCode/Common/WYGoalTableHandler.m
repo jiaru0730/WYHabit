@@ -81,6 +81,14 @@
     return allGoalList;
 }
 
+- (BOOL)deleteGoalByID:(NSString *)goalID {
+    __block BOOL deleteGoalSucceed = NO;
+    [self.databaseQueue inDatabase:^(FMDatabase *database) {
+        deleteGoalSucceed = [database executeUpdate:@"DELETE FROM Goals WHERE goalID=?", goalID];
+    }];
+    return deleteGoalSucceed;
+}
+
 - (WYGoal *)fillGoal:(FMResultSet *)resultSet {
     WYGoal *goal = [[WYGoal alloc] init];
     goal.goalID = [resultSet stringForColumn:@"goalID"];

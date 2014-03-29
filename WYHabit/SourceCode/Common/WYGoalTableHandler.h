@@ -19,5 +19,6 @@
 - (NSArray *)getAllGoalList;
 - (NSArray *)getLiveGoalList;
 
+- (BOOL)deleteGoalByID:(NSString *)goalID;
 
 @end

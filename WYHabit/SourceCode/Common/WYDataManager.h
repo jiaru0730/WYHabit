@@ -32,6 +32,7 @@ DECLARE_SHARED_INSTANCE(WYDataManager)
 
 - (WYCommitLog *)getCommitLogByGoalID:(NSString *)goalID year:(int)year month:(int)month day:(int)day;
 - (BOOL)updateCommitLog:(WYCommitLog *)commitLog;
+- (BOOL)deleteCommitLog:(WYCommitLog *)commitLogToDelete;
 
 #pragma mark - MainView
 

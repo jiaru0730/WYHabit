@@ -79,6 +79,10 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     return [self.database.commitLogTableHandler updateCommitLog:commitLog];
 }
 
+- (BOOL)deleteCommitLog:(WYCommitLog *)commitLogToDelete {
+    return [self.database.commitLogTableHandler deleteCommitLog:commitLogToDelete];
+}
+
 
 #pragma mark - MainView
 - (NSArray *)getMainViewLiveGoalViewModelList {

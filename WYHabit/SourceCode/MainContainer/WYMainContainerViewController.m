@@ -13,6 +13,7 @@
 #import "WYGoalInMainViewModel.h"
 #import "WYAllGoalDetailsViewController.h"
 #import "WYUIElementManager.h"
+#import "WYToggleButton.h"
 
 static const int kCommitButtonSectionHeight = 250;
 static const int kCommitButtonTopMargin = 40;
@@ -173,7 +174,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 }
 
 - (void)drawCommitButtonOnSingleGoalView:(UIScrollView *)singleGoalScrollView goal:(WYGoalInMainViewModel *)goalViewModel {
-    UIButton *commitButton = [self drawMainButtonOnView:singleGoalScrollView];
+    WYToggleButton *commitButton = [self drawMainButtonOnView:singleGoalScrollView];
     
     [commitButton setTitle:goalViewModel.goal.action forState:UIControlStateNormal];
     [commitButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
@@ -182,8 +183,8 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [commitButton addTarget:self action:@selector(commitGoalButtonPressed:) forControlEvents:UIControlEventTouchDown];
 }
 
-- (UIButton *)drawMainButtonOnView:(UIView *)parentView {
-    UIButton *commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+- (WYToggleButton *)drawMainButtonOnView:(UIView *)parentView {
+    WYToggleButton *commitButton = [WYToggleButton buttonWithType:UIButtonTypeCustom];
     [parentView addSubview:commitButton];
     
     CGFloat frameOfCommitButtonX = (UI_SCREEN_WIDTH - kCommitButtonRedius) / 2;
@@ -276,7 +277,17 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 
 - (void)commitGoalButtonPressed:(id)sender {
     NSLog(@"Commit goal on page: %d", self.currentPageIndex);
-    [self commitGoalInCurrentPage];
+    WYToggleButton *commitButton = (WYToggleButton *)sender;
+    commitButton.actionHasPerformed = !commitButton.actionHasPerformed;
+    if (commitButton.actionHasPerformed) {
+        commitButton.backgroundColor = UI_COLOR_ORANGE;
+        [commitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self commitGoalInCurrentPage];
+    } else {
+        commitButton.backgroundColor = [UIColor whiteColor];
+        [commitButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
+        [self revertGoalInCurrentPage];
+    }
 }
 
 - (void)finishGoalButtonPressed:(id)sender {
@@ -363,6 +374,18 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     commitLog.goalID = commitGoal.goalID;
     
     [[WYDataManager sharedInstance] updateCommitLog:commitLog];
+}
+
+- (void)revertGoalInCurrentPage {
+    WYGoal *commitGoal = ((WYGoalInMainViewModel *)[self.liveGoalViewModelList objectAtIndex:self.currentPageIndex]).goal;
+    commitGoal.totalDays--;
+    [[WYDataManager sharedInstance] updateGoal:commitGoal];
+    
+    WYCommitLog *commitLog = [[WYCommitLog alloc] init];
+    commitLog.goalID = commitGoal.goalID;
+    [commitLog setWYDate:[NSDate date]];
+    
+    [[WYDataManager sharedInstance] deleteCommitLog:commitLog];
 }
 
 - (void)finishGoalInCurrentPage {
