@@ -90,7 +90,7 @@
     _gridViewsArray = [[NSMutableArray alloc] init];  
     _monthGridViewsArray = [[NSMutableArray alloc] init];  
     _recyledGridSetDic = [[NSMutableDictionary alloc] init];
-    _selectedDayDic = [[NSMutableDictionary alloc] init];
+//    _selectedDayDic = [[NSMutableDictionary alloc] init];
     _selectedGridViewIndicesDic = [[NSMutableDictionary alloc] init];
     
     NSUInteger n = 6;
@@ -309,9 +309,20 @@
 {
 //    NSLog([NSString stringWithFormat:@"%04d%02d%02d", [calDay getYear], [calDay getMonth], [calDay getDay]]);
     NSString *key = [self getSelectedDayKey:calDay];
-//    return ([_selectedDayDic objectForKey:key] != nil);
-    return YES;
+    return ([_selectedDayDic objectForKey:key] != nil);
+//    return YES;
 }
+
+- (void)setSelectedDays:(NSArray *)selectedDaysKeys {
+    _selectedDayDic = [[NSMutableDictionary alloc] init];
+    for (NSNumber *eachSelectedDayKey in selectedDaysKeys) {
+        [_selectedDayDic setObject:@"1" forKey:[NSString stringWithFormat:@"%d", [eachSelectedDayKey intValue]]];
+    }
+}
+
+
+
+
 /*
  * update grid state
  */

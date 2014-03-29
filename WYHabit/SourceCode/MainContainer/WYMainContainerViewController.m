@@ -208,12 +208,14 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [chartsContainerView addSubview:calendarContainerView];
     calendarContainerView.clipsToBounds = YES;
     ITTCalendarView *calendarView = [ITTCalendarView viewFromNib];
+    [calendarView setSelectedDays:[goalViewModel.commitLogIntValueSet allObjects]];
     ITTBaseDataSourceImp *dataSource = [[ITTBaseDataSourceImp alloc] init];
     calendarView.date = [NSDate dateWithTimeIntervalSinceNow:2*24*60*60];
     calendarView.dataSource = dataSource;
     //    calendarView.delegate = self;
     calendarView.frame = CGRectMake(0, 0, 309, 410);
     calendarView.allowsMultipleSelection = YES;
+    
     [calendarView showInView:calendarContainerView];
     
 //    UIView *lineChartView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(calendarContainerView.frame) +  kLineChratTopSpacingToCalendar, UI_SCREEN_WIDTH, kLineChartHeight)];

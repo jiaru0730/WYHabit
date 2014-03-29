@@ -102,6 +102,8 @@ ITTCalendarViewHeaderViewDelegate, ITTCalendarViewFooterViewDelegate, ITTCalenda
 
 - (ITTCalendarGridView*)dequeueCalendarGridViewWithIdentifier:(NSString*)identifier;
 
+- (void)setSelectedDays:(NSArray *)selectedDays;
+
 + (id)viewFromNib;
 
 @end
