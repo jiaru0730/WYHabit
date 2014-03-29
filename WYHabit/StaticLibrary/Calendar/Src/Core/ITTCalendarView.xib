@@ -30,12 +30,14 @@
                     <rect key="frame" x="6" y="38" width="297" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_calendar_week_header.png" id="17">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="17">
                             <rect key="frame" x="0.0" y="0.0" width="297" height="20"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <view contentMode="scaleToFill" id="6" userLabel="footer view">
                     <rect key="frame" x="6" y="244" width="297" height="50"/>
@@ -52,7 +54,4 @@
             </connections>
         </view>
     </objects>
-    <resources>
-        <image name="bg_calendar_week_header.png" width="296" height="20"/>
-    </resources>
 </document>
