@@ -27,31 +27,31 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 }
 
 - (void)initManagers {
-    WYGoal *testGoal = [[WYGoal alloc] init];
-    testGoal.goalID = [self generateUUID];
-    testGoal.action = @"testGoal";
-    NSDate *currentTime = [NSDate date];
-    NSDateComponents *startTimeComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:currentTime];
-    startTimeComponents.day = startTimeComponents.day - 5;
-    NSDate *fakeStartTime = [[NSCalendar currentCalendar] dateFromComponents:startTimeComponents];
-    testGoal.startTime = fakeStartTime;
-    
-    WYCommitLog *commitLog = [[WYCommitLog alloc] init];
-    commitLog.date.year = 2014;
-    commitLog.date.month = 3;
-    commitLog.date.day = 25;
-    commitLog.goalID = testGoal.goalID;
-    
-    for (int i = 0; i < 1; ++i) {
-        testGoal.totalDays++;
-        [self updateGoal:testGoal];
-        commitLog.totalDaysUntilNow = testGoal.totalDays;
-        [self updateCommitLog:commitLog];
-        commitLog.date.day++;
-    }
-    
-    commitLog.goalID = @"TEST";
-    [self updateCommitLog:commitLog];
+//    WYGoal *testGoal = [[WYGoal alloc] init];
+//    testGoal.goalID = [self generateUUID];
+//    testGoal.action = @"testGoal";
+//    NSDate *currentTime = [NSDate date];
+//    NSDateComponents *startTimeComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:currentTime];
+//    startTimeComponents.day = startTimeComponents.day - 5;
+//    NSDate *fakeStartTime = [[NSCalendar currentCalendar] dateFromComponents:startTimeComponents];
+//    testGoal.startTime = fakeStartTime;
+//    
+//    WYCommitLog *commitLog = [[WYCommitLog alloc] init];
+//    commitLog.date.year = 2014;
+//    commitLog.date.month = 3;
+//    commitLog.date.day = 25;
+//    commitLog.goalID = testGoal.goalID;
+//    
+//    for (int i = 0; i < 1; ++i) {
+//        testGoal.totalDays++;
+//        [self updateGoal:testGoal];
+//        commitLog.totalDaysUntilNow = testGoal.totalDays;
+//        [self updateCommitLog:commitLog];
+//        commitLog.date.day++;
+//    }
+//    
+//    commitLog.goalID = @"TEST";
+//    [self updateCommitLog:commitLog];
 }
 
 - (NSString *)generateUUID {
