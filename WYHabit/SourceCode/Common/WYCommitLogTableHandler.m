@@ -45,7 +45,7 @@
 - (WYCommitLog *)getCommitLogBy:(NSString *)goalID year:(int)year month:(int) month day:(int)day {
     __block WYCommitLog *commitLog = nil;
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM CommitLog WHERE goalID=%@ AND year=%d AND month=%d AND day=%d", goalID, year, month, day];
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM CommitLog WHERE goalID='%@' AND year=%d AND month=%d AND day=%d;", goalID, year, month, day];
         FMResultSet *resultSet = [database executeQuery:sql];
         if ([resultSet next]) {
             commitLog = [self fillCommitLog:resultSet];
@@ -57,7 +57,7 @@
 - (NSArray *)getCommitLogListByGoalID:(NSString *)goalID {
     __block NSMutableArray *commitLogList = [NSMutableArray array];
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        FMResultSet *resultSet = [database executeQuery:@"SELECT * from CommitLog WHERE goalID=?", goalID];
+        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM CommitLog WHERE goalID=?", goalID];
         while ([resultSet next]) {
             [commitLogList addObject:[self fillCommitLog:resultSet]];
         }
@@ -80,7 +80,7 @@
 - (BOOL)deleteCommitLog:(WYCommitLog *)commitLogToDelete {
     __block BOOL deleteCommitLogSucceed = NO;
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        NSString *sql = [NSString stringWithFormat:@"DELETE FROM CommitLog WHERE goalID=%@ AND year=%d AND month=%d AND day=%d", commitLogToDelete.goalID, commitLogToDelete.date.year, commitLogToDelete.date.month, commitLogToDelete.date
+        NSString *sql = [NSString stringWithFormat:@"DELETE FROM CommitLog WHERE goalID='%@' AND year=%d AND month=%d AND day=%d;", commitLogToDelete.goalID, commitLogToDelete.date.year, commitLogToDelete.date.month, commitLogToDelete.date
                          .day];
         deleteCommitLogSucceed = [database executeUpdate: sql];
     }];

@@ -368,7 +368,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
         [commitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     } else {
         [commitButton setBackgroundImage:nil forState:UIControlStateNormal];
-        commitButton.layer.borderWidth = 1;
+        commitButton.layer.borderWidth = 2;
         [commitButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
     }
 }

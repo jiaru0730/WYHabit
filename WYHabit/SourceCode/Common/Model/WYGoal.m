@@ -9,5 +9,15 @@
 #import "WYGoal.h"
 
 @implementation WYGoal
+//
+//- (id)init {
+//    self = [super init];
+//    if (self) {
+//        self.startTime = [NSDate dateWithTimeIntervalSince1970:0];
+//        self.endTime = [NSDate dateWithTimeIntervalSince1970:0];
+//        self.achiveTime = [NSDate dateWithTimeIntervalSince1970:0];
+//    }
+//    return self;
+//}
 
 @end

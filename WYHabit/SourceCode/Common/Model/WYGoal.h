@@ -12,9 +12,9 @@
 
 @property (copy, nonatomic) NSString *goalID;
 @property (copy, nonatomic) NSString *action;
-@property (assign, nonatomic) NSDate *startTime;
-@property (assign, nonatomic) NSDate *endTime;
-@property (assign, nonatomic) NSDate *achiveTime;
+@property (copy, nonatomic) NSDate *startTime;
+@property (copy, nonatomic) NSDate *endTime;
+@property (copy, nonatomic) NSDate *achiveTime;
 @property (assign, nonatomic) int totalDays;
 @property (assign, nonatomic) int totalHours;
 

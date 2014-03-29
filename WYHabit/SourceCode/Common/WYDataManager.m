@@ -25,17 +25,6 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 }
 
 - (void)initManagers {
-//    WYGoal *goal = [[WYGoal alloc] init];
-//    goal.goalID = [[WYDataManager sharedInstance] generateUUID];
-//    goal.action = @"testActionActionActionActionAction";
-//    goal.startTime = [NSDate date];
-//    goal.endTime = [NSDate date];
-//    [[WYDataManager sharedInstance] updateGoal:goal];
-
-    // WYConfigManager is not used by DataManager, previous lines are just test for DB operations.
-//    [[WYConfigManager sharedInstance] setConfigValue:goal.goalID forKey:kIDOfLiveGoalIndexKeyA];
-    
-    
 }
 
 - (NSString *)generateUUID {
@@ -69,7 +58,6 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 - (BOOL)updateGoal:(WYGoal *)goal {
     return [self.database.goalTableHandler updateGoal:goal];
 }
-
 
 #pragma mark - CommitLogs
 - (WYCommitLog *)getCommitLogByGoalID:(NSString *)goalID year:(int)year month:(int)month day:(int)day {
@@ -135,9 +123,9 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 - (WYDate *)convertDateToWYDate:(NSDate *)date {
     WYDate *wyDate = [[WYDate alloc] init];
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    wyDate.year = (int)dateComponents.year;
-    wyDate.month = (int)dateComponents.month;
-    wyDate.day = (int)dateComponents.day;
+    wyDate.year = dateComponents.year;
+    wyDate.month = dateComponents.month;
+    wyDate.day = dateComponents.day;
     return wyDate;
 }
 
