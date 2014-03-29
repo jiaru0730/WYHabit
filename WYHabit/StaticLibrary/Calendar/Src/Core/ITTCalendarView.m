@@ -192,13 +192,13 @@
 
 - (NSString*)findMonthDescription
 {
-    NSArray *months = @[@"January", @"February", @"March", @"April", @"May", @"June", @"July", @"August", @"September", @"October", @"November", @"December"];
+    NSArray *months = @[@"Jan.", @"Feb.", @"Mar.", @"Apr.", @"May", @"Jun.", @"Jul.", @"Aug.", @"Sep.", @"Oct.", @"Nov.", @"Dec."];
     NSString *title = nil;
     if (_dataSource && [_dataSource respondsToSelector:@selector(calendarView:titleForMonth:)]) {
         title = [_dataSource calendarView:self titleForMonth:_calMonth];
     }
     if (!title||![title length]) {        
-        title = [NSString stringWithFormat:@"%d %@", [_calMonth getYear], months[[_calMonth getMonth]]];
+        title = [NSString stringWithFormat:@"%d %@", [_calMonth getYear], months[[_calMonth getMonth] - 1]];
     }
     return title;
 }
