@@ -114,6 +114,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 - (UIScrollView *)drawVerticalScrollViewByGoal:(WYGoalInMainViewModel *)goalViewModel {
     NSLog(@"Draw view for goal: %@", goalViewModel.goal.action);
     UIScrollView *singleGoalScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
+    singleGoalScrollView.showsVerticalScrollIndicator = NO;
     singleGoalScrollView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, kCommitButtonSectionHeight + kChartsSectionHeight + kOperationSectionHeight);
     
     [self drawCommitButtonOnSingleGoalView:singleGoalScrollView goal:goalViewModel];
@@ -232,7 +233,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     finishGoalButton.layer.borderWidth = 2.0f;
     finishGoalButton.layer.borderColor = [UI_COLOR_ORANGE CGColor];
     [finishGoalButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
-    [finishGoalButton setTitle:@"Finish" forState:UIControlStateNormal];
+    [finishGoalButton setTitle:@"Achive" forState:UIControlStateNormal];
     [operationSectionContainerView addSubview:finishGoalButton];
     
     [finishGoalButton addTarget:self action:@selector(finishGoalButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -241,7 +242,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     allGoalDetailsButton.backgroundColor = UI_COLOR_ORANGE;
     [allGoalDetailsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     allGoalDetailsButton.frame = CGRectMake(UI_SCREEN_WIDTH - kOperationButtonRadius - kOperationButtonSideMargin, (kOperationSectionHeight - kOperationButtonRadius) / 2, kOperationButtonRadius, kOperationButtonRadius);
-    [allGoalDetailsButton setTitle:@"Detail" forState:UIControlStateNormal];
+    [allGoalDetailsButton setTitle:@"View All" forState:UIControlStateNormal];
     [allGoalDetailsButton addTarget:self action:@selector(detailButtonPressed:) forControlEvents:UIControlEventTouchDown];
     [operationSectionContainerView addSubview:allGoalDetailsButton];
 }
