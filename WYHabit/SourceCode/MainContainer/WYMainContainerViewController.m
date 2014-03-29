@@ -179,6 +179,8 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [commitButton setTitle:goalViewModel.goal.action forState:UIControlStateNormal];
     [commitButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
     commitButton.titleLabel.font = [UIFont boldSystemFontOfSize:35];
+    commitButton.actionHasPerformed = goalViewModel.hasCommitToday;
+    [self refreshCommitButton:commitButton];
     
     [commitButton addTarget:self action:@selector(commitGoalButtonPressed:) forControlEvents:UIControlEventTouchDown];
 }
@@ -279,15 +281,10 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     NSLog(@"Commit goal on page: %d", self.currentPageIndex);
     WYToggleButton *commitButton = (WYToggleButton *)sender;
     commitButton.actionHasPerformed = !commitButton.actionHasPerformed;
+    [self refreshCommitButton:commitButton];
     if (commitButton.actionHasPerformed) {
-        [commitButton setBackgroundImage:[UIImage imageNamed:@"commit_button.png"] forState:UIControlStateNormal];
-        commitButton.layer.borderWidth = 0;
-        [commitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self commitGoalInCurrentPage];
     } else {
-        [commitButton setBackgroundImage:nil forState:UIControlStateNormal];
-        commitButton.layer.borderWidth = 1;
-        [commitButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
         [self revertGoalInCurrentPage];
     }
 }
@@ -362,6 +359,18 @@ static const int kAddGoalOKAndCancelButtonY = 190;
         self.allGoalDetailsNavigationController = [[UINavigationController alloc] initWithRootViewController:[[WYAllGoalDetailsViewController alloc] initWithNibName:nil bundle:nil]];
     }
     [self presentViewController:self.allGoalDetailsNavigationController animated:YES completion:nil];
+}
+
+- (void)refreshCommitButton:(WYToggleButton *)commitButton {
+    if (commitButton.actionHasPerformed) {
+        [commitButton setBackgroundImage:[UIImage imageNamed:@"commit_button.png"] forState:UIControlStateNormal];
+        commitButton.layer.borderWidth = 0;
+        [commitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    } else {
+        [commitButton setBackgroundImage:nil forState:UIControlStateNormal];
+        commitButton.layer.borderWidth = 1;
+        [commitButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - GoalOperations

@@ -41,4 +41,9 @@ DECLARE_SHARED_INSTANCE(WYDataManager)
 #pragma mark - AllDetailView
 
 - (NSArray *)getAllGoalDetailViewModelList;
+
+#pragma mark - Utils
+
+- (WYDate *)convertDateToWYDate:(NSDate *)date;
+
 @end

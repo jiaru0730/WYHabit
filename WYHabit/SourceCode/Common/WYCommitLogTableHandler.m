@@ -45,9 +45,11 @@
 - (WYCommitLog *)getCommitLogBy:(NSString *)goalID year:(int)year month:(int) month day:(int)day {
     __block WYCommitLog *commitLog = nil;
     [self.databaseQueue inDatabase:^(FMDatabase *database) {
-        FMResultSet *resultSet = [database executeQuery:@"SELECT * FROM CommitLog WHERE goalID=? AND year=? AND month=? AND day=?", goalID, year, month, day];
-        [resultSet next];
-        commitLog = [self fillCommitLog:resultSet];
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM CommitLog WHERE goalID=%@ AND year=%d AND month=%d AND day=%d", goalID, year, month, day];
+        FMResultSet *resultSet = [database executeQuery:sql];
+        if ([resultSet next]) {
+            commitLog = [self fillCommitLog:resultSet];
+        }
     }];
     return commitLog;
 }

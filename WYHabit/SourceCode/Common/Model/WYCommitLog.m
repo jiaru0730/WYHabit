@@ -7,6 +7,7 @@
 //
 
 #import "WYCommitLog.h"
+#import "WYDataManager.h"
 
 @implementation WYCommitLog
 
@@ -19,10 +20,7 @@
 }
 
 - (void)setWYDate:(NSDate *)date {
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    self.date.year = (int)dateComponents.year;
-    self.date.month = (int)dateComponents.month;
-    self.date.day = (int)dateComponents.day;
+    self.date = [[WYDataManager sharedInstance] convertDateToWYDate:date];
 }
 
 - (int)combinedIntValue {

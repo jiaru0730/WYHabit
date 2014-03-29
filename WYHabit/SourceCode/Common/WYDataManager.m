@@ -10,6 +10,7 @@
 #import "WYConfigManager.h"
 #import "WYGoalInMainViewModel.h"
 #import "WYGoalInDetailViewModel.h"
+#import "WYDate.h"
 
 @interface WYDataManager()
 
@@ -83,6 +84,15 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     return [self.database.commitLogTableHandler deleteCommitLog:commitLogToDelete];
 }
 
+- (BOOL)hasGoalCommittedToday:(NSString *)goalID  {
+    WYDate *wyDate = [[WYDataManager sharedInstance] convertDateToWYDate:[NSDate date]];
+    return [self hasGoal:goalID CommitOnDate:wyDate];
+}
+
+- (BOOL)hasGoal:(NSString *)gaolID CommitOnDate:(WYDate *)date {
+    WYCommitLog *commitLog = [self.database.commitLogTableHandler getCommitLogBy:gaolID year:date.year month:date.month day:date.day];
+    return (commitLog != nil);
+}
 
 #pragma mark - MainView
 - (NSArray *)getMainViewLiveGoalViewModelList {
@@ -92,6 +102,7 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
         WYGoalInMainViewModel *goalInMainViewModel = [[WYGoalInMainViewModel alloc] init];
         goalInMainViewModel.goal = eachLiveGoal;
         goalInMainViewModel.commitLogIntValueSet = [self getCommitLogIntValueSetForGoal:eachLiveGoal.goalID];
+        goalInMainViewModel.hasCommitToday = [self hasGoalCommittedToday:eachLiveGoal.goalID];
         [liveGoalViewModelList addObject:goalInMainViewModel];
     }
     return liveGoalViewModelList;
@@ -119,6 +130,16 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     return allGoalDetailViewModelList;
 }
 
+#pragma mark - Utils
+
+- (WYDate *)convertDateToWYDate:(NSDate *)date {
+    WYDate *wyDate = [[WYDate alloc] init];
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    wyDate.year = (int)dateComponents.year;
+    wyDate.month = (int)dateComponents.month;
+    wyDate.day = (int)dateComponents.day;
+    return wyDate;
+}
 
 
 @end
