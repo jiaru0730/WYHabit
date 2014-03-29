@@ -656,7 +656,7 @@
         for (NSInteger i = 0; i < NUMBER_OF_DAYS_IN_WEEK; i++) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(marginX, 0, width, CGRectGetHeight(self.weekHintView.bounds))];
             label.textAlignment = UITextAlignmentCenter;
-            label.textColor = [UIColor orangeColor];
+            label.textColor = [UIColor lightGrayColor];
             label.font = [UIFont systemFontOfSize:14];
             label.text = [titles objectAtIndex:i];
             label.backgroundColor = [UIColor clearColor];
