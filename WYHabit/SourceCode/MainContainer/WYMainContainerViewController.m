@@ -22,7 +22,7 @@ static const int kCommitButtonRedius = 200;
 static const int kTextHeight = 70;
 
 static const int kCalendarTopMargin = 30;
-static const int kCalendarHeight = 300;
+static const int kCalendarHeight = 280;
 //static const int kLineChratTopSpacingToCalendar = 30;
 //static const int kLineChartHeight = 255;
 //static const int kChartsSectionHeight = kCalendarTopMargin + kCalendarHeight + kLineChratTopSpacingToCalendar + kLineChartHeight;
