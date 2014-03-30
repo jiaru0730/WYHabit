@@ -12,6 +12,10 @@
 #import "WYDate.h"
 
 
+static int heightForSingleRow = 20;
+static int heightForTableViewFooter = 50;
+static int heightForFinishButton = 40;
+
 @interface WYGoalTimeLineViewController ()
 
 @property (copy, nonatomic) NSString *goalID;
@@ -21,6 +25,8 @@
 @property (assign, nonatomic) int longestSequence;
 @property (assign, nonatomic) float percentageInAll;
 @property (assign, nonatomic) int rankingInAll;
+
+@property (strong, nonatomic) NSArray *numberOfRowsInCell;
 
 
 @end
@@ -32,6 +38,8 @@
     if (self) {
         _goalID = goalID;
         _goal = [[WYDataManager sharedInstance] getGoalByID:self.goalID];
+        
+        _numberOfRowsInCell = @[@(2), @(2), @(2), @(2), @(2), @(1), @(3)];
     }
     return self;
 }
@@ -40,7 +48,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -48,6 +55,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 50)];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, heightForTableViewFooter)];
+    self.tableView.tableFooterView.backgroundColor = UI_COLOR_GREEN_GRASS;
+    
+    UIButton *finishButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    finishButton.frame = CGRectMake(10, (heightForTableViewFooter - heightForFinishButton) / 2, 300, heightForFinishButton);
+    finishButton.clipsToBounds = YES;
+    finishButton.layer.cornerRadius = 5;
+    [finishButton setTitle:@"完成" forState:UIControlStateNormal];
+    [finishButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    finishButton.backgroundColor = UI_COLOR_ORANGE;
+    [finishButton addTarget:self action:@selector(finishButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tableView.tableFooterView addSubview:finishButton];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -79,13 +103,20 @@
     return 7;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat heightForRow = [self.numberOfRowsInCell[indexPath.row] intValue] * heightForSingleRow + 14;
+    return heightForRow;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"timeLineCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (nil == cell) {
         cell = [[UITableViewCell alloc] init];
+        
     }
+    
     
     NSString *timelineDescription = nil;
     switch (indexPath.row) {
@@ -114,6 +145,7 @@
             break;
         case 6:
             timelineDescription = @"改变自己，就是用更多的好习惯来替代原有习惯。你已在变得更好的路上又前进了一步。\nHabit愿伴随你的每一步.";
+            break;
         default:
             timelineDescription = [NSString stringWithFormat:@""];
             break;
@@ -122,6 +154,12 @@
     cell.textLabel.text = timelineDescription;
     
     return cell;
+}
+
+#pragma mark - Button actions
+
+- (void)finishButtonPressed:(id)UIButton {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
