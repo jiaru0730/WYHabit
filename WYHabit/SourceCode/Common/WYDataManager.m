@@ -160,6 +160,9 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     NSArray *commitLogList = [self getCommitLogListForGoal:goalID];
     int maxContinueSequence = 1;
     int tempContinueSequence = 1;
+    if (commitLogList.count <= 1) {
+        return (int)commitLogList.count;
+    }
     for (int i = 1; i < commitLogList.count; ++i) {
         WYCommitLog *previousCommitLog = commitLogList[i - 1];
         WYCommitLog *afterCommitLog = commitLogList[i];

@@ -76,7 +76,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,27 +91,29 @@
     switch (indexPath.row) {
         case 0: {
             WYDate *startWYDate = [[WYDataManager sharedInstance] convertDateToWYDate:self.goal.startTime];
-            timelineDescription = [NSString stringWithFormat:@"StartTime:%d %d %d", startWYDate.year, startWYDate.month, startWYDate.day];
+            timelineDescription = [NSString stringWithFormat:@"%d.%d.%d你在Habit添加了习惯\"%@\"", startWYDate.year, startWYDate.month, startWYDate.day, self.goal.action];
             break;
         }
         case 1: {
             WYDate *achiveWYDate = [[WYDataManager sharedInstance] convertDateToWYDate:self.goal.achiveTime];
-            timelineDescription = [NSString stringWithFormat:@"AchiveTime:%d %d %d", achiveWYDate.year, achiveWYDate.month, achiveWYDate.day];
+            timelineDescription = [NSString stringWithFormat:@"到%d.%d.%d你成功养成了这个习惯", achiveWYDate.year, achiveWYDate.month, achiveWYDate.day];
             break;
         }
         case 2:
-            timelineDescription = [NSString stringWithFormat:@"ElapsedDays:%d", [self calculateElapsedDays]];
+            timelineDescription = [NSString stringWithFormat:@"%@习惯的养成一共用了%d天", self.goal.action, [self calculateElapsedDays]];
             break;
         case 3: {
-            timelineDescription = [NSString stringWithFormat:@"ContinueSequence:%d", [[WYDataManager sharedInstance] calculateContinueSequenceForGoal:self.goalID]];
+            timelineDescription = [NSString stringWithFormat:@"在这%d天内你有%d天未间断地在坚持", [self calculateElapsedDays], [[WYDataManager sharedInstance] calculateContinueSequenceForGoal:self.goalID]];
             break;
         }
         case 4:
-            timelineDescription = [NSString stringWithFormat:@"TotalPercentage:%f%%", [[WYDataManager sharedInstance] calculateCommitPercentageForGoal:self.goalID] * 100];
+            timelineDescription = [NSString stringWithFormat:@"你所有习惯中, %@花费时间占据%f%%", self.goal.action, [[WYDataManager sharedInstance] calculateCommitPercentageForGoal:self.goalID] * 100];
             break;
         case 5:
-            timelineDescription = [NSString stringWithFormat:@"Ranking:%d", [[WYDataManager sharedInstance] calculateCommitRankingForGoal:self.goalID]];
+            timelineDescription = [NSString stringWithFormat:@"排在第%d位", [[WYDataManager sharedInstance] calculateCommitRankingForGoal:self.goalID]];
             break;
+        case 6:
+            timelineDescription = @"改变自己，就是用更多的好习惯来替代原有习惯。你已在变得更好的路上又前进了一步。\nHabit愿伴随你的每一步.";
         default:
             timelineDescription = [NSString stringWithFormat:@""];
             break;
