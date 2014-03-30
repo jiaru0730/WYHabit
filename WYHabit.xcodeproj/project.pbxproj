@@ -69,7 +69,6 @@
 		C1850B8718E54ED8001D5A47 /* WYAllGoalDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1850B8518E54ED8001D5A47 /* WYAllGoalDetailsViewController.xib */; };
 		C1850B8A18E559D4001D5A47 /* WYGoalInDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */; };
 		C18AA00318E6C3D30072CD0A /* WYGoalTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18AA00218E6C3D30072CD0A /* WYGoalTimeLineViewController.m */; };
-		C18AA00918E6C87E0072CD0A /* WYTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C18AA00818E6C87E0072CD0A /* WYTimeLineCell.m */; };
 		C1BF7A2818B9C02300F7484C /* WYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BF7A2718B9C02300F7484C /* WYDatabase.m */; };
 		C1C5387718E2A58500D9C5BB /* WYMyGoalView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C5387618E2A58500D9C5BB /* WYMyGoalView.m */; };
 		C1C538C918E2A63200D9C5BB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C538C818E2A63200D9C5BB /* libCorePlot-CocoaTouch.a */; };
@@ -199,8 +198,6 @@
 		C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalInDetailViewModel.m; sourceTree = "<group>"; };
 		C18AA00118E6C3D30072CD0A /* WYGoalTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGoalTimeLineViewController.h; sourceTree = "<group>"; };
 		C18AA00218E6C3D30072CD0A /* WYGoalTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGoalTimeLineViewController.m; sourceTree = "<group>"; };
-		C18AA00718E6C87E0072CD0A /* WYTimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTimeLineCell.h; sourceTree = "<group>"; };
-		C18AA00818E6C87E0072CD0A /* WYTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTimeLineCell.m; sourceTree = "<group>"; };
 		C1AB4ECD18B9FF37002F3A3E /* WYUIContants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYUIContants.h; sourceTree = "<group>"; };
 		C1BF7A2618B9C02300F7484C /* WYDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDatabase.h; sourceTree = "<group>"; };
 		C1BF7A2718B9C02300F7484C /* WYDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDatabase.m; sourceTree = "<group>"; };
@@ -525,8 +522,6 @@
 				C1850B8918E559D4001D5A47 /* WYGoalInDetailViewModel.m */,
 				C18AA00118E6C3D30072CD0A /* WYGoalTimeLineViewController.h */,
 				C18AA00218E6C3D30072CD0A /* WYGoalTimeLineViewController.m */,
-				C18AA00718E6C87E0072CD0A /* WYTimeLineCell.h */,
-				C18AA00818E6C87E0072CD0A /* WYTimeLineCell.m */,
 			);
 			path = GoalDetails;
 			sourceTree = "<group>";
@@ -931,7 +926,6 @@
 				C1C538CE18E2AB3700D9C5BB /* WYMainContainerViewController.m in Sources */,
 				C154E53318E2F97C006F1F2D /* ITTCalendarGridView.m in Sources */,
 				C154E53F18E2F97C006F1F2D /* ITTBaseCalendarViewHeaderView.m in Sources */,
-				C18AA00918E6C87E0072CD0A /* WYTimeLineCell.m in Sources */,
 				C154E53418E2F97C006F1F2D /* ITTCalendarScrollView.m in Sources */,
 				C1D3AAA118B9D121007712E8 /* WYGoalTableHandler.m in Sources */,
 				C1D091681894B48300FDBB72 /* main.m in Sources */,
