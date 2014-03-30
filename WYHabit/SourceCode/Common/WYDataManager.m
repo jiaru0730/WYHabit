@@ -42,7 +42,7 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 //    commitLog.date.day = 25;
 //    commitLog.goalID = testGoal.goalID;
 //    
-//    for (int i = 0; i < 1; ++i) {
+//    for (int i = 0; i < 3; ++i) {
 //        testGoal.totalDays++;
 //        [self updateGoal:testGoal];
 //        commitLog.totalDaysUntilNow = testGoal.totalDays;
