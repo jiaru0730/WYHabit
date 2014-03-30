@@ -12,9 +12,11 @@
 #import "WYDate.h"
 
 
-static int heightForSingleRow = 20;
+static int heightForSingleRow = 22;
+
 static int heightForTableViewFooter = 50;
 static int heightForFinishButton = 40;
+static int widthOfKeyword = 100;
 
 @interface WYGoalTimeLineViewController ()
 
@@ -39,7 +41,7 @@ static int heightForFinishButton = 40;
         _goalID = goalID;
         _goal = [[WYDataManager sharedInstance] getGoalByID:self.goalID];
         
-        _numberOfRowsInCell = @[@(2), @(2), @(2), @(2), @(2), @(1), @(3)];
+        _numberOfRowsInCell = @[@(2), @(2), @(1), @(2), @(2), @(1), @(3)];
     }
     return self;
 }
@@ -56,12 +58,12 @@ static int heightForFinishButton = 40;
 {
     [super viewDidLoad];
     
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 50)];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, heightForTableViewFooter)];
-    self.tableView.tableFooterView.backgroundColor = UI_COLOR_GREEN_GRASS;
+//    self.tableView.tableFooterView.backgroundColor = UI_COLOR_GREEN_GRASS;
     
     UIButton *finishButton = [UIButton buttonWithType:UIButtonTypeCustom];
     finishButton.frame = CGRectMake(10, (heightForTableViewFooter - heightForFinishButton) / 2, 300, heightForFinishButton);
@@ -104,7 +106,7 @@ static int heightForFinishButton = 40;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat heightForRow = [self.numberOfRowsInCell[indexPath.row] intValue] * heightForSingleRow + 14;
+    CGFloat heightForRow = [self.numberOfRowsInCell[indexPath.row] intValue] * heightForSingleRow + 20;
     return heightForRow;
 }
 
@@ -114,44 +116,85 @@ static int heightForFinishButton = 40;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (nil == cell) {
         cell = [[UITableViewCell alloc] init];
-        
     }
     
+    CGRect frameOfCell = [tableView rectForRowAtIndexPath:indexPath];
+    int numberOfRowsForDetailLabel = [self.numberOfRowsInCell[indexPath.row] intValue];
     
-    NSString *timelineDescription = nil;
+    UILabel *keywordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (CGRectGetHeight(frameOfCell) - heightForSingleRow) / 2, widthOfKeyword - 12, heightForSingleRow)];
+    keywordLabel.textAlignment = NSTextAlignmentRight;
+    keywordLabel.textColor = UI_COLOR_ORANGE;
+    keywordLabel.font = [UIFont boldSystemFontOfSize:17];
+
+    if (indexPath.row <= 5) {
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(widthOfKeyword - 6, 0, 2, CGRectGetHeight(frameOfCell))];
+        line.backgroundColor = UI_COLOR_GRAY_LIGHT;
+        [cell.contentView addSubview:line];
+        
+        UIImageView *smallIconImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"commit_button.png"]];
+        CGFloat smallIconRadius = 10;
+        smallIconImage.frame = CGRectMake(widthOfKeyword - 10, (CGRectGetHeight(frameOfCell) - smallIconRadius) /2 , smallIconRadius, smallIconRadius);
+        [cell.contentView addSubview:smallIconImage];
+    }
+    
+    UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(widthOfKeyword + 4, (CGRectGetHeight(frameOfCell) - numberOfRowsForDetailLabel * heightForSingleRow) / 2, UI_SCREEN_WIDTH - widthOfKeyword - 10, numberOfRowsForDetailLabel * heightForSingleRow)];
+    [detailLabel setNumberOfLines:0];
+    detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    detailLabel.textAlignment = NSTextAlignmentLeft;
+    detailLabel.textColor = [UIColor grayColor];
+    
+    NSString *timelineDetailText = nil;
+    NSString *timelineKeywordText = nil;
     switch (indexPath.row) {
         case 0: {
             WYDate *startWYDate = [[WYDataManager sharedInstance] convertDateToWYDate:self.goal.startTime];
-            timelineDescription = [NSString stringWithFormat:@"%d.%d.%d你在Habit添加了习惯\"%@\"", startWYDate.year, startWYDate.month, startWYDate.day, self.goal.action];
+            timelineKeywordText = [NSString stringWithFormat:@"%d.%d.%d", startWYDate.year, startWYDate.month, startWYDate.day];
+            timelineDetailText = [NSString stringWithFormat:@"%d.%d.%d你在Habit添加了习惯\"%@\"", startWYDate.year, startWYDate.month, startWYDate.day, self.goal.action];
             break;
         }
         case 1: {
             WYDate *achiveWYDate = [[WYDataManager sharedInstance] convertDateToWYDate:self.goal.achiveTime];
-            timelineDescription = [NSString stringWithFormat:@"到%d.%d.%d你成功养成了这个习惯", achiveWYDate.year, achiveWYDate.month, achiveWYDate.day];
+            timelineKeywordText = [NSString stringWithFormat:@"%d.%d.%d", achiveWYDate.year, achiveWYDate.month, achiveWYDate.day];
+            timelineDetailText = [NSString stringWithFormat:@"到%d.%d.%d你成功养成了这个习惯", achiveWYDate.year, achiveWYDate.month, achiveWYDate.day];
             break;
         }
         case 2:
-            timelineDescription = [NSString stringWithFormat:@"%@习惯的养成一共用了%d天", self.goal.action, [self calculateElapsedDays]];
+            timelineKeywordText = [NSString stringWithFormat:@"%d", [self calculateElapsedDays]];
+            timelineDetailText = [NSString stringWithFormat:@"%@习惯的养成一共用了%d天", self.goal.action, [self calculateElapsedDays]];
             break;
         case 3: {
-            timelineDescription = [NSString stringWithFormat:@"在这%d天内你有%d天未间断地在坚持", [self calculateElapsedDays], [[WYDataManager sharedInstance] calculateContinueSequenceForGoal:self.goalID]];
+            timelineKeywordText = [NSString stringWithFormat:@"%d", [[WYDataManager sharedInstance] calculateContinueSequenceForGoal:self.goalID]];
+            timelineDetailText = [NSString stringWithFormat:@"在这%d天内你有%d天未间断地在坚持", [self calculateElapsedDays], [[WYDataManager sharedInstance] calculateContinueSequenceForGoal:self.goalID]];
             break;
         }
         case 4:
-            timelineDescription = [NSString stringWithFormat:@"你所有习惯中, %@花费时间占据%f%%", self.goal.action, [[WYDataManager sharedInstance] calculateCommitPercentageForGoal:self.goalID] * 100];
+            timelineKeywordText = [NSString stringWithFormat:@"%.2f%%", [[WYDataManager sharedInstance] calculateCommitPercentageForGoal:self.goalID] * 100];
+            timelineDetailText = [NSString stringWithFormat:@"你所有习惯中, %@花费时间占据%.2f%%", self.goal.action, [[WYDataManager sharedInstance] calculateCommitPercentageForGoal:self.goalID] * 100];
             break;
         case 5:
-            timelineDescription = [NSString stringWithFormat:@"排在第%d位", [[WYDataManager sharedInstance] calculateCommitRankingForGoal:self.goalID]];
+            timelineKeywordText = [NSString stringWithFormat:@"%d", [[WYDataManager sharedInstance] calculateCommitRankingForGoal:self.goalID]];
+            timelineDetailText = [NSString stringWithFormat:@"排在第%d位", [[WYDataManager sharedInstance] calculateCommitRankingForGoal:self.goalID]];
             break;
         case 6:
-            timelineDescription = @"改变自己，就是用更多的好习惯来替代原有习惯。你已在变得更好的路上又前进了一步。\nHabit愿伴随你的每一步.";
+            detailLabel.frame = CGRectMake(0, (CGRectGetHeight(frameOfCell) - numberOfRowsForDetailLabel * heightForSingleRow) / 2, UI_SCREEN_WIDTH, numberOfRowsForDetailLabel * heightForSingleRow);
+            detailLabel.textAlignment = NSTextAlignmentCenter;
+            timelineKeywordText = [NSString stringWithFormat:@""];
+            timelineDetailText = @"改变自己，就是用更多的好习惯来替代原有习惯。你已在变得更好的路上又前进了一步。Habit愿伴随你的每一步.";
             break;
         default:
-            timelineDescription = [NSString stringWithFormat:@""];
+            timelineKeywordText = [NSString stringWithFormat:@""];
+            timelineDetailText = [NSString stringWithFormat:@""];
             break;
     }
     
-    cell.textLabel.text = timelineDescription;
+    
+    
+    keywordLabel.text = timelineKeywordText;
+    detailLabel.text = timelineDetailText;
+    
+    [cell.contentView addSubview:keywordLabel];
+    [cell.contentView addSubview:detailLabel];
+    
     
     return cell;
 }

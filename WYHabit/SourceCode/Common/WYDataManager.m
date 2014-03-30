@@ -180,7 +180,11 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
 - (float)calculateCommitPercentageForGoal:(NSString *)goalID {
     float goalCommitCount = (float)[self getCommitLogListForGoal:goalID].count;
     float allGoalCommitCount = (float)[self getAllCommitLogList].count;
-    return goalCommitCount / allGoalCommitCount;
+    if (0 == allGoalCommitCount) {
+        return 0;
+    } else {
+        return goalCommitCount / allGoalCommitCount;
+    }
 }
 
 - (int)calculateCommitRankingForGoal:(NSString *)goalID {
