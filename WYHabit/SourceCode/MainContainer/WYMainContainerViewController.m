@@ -137,7 +137,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     CALayer *addGoalButtonLayer = self.addGoalButton.layer;
     addGoalButtonLayer.borderWidth = 0;
     
-    self.addGoalButton.backgroundColor = UI_COLOR_GREEN_GRASS;
+    self.addGoalButton.backgroundColor = UI_COLOR_ORANGE;
     [self.addGoalButton setTitle:@"ADD" forState:UIControlStateNormal];
     [self.addGoalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.addGoalButton.titleLabel.font = [UIFont systemFontOfSize:35];
@@ -146,10 +146,9 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     self.addGoalActionNameTextField = [[UITextField alloc] init];
     [self setFrameAndAlphaOfAddGoalActionNameTextFieldToHidePosition];
     self.addGoalActionNameTextField.font = [UIFont boldSystemFontOfSize:25];
-    self.addGoalActionNameTextField.textColor = UI_COLOR_GREEN_GRASS;
-    self.addGoalActionNameTextField.tintColor = UI_COLOR_GREEN_GRASS;
+    self.addGoalActionNameTextField.textColor = UI_COLOR_ORANGE;
     self.addGoalActionNameTextField.backgroundColor = [UIColor whiteColor];
-    self.addGoalActionNameTextField.placeholder = @"GoalName";
+    self.addGoalActionNameTextField.placeholder = @"Habit Name";
     self.addGoalActionNameTextField.hidden = YES;
     self.addGoalActionNameTextField.textAlignment = NSTextAlignmentCenter;
     [self.addGoalButton addSubview:self.addGoalActionNameTextField];
@@ -169,6 +168,14 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [self.addGoalCancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [self.addGoalCancelButton addTarget:self action:@selector(addGoalCancelButtonPressed:) forControlEvents:UIControlEventTouchDown];
     [self.addGoalView addSubview:self.addGoalCancelButton];
+    
+    UILabel *addNotice = [[UILabel alloc] initWithFrame:CGRectMake(0, 270, UI_SCREEN_WIDTH, 120)];
+    [addNotice setNumberOfLines:0];
+    addNotice.textAlignment = NSTextAlignmentCenter;
+    addNotice.textColor = UI_COLOR_GRAY_LIGHT;
+    addNotice.font = [UIFont systemFontOfSize:26];
+    addNotice.text = @"Start a good habit here\n and \nkeep it everyday.";
+    [self.addGoalView addSubview:addNotice];
     
     [self setFrameOfAddGoalCheckButtonsToHidePosition];
     

@@ -1070,7 +1070,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Deqing Liu (RP3THB3D74)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WYHabit/WYHabit-Prefix.pch";
 				INFOPLIST_FILE = "WYHabit/WYHabit-Info.plist";
@@ -1079,7 +1080,7 @@
 					"$(PROJECT_DIR)/WYHabit/StaticLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D4D5FA26-87E6-4495-AE48-CE53FF7566D2";
+				PROVISIONING_PROFILE = "D014B4BB-5A70-4587-BC30-C745B51BDA27";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1091,7 +1092,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: NetEase Youdao Information Technology (Beijing) Co. Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: NetEase Youdao Information Technology (Beijing) Co. Ltd.";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WYHabit/WYHabit-Prefix.pch";
 				INFOPLIST_FILE = "WYHabit/WYHabit-Info.plist";
@@ -1100,7 +1102,7 @@
 					"$(PROJECT_DIR)/WYHabit/StaticLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D4D5FA26-87E6-4495-AE48-CE53FF7566D2";
+				PROVISIONING_PROFILE = "D014B4BB-5A70-4587-BC30-C745B51BDA27";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
