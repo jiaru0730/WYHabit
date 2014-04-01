@@ -86,6 +86,10 @@ IMPLEMENT_SHARED_INSTANCE(WYDataManager)
     return [self.database.goalTableHandler updateGoal:goal];
 }
 
+- (BOOL)deleteGoalByID:(NSString *)goalID {
+    return [self.database.goalTableHandler deleteGoalByID:goalID];
+}
+
 #pragma mark - CommitLogs
 - (WYCommitLog *)getCommitLogByGoalID:(NSString *)goalID year:(int)year month:(int)month day:(int)day {
     return [self.database.commitLogTableHandler getCommitLogBy:goalID year:year month:month day:day];

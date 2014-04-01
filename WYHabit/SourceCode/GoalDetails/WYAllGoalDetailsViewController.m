@@ -16,6 +16,8 @@ static const int kNumberOfSectionsInAllDetailTableView = 2;
 static const int kSectionNumberOfLiveGoal       = 0;
 static const int kSectionNumberOfAchievedGoal   = 1;
 
+static const int kTagOfRenameAlertView  = 1001;
+static const int kTagOfDeleteAlertView  = 1002;
 
 @interface WYAllGoalDetailsViewController ()
 
@@ -28,6 +30,7 @@ static const int kSectionNumberOfAchievedGoal   = 1;
 @property (strong, nonatomic) NSArray *achievedGoalViewModelList;
 
 @property (copy, nonatomic) NSIndexPath *renameIndexPath;
+@property (copy, nonatomic) NSIndexPath *deleteIndexPath;
 
 
 @end
@@ -55,7 +58,6 @@ static const int kSectionNumberOfAchievedGoal   = 1;
     self.editTableViewItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editTableViewItemPressed:)];
     self.finishEditTableViewItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishEditTableViewItemPressed:)];
     self.navigationItem.rightBarButtonItem = self.editTableViewItem;
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyRefreshGoalMetaData:) name:kNotifyRefreshGoalMetaData object:nil];
 }
@@ -118,10 +120,10 @@ static const int kSectionNumberOfAchievedGoal   = 1;
     int numberOfRowsInSection = 0;
     switch (section) {
         case kSectionNumberOfLiveGoal:
-            numberOfRowsInSection = self.achievedGoalViewModelList.count;
+            numberOfRowsInSection = MAX(1, self.achievedGoalViewModelList.count);
             break;
         case kSectionNumberOfAchievedGoal:
-            numberOfRowsInSection = self.liveGoalViewModelList.count;
+            numberOfRowsInSection = MAX(1, self.liveGoalViewModelList.count);
             break;
         default:
             break;
@@ -139,14 +141,21 @@ static const int kSectionNumberOfAchievedGoal   = 1;
     WYGoalInDetailViewModel *goalViewModelForCell = [self getGoalViewModelAtIndexPath:indexPath];
     WYGoal *goalForCell = goalViewModelForCell.goal;
     
-    if ([goalForCell.achiveTime timeIntervalSince1970] == 0) {
+    if (nil != goalForCell) {
+        cell.textLabel.text = goalForCell.action;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", goalForCell.totalDays];
+        cell.editingAccessoryType = UITableViewCellAccessoryDetailButton;
+    } else {
+        cell.textLabel.text = @"No habit.";
+        cell.detailTextLabel.text = @"";
+    }
+    
+    if (indexPath.section == kSectionNumberOfLiveGoal) {
         cell.backgroundColor = [UIColor whiteColor];
     } else {
         cell.backgroundColor = UI_COLOR_GRAY_LIGHT;
     }
-    cell.textLabel.text = goalForCell.action;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", goalForCell.totalDays];
-    cell.editingAccessoryType = UITableViewCellAccessoryDetailButton;
+    
     return cell;
 }
 
@@ -160,7 +169,8 @@ static const int kSectionNumberOfAchievedGoal   = 1;
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // delete goal at index path.
+        self.deleteIndexPath = indexPath;
+        [self showDeleteAlert];
     }
 }
 
@@ -173,10 +183,10 @@ static const int kSectionNumberOfAchievedGoal   = 1;
     NSString *sectionTitle = nil;
     switch (section) {
         case kSectionNumberOfLiveGoal:
-            sectionTitle = @"Live goals";
+            sectionTitle = @"Live habit(s)";
             break;
         case kSectionNumberOfAchievedGoal:
-            sectionTitle = @"Achieved goals";
+            sectionTitle = @"Achieved habit(s)";
             break;
         default:
             sectionTitle = @"";
@@ -188,7 +198,7 @@ static const int kSectionNumberOfAchievedGoal   = 1;
 #pragma mark - Button and Notification actions
 
 - (void)notifyRefreshGoalMetaData:(NSNotification *)notification {
-    self.allGoalViewModelList = [[WYDataManager sharedInstance] getAllGoalDetailViewModelList];
+    [self loadAllGoalViewModel];
     [self.allGoalDetailTableView reloadData];
 }
                                  
@@ -196,21 +206,40 @@ static const int kSectionNumberOfAchievedGoal   = 1;
 
 - (void)showRenameAlert {
     NSString *oldName = [self getGoalViewModelAtIndexPath:self.renameIndexPath].goal.action;
-    UIAlertView *renameAlertView = [[UIAlertView alloc] initWithTitle:@"Rename goal" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Rename", nil];
+    UIAlertView *renameAlertView = [[UIAlertView alloc] initWithTitle:@"Rename habit" message:nil delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"Rename", nil];
+    renameAlertView.tag = kTagOfRenameAlertView;
     renameAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [renameAlertView textFieldAtIndex:0].text = oldName;
     [renameAlertView show];
 }
 
+- (void)showDeleteAlert {
+    NSString *nameOfGoalToDelete = [self getGoalViewModelAtIndexPath:self.deleteIndexPath].goal.action;
+    UIAlertView *deleteAlertView = [[UIAlertView alloc] initWithTitle:@"Delete habit" message:[NSString stringWithFormat:@"Are you sure you want to delete %@? (This action cannot be undo.)", nameOfGoalToDelete] delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"Delete", nil];
+    deleteAlertView.tag = kTagOfDeleteAlertView;
+    [deleteAlertView show];
+}
+
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        WYGoal *renamedGoal = [self getGoalViewModelAtIndexPath:self.renameIndexPath].goal;
-        renamedGoal.action = [alertView textFieldAtIndex:0].text;
-        [[WYDataManager sharedInstance] updateGoal:renamedGoal];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyRefreshGoalMetaData object:self];
+    switch (alertView.tag) {
+        case kTagOfRenameAlertView:
+            if (buttonIndex == 1) {
+                WYGoal *renamedGoal = [self getGoalViewModelAtIndexPath:self.renameIndexPath].goal;
+                renamedGoal.action = [alertView textFieldAtIndex:0].text;
+                [[WYDataManager sharedInstance] updateGoal:renamedGoal];
+            }
+            break;
+        case kTagOfDeleteAlertView:
+            if (buttonIndex == 1) {
+                WYGoal *goalToDelete = [self getGoalViewModelAtIndexPath:self.deleteIndexPath].goal;
+                [[WYDataManager sharedInstance] deleteGoalByID:goalToDelete.goalID];
+            }
+        default:
+            break;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyRefreshGoalMetaData object:self];
 }
 
 #pragma mark - Other
@@ -219,10 +248,18 @@ static const int kSectionNumberOfAchievedGoal   = 1;
     WYGoalInDetailViewModel *goalViewModelAtIndexPath = nil;
     switch (indexPath.section) {
         case kSectionNumberOfLiveGoal:
-            goalViewModelAtIndexPath = self.liveGoalViewModelList[indexPath.row];
+            if (indexPath.row >= self.liveGoalViewModelList.count) {
+                goalViewModelAtIndexPath = nil;
+            } else {
+                goalViewModelAtIndexPath = self.liveGoalViewModelList[indexPath.row];
+            }
             break;
         case kSectionNumberOfAchievedGoal:
-            goalViewModelAtIndexPath = self.achievedGoalViewModelList[indexPath.row];
+            if (indexPath.row >= self.achievedGoalViewModelList.count) {
+                goalViewModelAtIndexPath = nil;
+            } else {
+                goalViewModelAtIndexPath = self.achievedGoalViewModelList[indexPath.row];
+            }
             break;
         default:
             break;
