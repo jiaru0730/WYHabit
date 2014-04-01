@@ -12,6 +12,11 @@
 #import "WYGoalInDetailViewModel.h"
 
 
+static const int kNumberOfSectionsInAllDetailTableView = 2;
+static const int kSectionNumberOfLiveGoal       = 0;
+static const int kSectionNumberOfAchievedGoal   = 1;
+
+
 @interface WYAllGoalDetailsViewController ()
 
 @property (strong, nonatomic) UIBarButtonItem *editTableViewItem;
@@ -19,6 +24,8 @@
 
 
 @property (strong, nonatomic) NSArray *allGoalViewModelList;
+@property (strong, nonatomic) NSArray *liveGoalViewModelList;
+@property (strong, nonatomic) NSArray *achievedGoalViewModelList;
 
 @property (assign, nonatomic) NSIndexPath *renameIndexPath;
 
@@ -62,6 +69,21 @@
 
 - (void)loadAllGoalViewModel {
     self.allGoalViewModelList = [[WYDataManager sharedInstance] getAllGoalDetailViewModelList];
+    
+    NSMutableArray *mutableLiveGoalModelViewList = [NSMutableArray array];
+    NSMutableArray *mutableAchievedGoalModelViewList = [NSMutableArray array];
+    
+    for (WYGoalInDetailViewModel *goalInDetailViewModel in self.allGoalViewModelList) {
+        BOOL isGoalAchieved = [goalInDetailViewModel.goal.achiveTime timeIntervalSince1970] > 0;
+        if (isGoalAchieved) {
+            [mutableAchievedGoalModelViewList addObject:goalInDetailViewModel];
+        } else {
+            [mutableLiveGoalModelViewList addObject:goalInDetailViewModel];
+        }
+    }
+    
+    self.liveGoalViewModelList = mutableLiveGoalModelViewList.copy;
+    self.achievedGoalViewModelList = mutableAchievedGoalModelViewList.copy;
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,8 +110,23 @@
 
 #pragma mark - UITableView DataSource & Delegate
 
+- (int)numberOfSectionsInTableView:(UITableView *)tableView {
+    return kNumberOfSectionsInAllDetailTableView;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.allGoalViewModelList.count;
+    int numberOfRowsInSection = 0;
+    switch (section) {
+        case kSectionNumberOfLiveGoal:
+            numberOfRowsInSection = self.achievedGoalViewModelList.count;
+            break;
+        case kSectionNumberOfAchievedGoal:
+            numberOfRowsInSection = self.liveGoalViewModelList.count;
+            break;
+        default:
+            break;
+    }
+    return numberOfRowsInSection;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,7 +135,27 @@
     if (nil == cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellReuseIdentifier];
     }
-    WYGoal *goalForCell = ((WYGoalInDetailViewModel *)[self.allGoalViewModelList objectAtIndex:indexPath.row]).goal;
+    
+//    WYGoal *goalForCell = ((WYGoalInDetailViewModel *)[self.allGoalViewModelList objectAtIndex:indexPath.row]).goal;
+    WYGoalInDetailViewModel *goalViewModelForCell = nil;
+    switch (indexPath.section) {
+        case kSectionNumberOfLiveGoal:
+            goalViewModelForCell = self.liveGoalViewModelList[indexPath.row];
+            break;
+        case kSectionNumberOfAchievedGoal:
+            goalViewModelForCell = self.achievedGoalViewModelList[indexPath.row];
+            break;
+        default:
+            goalViewModelForCell = self.liveGoalViewModelList[indexPath.row];
+            break;
+    }
+    WYGoal *goalForCell = goalViewModelForCell.goal;
+    
+    if ([goalForCell.achiveTime timeIntervalSince1970] == 0) {
+        cell.backgroundColor = [UIColor whiteColor];
+    } else {
+        cell.backgroundColor = UI_COLOR_GRAY_LIGHT;
+    }
     cell.textLabel.text = goalForCell.action;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", goalForCell.totalDays];
     cell.editingAccessoryType = UITableViewCellAccessoryDetailButton;
@@ -114,6 +171,22 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     self.renameIndexPath = indexPath;
     [self showRenameAlert];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *sectionTitle = nil;
+    switch (section) {
+        case kSectionNumberOfLiveGoal:
+            sectionTitle = @"Live goals";
+            break;
+        case kSectionNumberOfAchievedGoal:
+            sectionTitle = @"Achieved goals";
+            break;
+        default:
+            sectionTitle = @"";
+            break;
+    }
+    return sectionTitle;
 }
 
 #pragma mark - Button and Notification actions
