@@ -10,7 +10,7 @@
 
 #import "WYDataManager.h"
 #import "WYGoalInDetailViewModel.h"
-
+#import "WYGoalTimeLineViewController.h"
 
 static const int kNumberOfSectionsInAllDetailTableView = 2;
 static const int kSectionNumberOfLiveGoal       = 0;
@@ -148,6 +148,14 @@ static const int kSectionNumberOfAchievedGoal   = 1;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", goalForCell.totalDays];
     cell.editingAccessoryType = UITableViewCellAccessoryDetailButton;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    WYGoalInDetailViewModel *goalInDetailViewModel = [self getGoalViewModelAtIndexPath:indexPath];
+    WYGoalTimeLineViewController *goalTimelineViewController = [[WYGoalTimeLineViewController alloc] initWithGoal:goalInDetailViewModel.goal.goalID];
+    goalTimelineViewController.isPresented = NO;
+    [self.navigationController pushViewController:goalTimelineViewController animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

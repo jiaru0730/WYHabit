@@ -10,6 +10,9 @@
 
 @interface WYGoalTimeLineViewController : UITableViewController
 
+@property (assign, nonatomic) BOOL isPresented;
+
 - (id)initWithGoal:(NSString *)goalID;
+
 
 @end

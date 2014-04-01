@@ -41,7 +41,7 @@ static int widthOfKeyword = 100;
         _goalID = goalID;
         _goal = [[WYDataManager sharedInstance] getGoalByID:self.goalID];
         
-        _numberOfRowsInCell = @[@(2), @(2), @(1), @(2), @(2), @(1), @(3)];
+        _numberOfRowsInCell = @[@(3), @(3), @(3), @(3), @(3), @(2), @(4)];
     }
     return self;
 }
@@ -60,21 +60,19 @@ static int widthOfKeyword = 100;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 50)];
-    
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, heightForTableViewFooter)];
-//    self.tableView.tableFooterView.backgroundColor = UI_COLOR_GREEN_GRASS;
-    
-    UIButton *finishButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    finishButton.frame = CGRectMake(10, (heightForTableViewFooter - heightForFinishButton) / 2, 300, heightForFinishButton);
-    finishButton.clipsToBounds = YES;
-    finishButton.layer.cornerRadius = 5;
-    [finishButton setTitle:@"完成" forState:UIControlStateNormal];
-    [finishButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    finishButton.backgroundColor = UI_COLOR_ORANGE;
-    [finishButton addTarget:self action:@selector(finishButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.tableView.tableFooterView addSubview:finishButton];
-
+    if (self.isPresented) {
+        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 50)];
+        self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, heightForTableViewFooter)];
+        UIButton *finishButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        finishButton.frame = CGRectMake(10, (heightForTableViewFooter - heightForFinishButton) / 2, 300, heightForFinishButton);
+        finishButton.clipsToBounds = YES;
+        finishButton.layer.cornerRadius = 5;
+        [finishButton setTitle:@"完成" forState:UIControlStateNormal];
+        [finishButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        finishButton.backgroundColor = UI_COLOR_ORANGE;
+        [finishButton addTarget:self action:@selector(finishButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.tableView.tableFooterView addSubview:finishButton];
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -83,7 +81,11 @@ static int widthOfKeyword = 100;
 }
 
 - (int)calculateElapsedDays {
-    NSTimeInterval elapsedTimeInterval = [self.goal.achiveTime timeIntervalSinceDate:self.goal.startTime];
+    NSDate *endDateOfTimeline = [NSDate date];
+    if ([self isGoalAchieved]) {
+        endDateOfTimeline = self.goal.achiveTime;
+    }
+    NSTimeInterval elapsedTimeInterval = [endDateOfTimeline timeIntervalSinceDate:self.goal.startTime];
     return (elapsedTimeInterval / kSecondsPerDay) + 1;
 }
 
@@ -102,11 +104,19 @@ static int widthOfKeyword = 100;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    int numberOfRows = 6;
+    if ([self isGoalAchieved]) {
+        numberOfRows += 1;
+    }
+    return numberOfRows;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat heightForRow = [self.numberOfRowsInCell[indexPath.row] intValue] * heightForSingleRow + 20;
+    int rowInFullTimeline = indexPath.row;
+    if (rowInFullTimeline > 0 && ![self isGoalAchieved]) {
+        rowInFullTimeline += 1;
+    }
+    CGFloat heightForRow = [self.numberOfRowsInCell[rowInFullTimeline] intValue] * heightForSingleRow + 20;
     return heightForRow;
 }
 
@@ -119,14 +129,24 @@ static int widthOfKeyword = 100;
     }
     
     CGRect frameOfCell = [tableView rectForRowAtIndexPath:indexPath];
-    int numberOfRowsForDetailLabel = [self.numberOfRowsInCell[indexPath.row] intValue];
+    
+    int rowInFullTimeline = indexPath.row;
+    if (rowInFullTimeline > 0 && ![self isGoalAchieved]) {
+        rowInFullTimeline += 1;
+    }
+    
+    int numberOfRowsForDetailLabel = [self.numberOfRowsInCell[rowInFullTimeline] intValue];
     
     UILabel *keywordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (CGRectGetHeight(frameOfCell) - heightForSingleRow) / 2, widthOfKeyword - 12, heightForSingleRow)];
     keywordLabel.textAlignment = NSTextAlignmentRight;
     keywordLabel.textColor = UI_COLOR_ORANGE;
     keywordLabel.font = [UIFont boldSystemFontOfSize:17];
 
-    if (indexPath.row <= 5) {
+    int numberOfTimeLineRows = 4;
+    if ([self isGoalAchieved]) {
+        numberOfTimeLineRows += 1;
+    }
+    if (indexPath.row <= numberOfTimeLineRows) {
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(widthOfKeyword - 6, 0, 2, CGRectGetHeight(frameOfCell))];
         line.backgroundColor = UI_COLOR_GRAY_LIGHT;
         [cell.contentView addSubview:line];
@@ -145,7 +165,8 @@ static int widthOfKeyword = 100;
     
     NSString *timelineDetailText = nil;
     NSString *timelineKeywordText = nil;
-    switch (indexPath.row) {
+    
+    switch (rowInFullTimeline) {
         case 0: {
             WYDate *startWYDate = [[WYDataManager sharedInstance] convertDateToWYDate:self.goal.startTime];
             timelineKeywordText = [NSString stringWithFormat:@"%d.%d.%d", startWYDate.year, startWYDate.month, startWYDate.day];
@@ -160,7 +181,7 @@ static int widthOfKeyword = 100;
         }
         case 2:
             timelineKeywordText = [NSString stringWithFormat:@"%d", [self calculateElapsedDays]];
-            timelineDetailText = [NSString stringWithFormat:@"%@习惯的养成一共用了%d天", self.goal.action, [self calculateElapsedDays]];
+            timelineDetailText = [NSString stringWithFormat:@"%@习惯的养成一共经历了%d天", self.goal.action, [self calculateElapsedDays]];
             break;
         case 3: {
             timelineKeywordText = [NSString stringWithFormat:@"%d", [[WYDataManager sharedInstance] calculateContinueSequenceForGoal:self.goalID]];
@@ -255,5 +276,9 @@ static int widthOfKeyword = 100;
 }
 
  */
+
+- (BOOL)isGoalAchieved {
+    return [self.goal.achiveTime timeIntervalSince1970] > 0;
+}
 
 @end

@@ -470,6 +470,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
         [self finishGoalInCurrentPage];
         WYGoal *finishGoal = ((WYGoalInMainViewModel *)[self.liveGoalViewModelList objectAtIndex:self.currentPageIndex]).goal;
         WYGoalTimeLineViewController *goalTimeLineViewController = [[WYGoalTimeLineViewController alloc] initWithGoal:finishGoal.goalID];
+        goalTimeLineViewController.isPresented = YES;
         [self presentViewController:goalTimeLineViewController animated:YES completion:^(void) {
             [self refreshMainContainerScrollViewAfterGoalMetaDataChanges];
         }];
