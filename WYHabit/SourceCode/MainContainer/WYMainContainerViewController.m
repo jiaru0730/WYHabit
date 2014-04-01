@@ -195,7 +195,29 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     commitButton.actionHasPerformed = goalViewModel.hasCommitToday;
     [self refreshCommitButton:commitButton];
     
-    [commitButton addTarget:self action:@selector(commitGoalButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(commitButtonLongPressed:)];
+    longPressGesture.minimumPressDuration = 0.05f;
+    [commitButton addGestureRecognizer:longPressGesture];
+//    [commitButton addTarget:self action:@selector(commitGoalButtonPressed:) forControlEvents:UIControlEventTouchDown];
+}
+
+- (void)commitButtonLongPressed:(UILongPressGestureRecognizer *)gestureRecognizer {
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan: {
+            WYToggleButton *commitButton = (WYToggleButton *)gestureRecognizer.view;
+            [self commitGoalButtonPressed:commitButton];
+            break;
+        }
+            
+        case UIGestureRecognizerStateChanged: {
+            break;
+        }
+            
+        case UIGestureRecognizerStateEnded: {
+        }
+        default:
+            break;
+    }
 }
 
 - (WYToggleButton *)drawMainButtonOnView:(UIView *)parentView {
@@ -245,7 +267,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     finishGoalButton.layer.borderWidth = 2.0f;
     finishGoalButton.layer.borderColor = [UI_COLOR_ORANGE CGColor];
     [finishGoalButton setTitleColor:UI_COLOR_ORANGE forState:UIControlStateNormal];
-    [finishGoalButton setTitle:@"Achive" forState:UIControlStateNormal];
+    [finishGoalButton setTitle:@"Achieve" forState:UIControlStateNormal];
     [operationSectionContainerView addSubview:finishGoalButton];
     
     [finishGoalButton addTarget:self action:@selector(finishGoalButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -305,9 +327,9 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 }
 
 - (void)finishGoalButtonPressed:(id)sender {
-    NSLog(@"Finish goal on page: %d", self.currentPageIndex);
+    NSLog(@"Archieve goal on page: %d", self.currentPageIndex);
     WYGoal *finishGoal = ((WYGoalInMainViewModel *)[self.liveGoalViewModelList objectAtIndex:self.currentPageIndex]).goal;
-    UIAlertView *finishGoalAlertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Finish %@", finishGoal.action] message:@"Do you really want to finish this goal?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Finish", nil];
+    UIAlertView *finishGoalAlertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Archieve %@", finishGoal.action] message:@"Do you really want to Archieve this goal?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Archieve", nil];
     [finishGoalAlertView show];
 }
 
