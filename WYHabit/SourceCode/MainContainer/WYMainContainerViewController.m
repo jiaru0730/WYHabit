@@ -48,6 +48,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
 
 @property (strong, nonatomic) NSMutableArray *elementGoalViewList;
 @property (strong, nonatomic) NSArray *liveGoalViewModelList;
+@property (strong, nonatomic) NSArray *elementScrollViewList;
 @property (assign, nonatomic) int currentPageIndex;
 
 // this is not used
@@ -85,6 +86,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     self.mainContainerScrollView.contentSize = CGSizeMake(sizeOfMainScrollView.width * (self.liveGoalViewModelList.count + 1), sizeOfMainScrollView.height);
     self.mainContainerScrollView.delegate = self;
     
+    NSMutableArray *mutableScrollViewList = [NSMutableArray array];
     for (int i = 0; i <= self.liveGoalViewModelList.count; ++i) {
         UIScrollView *elementScrollView = nil;
         if (i < self.liveGoalViewModelList.count) {
@@ -103,7 +105,9 @@ static const int kAddGoalOKAndCancelButtonY = 190;
         } else {
             elementScrollView.backgroundColor = UI_COLOR_MAIN_BACKGROUND_GRAY_EXSTREAM_LIGHT;
         }
+        [mutableScrollViewList addObject:elementScrollView];
     }
+    self.elementScrollViewList = [mutableScrollViewList copy];
 }
 
 - (void)didReceiveMemoryWarning
@@ -397,6 +401,7 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     commitLog.totalDaysUntilNow = commitGoal.totalDays;
     
     [[WYDataManager sharedInstance] updateCommitLog:commitLog];
+    [self updateViewModelAndRefreshCurrentView];
 }
 
 - (void)revertGoalInCurrentPage {
@@ -409,6 +414,12 @@ static const int kAddGoalOKAndCancelButtonY = 190;
     [commitLog setWYDate:[NSDate date]];
     
     [[WYDataManager sharedInstance] deleteCommitLog:commitLog];
+    [self updateViewModelAndRefreshCurrentView];
+}
+
+- (void)updateViewModelAndRefreshCurrentView {
+    self.liveGoalViewModelList = [[WYDataManager sharedInstance] getMainViewLiveGoalViewModelList];
+    [self drawChartsOnSingleGoalView:self.elementScrollViewList[self.currentPageIndex] goal:self.liveGoalViewModelList[self.currentPageIndex]];
 }
 
 - (void)finishGoalInCurrentPage {
