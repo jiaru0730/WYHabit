@@ -112,7 +112,7 @@ static const int kTagOfDeleteAlertView  = 1002;
 
 #pragma mark - UITableView DataSource & Delegate
 
-- (int)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return kNumberOfSectionsInAllDetailTableView;
 }
 
@@ -120,10 +120,10 @@ static const int kTagOfDeleteAlertView  = 1002;
     int numberOfRowsInSection = 0;
     switch (section) {
         case kSectionNumberOfLiveGoal:
-            numberOfRowsInSection = MAX(1, self.achievedGoalViewModelList.count);
+            numberOfRowsInSection = (int)MAX(1, self.liveGoalViewModelList.count);
             break;
         case kSectionNumberOfAchievedGoal:
-            numberOfRowsInSection = MAX(1, self.liveGoalViewModelList.count);
+            numberOfRowsInSection = (int)MAX(1, self.achievedGoalViewModelList.count);
             break;
         default:
             break;
