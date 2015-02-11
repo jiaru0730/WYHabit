@@ -798,7 +798,7 @@
 				ORGANIZATIONNAME = JiaruPrimer;
 				TargetAttributes = {
 					C1D091571894B48300FDBB72 = {
-						DevelopmentTeam = VHJLLQ36QB;
+						DevelopmentTeam = 9PNK568TLA;
 					};
 					C1D091721894B48300FDBB72 = {
 						TestTargetID = C1D091571894B48300FDBB72;
@@ -1070,8 +1070,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ru Jia (774856DUR6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ru Jia (774856DUR6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ru Jia (9PNK568TLA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ru Jia (9PNK568TLA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WYHabit/WYHabit-Prefix.pch";
 				INFOPLIST_FILE = "WYHabit/WYHabit-Info.plist";
@@ -1080,7 +1080,7 @@
 					"$(PROJECT_DIR)/WYHabit/StaticLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "462ED072-1EA8-4820-8BEF-ACC30F0F1476";
+				PROVISIONING_PROFILE = "4897a270-c80b-4c0a-b44b-65aace1c277a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1092,8 +1092,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: NetEase Youdao Information Technology (Beijing) Co. Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: NetEase Youdao Information Technology (Beijing) Co. Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ru Jia (9PNK568TLA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ru Jia (9PNK568TLA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WYHabit/WYHabit-Prefix.pch";
 				INFOPLIST_FILE = "WYHabit/WYHabit-Info.plist";
@@ -1102,7 +1102,7 @@
 					"$(PROJECT_DIR)/WYHabit/StaticLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "462ED072-1EA8-4820-8BEF-ACC30F0F1476";
+				PROVISIONING_PROFILE = "4897a270-c80b-4c0a-b44b-65aace1c277a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
