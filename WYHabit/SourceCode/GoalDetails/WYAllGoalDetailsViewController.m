@@ -161,10 +161,14 @@ static const int kTagOfDeleteAlertView  = 1002;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     WYGoalInDetailViewModel *goalInDetailViewModel = [self getGoalViewModelAtIndexPath:indexPath];
-    WYGoalTimeLineViewController *goalTimelineViewController = [[WYGoalTimeLineViewController alloc] initWithGoal:goalInDetailViewModel.goal.goalID];
-    goalTimelineViewController.isPresented = NO;
-    [self.navigationController pushViewController:goalTimelineViewController animated:YES];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    WYGoal *goalForCell = goalInDetailViewModel.goal;
+    if (goalForCell) {
+        WYGoalTimeLineViewController *goalTimelineViewController = [[WYGoalTimeLineViewController alloc] initWithGoal:goalInDetailViewModel.goal.goalID];
+        goalTimelineViewController.isPresented = NO;
+        [self.navigationController pushViewController:goalTimelineViewController animated:YES];
+    } else {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
